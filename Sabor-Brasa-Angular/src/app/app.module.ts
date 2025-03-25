@@ -3,16 +3,24 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-
+import { HeaderComponent } from './components/Landing/header/header.component';
+import { InfoLandingComponent } from './components/Landing/info-landing/info-landing.component';
+import { FooterComponent } from './components/Landing/footer/footer.component';
+import { LandingPagesComponent } from './components/Pages/Landing-page/landing-pages/landing-pages.component';
 @NgModule({
   declarations: [
-    AppComponent
+    LandingPagesComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    AppComponent,
+    HeaderComponent,
+    InfoLandingComponent,
+    FooterComponent
   ],
   providers: [],
-  bootstrap: [AppComponent]
+ 
 })
 export class AppModule { }
+
