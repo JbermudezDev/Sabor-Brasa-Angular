@@ -10,21 +10,30 @@ import { Producto } from 'src/app/models/producto.model';
 export class ListarProductosComponent implements OnInit {
   productos: Producto[] = [];
 
-  constructor(private productoService: ProductoService) { }
+  constructor(private productoService: ProductoService) {}
 
   ngOnInit(): void {
-    this.cargarProductos();
+    this.getProductos();
   }
 
-  cargarProductos(): void {
-    this.productoService.obtenerProductos().subscribe((data) => {
+  getProductos(): void {
+    this.productoService.getProductos().subscribe(data => {
       this.productos = data;
     });
   }
 
-  eliminarProducto(id: number): void {
-    this.productoService.eliminarProducto(id).subscribe(() => {
-      this.cargarProductos();
-    });
+  deleteProducto(id: number): void {
+    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+      this.productoService.deleteProducto(id).subscribe({
+        next: () => {
+          alert('Producto eliminado correctamente');
+          this.getProductos(); // Actualiza la lista de productos
+        },
+        error: (err) => {
+          console.error('Error al eliminar el producto:', err);
+          alert('Ocurrió un error al intentar eliminar el producto');
+        }
+      });
+    }
   }
 }

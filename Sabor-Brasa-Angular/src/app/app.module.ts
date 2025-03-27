@@ -11,7 +11,7 @@ import { InfoLandingComponent } from './components/Landing-Page/info-landing/inf
 import { ListarProductosComponent } from './components/productos/listar/listar.component'; 
 import { AgregarProductoComponent } from './components/productos/agregar/agregar.component';
 import { EditarProductoComponent } from './components/productos/editar/editar.component';
-import { DetalleComponent } from './components/productos/detalle/detalle.component';
+
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -23,7 +23,7 @@ import { HttpClientModule } from '@angular/common/http';
     ListarProductosComponent,
     AgregarProductoComponent,
     EditarProductoComponent,
-    DetalleComponent
+    
   ],
   imports: [
     BrowserModule,

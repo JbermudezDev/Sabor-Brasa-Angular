@@ -1,104 +1,114 @@
 <div class="main container" id="main">
-     <!--=============== HEADER ===============-->
-     <header class="header" id="header">
-      <div class="header__container">
-          <button class="header__toggle" id="header-toggle">
-              <i class="ri-menu-line"></i>
-          </button>
-      </div>
-  </header>
-
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-      <div class="sidebar__container">
-          <div class="sidebar__user">
-              <div class="sidebar__img">
-                  <img src="/images/administrador.png" alt="Administrador"> 
-              </div>
-              <div class="sidebar__info">
-                  <h3>Juan Jose Bermudez</h3>
-              </div>
-          </div>
-          <div class="sidebar__content">
-              <div>
-                  <h3 class="sidebar__title">MANAGE</h3>
-                  <div class="sidebar__list">
-                      <a  class="sidebar__link">
-                          <i class="ri-vip-crown-fill"></i>
-                          <span>Administrador</span>
-                      </a>
-                      <a  class="sidebar__link">
-                          <i class="ri-goblet-2-fill"></i>
-                          <span>Adicionales</span>
-                      </a>
-                      <a  class="sidebar__link">
-                          <i class="ri-restaurant-fill"></i>
-                          <span>Productos</span>
-                      </a>
-                      <a  class="sidebar__link">
-                          <i class="ri-user-fill"></i>
-                          <span>Clientes</span>
-                      </a>
-                  </div>
-              </div>
-          </div>
-          <div class="sidebar__actions">
-              <button class="sidebar__link">
-                  <i class="ri-logout-box-r-fill"></i>
-                  <span>Log Out</span>
-              </button>
-          </div>
-      </div>
-  </nav>
-  
-    <!--=============== MAIN ===============-->
-    <main class="main-content">
-      <h1>Listado de Productos</h1>
-      <div class="button-container">
-        <button routerLink="/productos/agregar" class="btn-submit">
-          Agregar Producto
+   <!--=============== HEADER ===============-->
+   <header class="header" id="header">
+    <div class="header__container">
+        <button class="header__toggle" id="header-toggle">
+            <i class="ri-menu-line"></i>
         </button>
-      </div>
-      <div class="table-container">
-        <table>
-          <thead>
-            <tr>
-              <th>ID</th>
-              <th>Nombre</th>
-              <th>Precio</th>
-              <th>Descripción</th>
-              <th>Imagen</th>
-              <th>Acciones</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let producto of productos">
-              <td>{{ producto.id }}</td>
-              <td>{{ producto.nombre }}</td>
-              <td>{{ producto.precio | currency:'COP' }}</td>
-              <td>{{ producto.descripcion }}</td>
-              <td>
-                <img [src]="producto.imagen" alt="Imagen del producto" width="50" />
-              </td>
-              <td>
-                <div class="btn-container">
-                  <button
-                    class="btn green"
-                    routerLink="/productos/editar/{{ producto.id }}"
-                  >
-                    <i class="fas fa-edit"></i> Editar
-                  </button>
-                  <button
-                    class="btn red"
-                    (click)="producto.id !== undefined && eliminarProducto(producto.id)"
-                  >
-                    <i class="fas fa-trash"></i> Eliminar
-                  </button>
+    </div>
+</header>
+
+<!--=============== SIDEBAR ===============-->
+<nav class="sidebar" id="sidebar">
+    <div class="sidebar__container">
+        <div class="sidebar__user">
+            <div class="sidebar__img">
+                <img src="/images/administrador.png" alt="Administrador"> 
+            </div>
+            <div class="sidebar__info">
+                <h3>Juan Jose Bermudez</h3>
+            </div>
+        </div>
+        <div class="sidebar__content">
+            <div>
+                <h3 class="sidebar__title">MANAGE</h3>
+                <div class="sidebar__list">
+                    <a href="/Administrador" class="sidebar__link">
+                        <i class="ri-vip-crown-fill"></i>
+                        <span>Administrador</span>
+                    </a>
+                    <a href="/adicionales/all" class="sidebar__link">
+                        <i class="ri-goblet-2-fill"></i>
+                        <span>Adicionales</span>
+                    </a>
+                    <a href="/productos/all" class="sidebar__link">
+                        <i class="ri-restaurant-fill"></i>
+                        <span>Productos</span>
+                    </a>
+                    <a href="/clientes/all" class="sidebar__link">
+                        <i class="ri-user-fill"></i>
+                        <span>Clientes</span>
+                    </a>
                 </div>
-              </td>
-            </tr>
-          </tbody>
-        </table>
-      </div>
-    </main>
+            </div>
+        </div>
+        <div class="sidebar__actions">
+            <button class="sidebar__link">
+                <i class="ri-logout-box-r-fill"></i>
+                <span>Log Out</span>
+            </button>
+        </div>
+    </div>
+</nav>
+
+
+  <!--=============== MAIN ===============-->
+  <main class="main-content">
+    <h1>Listado de Productos</h1>
+    <div class="search-container">
+      <input type="text" id="search-input" placeholder="Buscar productos..." onkeyup="buscarProductos()">
+      <i class="fas fa-search"></i>
   </div>
+    <!-- Botón para agregar producto -->
+    <div class="button-container">
+      <button class="btn-submit" routerLink="/productos/agregar">
+        Agregar Producto
+      </button>
+    </div>
+
+    <div class="table-container">
+      <table>
+        <thead>
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Precio</th>
+            <th>Descripción</th>
+            <th>Imagen</th>
+            <th>Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let producto of productos">
+            <td>{{ producto.id }}</td>
+            <td>{{ producto.nombre }}</td>
+            <td>{{ producto.precio | currency:'COP' }}</td>
+            <td>{{ producto.descripcion }}</td>
+            <td>
+              <img [src]="producto.imagen" alt="Imagen del producto" width="50" />
+            </td>
+            <td>
+              <div class="btn-container">
+                <!-- Botón de editar -->
+                <button
+                  class="btn green"
+                  routerLink="/productos/editar/{{ producto.id }}"
+                >
+                  <i class="fas fa-edit"></i>
+                </button>
+              
+                <!-- Botón de eliminar -->
+                <button
+                  class="btn red"
+                  (click)="deleteProducto(producto.id)"
+                >
+                  <i class="fas fa-trash"></i>
+                </button>
+              </div>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </main>
+</div>

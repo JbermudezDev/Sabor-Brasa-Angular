@@ -4,7 +4,7 @@ import { LandingComponent } from './pages/landing/landing.component';
 import { MenuComponent } from './pages/menu/menu.component';
 import { AgregarProductoComponent } from './components/productos/agregar/agregar.component';
 import { EditarProductoComponent } from './components/productos/editar/editar.component';
-import { DetalleComponent } from './components/productos/detalle/detalle.component';
+
 import { ListarProductosComponent} from './components/productos/listar/listar.component';
 
 
@@ -14,7 +14,7 @@ const routes: Routes = [
   { path: 'productos', component: ListarProductosComponent },
   { path: 'productos/agregar', component: AgregarProductoComponent },
   { path: 'productos/editar/:id', component: EditarProductoComponent },
-  { path: 'productos/detalle/:id', component: DetalleComponent },
+  
  
   
 ];

@@ -1,142 +1,124 @@
 <div class="main container" id="main">
-    <!--=============== HEADER ===============-->
-    <header class="header" id="header">
-      <div class="header__container">
-        <button class="header__toggle" id="header-toggle">
-          <i class="ri-menu-line"></i>
+  <!--=============== HEADER ===============-->
+  <header class="header" id="header">
+    <div class="header__container">
+      <button class="header__toggle" id="header-toggle">
+        <i class="ri-menu-line"></i>
+      </button>
+    </div>
+  </header>
+
+  <!--=============== SIDEBAR ===============-->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar__container">
+      <div class="sidebar__user">
+        <div class="sidebar__img">
+          <img src="/images/administrador.png" alt="image" />
+        </div>
+        <div class="sidebar__info">
+          <h3>Juan Jose Bermudez</h3>
+          <span></span>
+        </div>
+      </div>
+      <div class="sidebar__content">
+        <div>
+          <div class="sidebar__list">
+            <a routerLink="/Administrador" class="sidebar__link">
+              <i class="ri-vip-crown-fill"></i>
+              <span>Administrador</span>
+            </a>
+            <a routerLink="/adicionales/all" class="sidebar__link">
+              <i class="ri-goblet-2-fill"></i>
+              <span>Adicionales</span>
+            </a>
+            <a routerLink="/productos/all" class="sidebar__link">
+              <i class="ri-restaurant-fill"></i>
+              <span>Productos</span>
+            </a>
+            <a routerLink="/clientes/all" class="sidebar__link">
+              <i class="ri-user-fill"></i>
+              <span>Clientes</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      <div class="sidebar__actions">
+        <button class="sidebar__link">
+          <i class="ri-logout-box-r-fill"></i>
+          <span>Log Out</span>
         </button>
       </div>
-    </header>
-  
-    <!--=============== SIDEBAR ===============-->
-    <nav class="sidebar" id="sidebar">
-      <div class="sidebar__container">
-        <div class="sidebar__user">
-          <div class="sidebar__img">
-            <img src="/images/administrador.png" alt="image" />
-          </div>
-          <div class="sidebar__info">
-            <h3>Juan Jose Bermudez</h3>
-            <span></span>
-          </div>
+    </div>
+  </nav>
+
+  <!--=============== MAIN ===============-->
+  <main class="main-content">
+    <h1>Editar Producto</h1>
+    <div class="details-container">
+      <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
+        <!-- Campo oculto para el ID del producto -->
+        <input type="hidden" name="id" [(ngModel)]="producto.id" />
+
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            [(ngModel)]="producto.nombre"
+            required
+            class="form-control"
+          />
         </div>
-        <div class="sidebar__content">
-          <div>
-            <div class="sidebar__list">
-              <a routerLink="/Administrador" class="sidebar__link">
-                <i class="ri-vip-crown-fill"></i>
-                <span>Administrador</span>
-              </a>
-              <a routerLink="/adicionales/all" class="sidebar__link">
-                <i class="ri-goblet-2-fill"></i>
-                <span>Adicionales</span>
-              </a>
-              <a routerLink="/productos/all" class="sidebar__link">
-                <i class="ri-restaurant-fill"></i>
-                <span>Productos</span>
-              </a>
-              <a routerLink="/clientes/all" class="sidebar__link">
-                <i class="ri-user-fill"></i>
-                <span>Clientes</span>
-              </a>
-            </div>
-          </div>
+
+        <div class="form-group">
+          <label for="precio">Precio:</label>
+          <input
+            type="number"
+            id="precio"
+            name="precio"
+            [(ngModel)]="producto.precio"
+            step="0.01"
+            required
+            class="form-control"
+          />
         </div>
-        <div class="sidebar__actions">
-          <button class="sidebar__link">
-            <i class="ri-logout-box-r-fill"></i>
-            <span>Log Out</span>
+
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <input
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            [(ngModel)]="producto.descripcion"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="imagen">URL de Imagen:</label>
+          <input
+            type="text"
+            id="imagen"
+            name="imagen"
+            [(ngModel)]="producto.imagen"
+            required
+            class="form-control"
+          />
+        </div>
+
+        <!-- Botón para enviar el formulario -->
+        <div class="button-container">
+          <button
+            type="submit"
+            class="btn btn-green"
+            [disabled]="!productoForm.valid"
+          >
+            Actualizar
           </button>
         </div>
-      </div>
-    </nav>
-  
-    <!--=============== MAIN ===============-->
-    <main class="main-content">
-      <h1>Editar Producto</h1>
-      <div class="details-container">
-        <form (ngSubmit)="actualizarProducto()" #productoForm="ngForm">
-          <!-- Campo oculto para el ID del producto -->
-          <input type="hidden" name="id" [(ngModel)]="producto.id" />
-  
-          <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              [(ngModel)]="producto.nombre"
-              required
-              class="form-control"
-            />
-          </div>
-  
-          <div class="form-group">
-            <label for="precio">Precio:</label>
-            <input
-              type="number"
-              id="precio"
-              name="precio"
-              [(ngModel)]="producto.precio"
-              step="0.01"
-              required
-              class="form-control"
-            />
-          </div>
-  
-          <div class="form-group">
-            <label for="descripcion">Descripción:</label>
-            <input
-              type="text"
-              id="descripcion"
-              name="descripcion"
-              [(ngModel)]="producto.descripcion"
-              required
-              class="form-control"
-            />
-          </div>
-  
-          <div class="form-group">
-            <label for="imagen">URL de Imagen:</label>
-            <input
-              type="text"
-              id="imagen"
-              name="imagen"
-              [(ngModel)]="producto.imagen"
-              required
-              class="form-control"
-            />
-          </div>
-  
-          <div class="form-group">
-            <label>Seleccionar Adicionales:</label>
-            <div class="check-container">
-              <div
-                class="check-item"
-                *ngFor="let adicional of adicionales"
-              >
-                <label>{{ adicional.nombre }}</label>
-                <input
-                  type="checkbox"
-                  name="adicionales"
-                  [value]="adicional.id"
-                  [(ngModel)]="adicional.seleccionado"
-                />
-              </div>
-            </div>
-          </div>
-  
-          <!-- Botón para enviar el formulario -->
-          <div class="button-container">
-            <button
-              type="submit"
-              class="btn btn-green"
-              [disabled]="!productoForm.valid"
-            >
-              Actualizar
-            </button>
-          </div>
-        </form>
-      </div>
-    </main>
-  </div>
+      </form>
+    </div>
+  </main>
+</div>

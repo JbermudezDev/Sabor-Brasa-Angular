@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto.model';
-import { Router } from '@angular/router';
-import { Categoria } from 'src/app/models/categoria.model';
 
 @Component({
   selector: 'app-agregar-producto',
@@ -10,16 +9,18 @@ import { Categoria } from 'src/app/models/categoria.model';
   styleUrls: ['./agregar.component.css']
 })
 export class AgregarProductoComponent {
-  producto: Producto = { 
-    nombre: '', 
-    precio: 0, 
-    categoria: Categoria.ENTRADA 
+  producto: Producto = {
+    id: 0,
+    nombre: '',
+    precio: 0,
+    descripcion: '',
+    imagen: ''
   };
 
-  constructor(private productoService: ProductoService, private router: Router) { }
+  constructor(private productoService: ProductoService, private router: Router) {}
 
-  agregarProducto(): void {
-    this.productoService.agregarProducto(this.producto).subscribe(() => {
+  onSubmit(): void {
+    this.productoService.createProducto(this.producto).subscribe(() => {
       this.router.navigate(['/productos']);
     });
   }
