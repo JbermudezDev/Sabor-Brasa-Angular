@@ -1,55 +1,33 @@
-// src/app/modules/producto/services/producto.service.ts
 import { Injectable } from '@angular/core';
-import { Producto } from '../models/producto.model';
-import { Categoria } from '../models/categoria.model';
-import { CategoriaType } from '../models/producto.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
+import { Producto } from '../models/producto.model'; 
 
 @Injectable({
-    providedIn: 'root'
-  })
-  export class ComidaService {
-    private productos: Producto[] = [
-        {
-          id: 1,
-          nombre: 'Costillas BBQ',
-          descripcion: 'Jugosas costillas con salsa BBQ',
-          precio: 39000,
-          imagen: 'assets/images/costillasmain.jpeg',
-          categoria: Categoria.ENTRADA // or some other valid Categoria value
-        },
-        {
-          id: 2,
-          nombre: 'Tomahawk',
-          descripcion: 'Corte premium para los más exigentes',
-          precio: 98000,
-          imagen: 'assets/images/tomahawkmain.jpeg',
-          categoria: Categoria.PLATO_FUERTE // or some other valid Categoria value
-        }
-      ];
-  
+  providedIn: 'root'
+})
+export class ProductoService {
+  private apiUrl = 'http://localhost:8090/productos'; 
 
-  getProductos(): Producto[] {
-    return this.productos;
+  constructor(private http: HttpClient) { }
+
+  obtenerProductos(): Observable<Producto[]> {
+    return this.http.get<Producto[]>(`${this.apiUrl}/all`);
   }
 
-  getProductoById(id: number): Producto | undefined {
-    return this.productos.find(p => p.id === id);
+  obtenerProductoPorId(id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${this.apiUrl}/view/${id}`);
   }
 
-  crearProducto(producto: Producto): void {
-    producto.id = this.productos.length > 0 
-      ? Math.max(...this.productos.map(p => p.id).filter(id => id !== undefined)) + 1 
-      : 1;
-    this.productos.push(producto);
-  }
-  actualizarProducto(producto: Producto): void {
-    const index = this.productos.findIndex(p => p.id === producto.id);
-    if (index !== -1) {
-      this.productos[index] = producto;
-    }
+  agregarProducto(producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(`${this.apiUrl}/add`, producto);
   }
 
-  eliminarProducto(id: number): void {
-    this.productos = this.productos.filter(p => p.id !== id);
+  actualizarProducto(id: number, producto: Producto): Observable<Producto> {
+    return this.http.post<Producto>(`${this.apiUrl}/update/${id}`, producto);
+  }
+
+  eliminarProducto(id: number): Observable<void> {
+    return this.http.post<void>(`${this.apiUrl}/delete/${id}`, {});
   }
 }

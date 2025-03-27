@@ -8,11 +8,21 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { HeaderComponent } from './components/Landing-Page/header/header.component';
 import { FooterComponent } from './components/Landing-Page/footer/footer.component';
 import { InfoLandingComponent } from './components/Landing-Page/info-landing/info-landing.component';
+import { ListarProductosComponent } from './components/productos/listar/listar.component'; 
+import { AgregarProductoComponent } from './components/productos/agregar/agregar.component';
+import { EditarProductoComponent } from './components/productos/editar/editar.component';
+import { DetalleComponent } from './components/productos/detalle/detalle.component';
+import { FormsModule } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
     AppComponent,
-    MenuComponent
+    MenuComponent,
+    ListarProductosComponent,
+    AgregarProductoComponent,
+    EditarProductoComponent,
+    DetalleComponent
   ],
   imports: [
     BrowserModule,
@@ -20,9 +30,12 @@ import { InfoLandingComponent } from './components/Landing-Page/info-landing/inf
     LandingComponent,
     HeaderComponent,
     FooterComponent,
-    InfoLandingComponent
+    InfoLandingComponent,
+    FormsModule,
+    RouterModule
+    
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  
 })
 export class AppModule { }
