@@ -1,5 +1,5 @@
 import { Cliente } from './cliente.model';
-import { DetallePedido } from '../models/detalllepedido.model'; // Update the path to the correct location
+import { DetallePedido } from './detalllepedido.model'; // Update the path to the correct location
 
 export interface Pedido {
     id?: number;
