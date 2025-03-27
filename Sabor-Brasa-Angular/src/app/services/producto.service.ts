@@ -7,7 +7,7 @@ import { CategoriaType } from '../models/producto.model';
 @Injectable({
     providedIn: 'root'
   })
-  export class ComidaService {
+  export class ProductoService {
     private productos: Producto[] = [
         {
           id: 1,
