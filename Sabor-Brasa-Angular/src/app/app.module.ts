@@ -14,6 +14,7 @@ import { EditarProductoComponent } from './components/productos/editar/editar.co
 import { DetalleComponent } from './components/productos/detalle/detalle.component';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -32,10 +33,12 @@ import { RouterModule } from '@angular/router';
     FooterComponent,
     InfoLandingComponent,
     FormsModule,
-    RouterModule
+    RouterModule,
+    HttpClientModule
     
   ],
   providers: [],
+  bootstrap: [AppComponent]
   
 })
 export class AppModule { }
