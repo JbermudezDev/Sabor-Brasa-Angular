@@ -1,12 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto.model';
 
+
 @Component({
   selector: 'app-agregar-producto',
   templateUrl: './agregar.component.html',
-  styleUrls: ['./agregar.component.css']
+  styleUrls: ['./agregar.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class AgregarProductoComponent {
   producto: Producto = {

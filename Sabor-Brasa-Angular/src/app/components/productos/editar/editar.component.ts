@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto.model';
+import {  ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-editar-producto',
   templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  styleUrls: ['./editar.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class EditarProductoComponent implements OnInit {
   producto: Producto = {

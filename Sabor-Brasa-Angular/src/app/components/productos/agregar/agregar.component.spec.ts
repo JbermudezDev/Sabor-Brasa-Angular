@@ -1,16 +1,18 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
+import { AgregarProductoComponent } from './agregar.component';
 
-import { AgregarComponent } from './agregar.component';
 
 describe('AgregarComponent', () => {
-  let component: AgregarComponent;
-  let fixture: ComponentFixture<AgregarComponent>;
+  let component: AgregarProductoComponent;
+  let fixture: ComponentFixture<AgregarProductoComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AgregarComponent]
+      declarations: [AgregarProductoComponent]
     });
-    fixture = TestBed.createComponent(AgregarComponent);
+    fixture = TestBed.createComponent(AgregarProductoComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -13,7 +13,7 @@
     <div class="sidebar__container">
         <div class="sidebar__user">
             <div class="sidebar__img">
-                <img src="/images/administrador.png" alt="Administrador"> 
+                <img src="/Sabor-Brasa-Angular/src/assets/images/administrador.png" alt="Administrador"> 
             </div>
             <div class="sidebar__info">
                 <h3>Juan Jose Bermudez</h3>
@@ -75,6 +75,7 @@
             <th>Precio</th>
             <th>Descripción</th>
             <th>Imagen</th>
+            <th>Adicionales</th>
             <th>Acciones</th>
           </tr>
         </thead>
@@ -88,6 +89,13 @@
               <img [src]="producto.imagen" alt="Imagen del producto" width="50" />
             </td>
             <td>
+              <ul>
+                <li *ngFor="let adicional of producto.adicionales">
+                  {{ adicional.nombre }}
+                </li>
+              </ul>
+            </td>
+            <td>
               <div class="btn-container">
                 <!-- Botón de editar -->
                 <button
@@ -96,7 +104,13 @@
                 >
                   <i class="fas fa-edit"></i>
                 </button>
-              
+               <!-- Botón de detalle -->
+               <button
+               class="btn yellow"
+               routerLink="/productos/detalle/{{ producto.id }}"
+                           >
+               <i class="fas fa-edit"></i>
+             </button>
                 <!-- Botón de eliminar -->
                 <button
                   class="btn red"
