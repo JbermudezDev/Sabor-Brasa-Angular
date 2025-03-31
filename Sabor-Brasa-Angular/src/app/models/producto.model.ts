@@ -10,6 +10,7 @@ export interface Producto {
     adicionales?: Adicional[];
   }
 
+  
   export enum CategoriaType {
     ENTRADA = 'ENTRADA',
     PRINCIPAL = 'PRINCIPAL',

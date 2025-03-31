@@ -13,7 +13,7 @@
     <div class="sidebar__container">
       <div class="sidebar__user">
         <div class="sidebar__img">
-          <img src="/Sabor-Brasa-Angular/src/assets/images/administrador.png" alt="image" />
+          <img src="assets/images/administrador.png" alt="image" />
         </div>
         <div class="sidebar__info">
           <h3>Juan Jose Bermudez</h3>
@@ -56,6 +56,7 @@
     <h1>Editar Producto</h1>
     <div class="details-container">
       <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
+
         <!-- Campo oculto para el ID del producto -->
         <input type="hidden" name="id" [(ngModel)]="producto.id" />
 

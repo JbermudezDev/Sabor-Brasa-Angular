@@ -13,7 +13,7 @@
     <div class="sidebar__container">
         <div class="sidebar__user">
             <div class="sidebar__img">
-                <img src="/Sabor-Brasa-Angular/src/assets/images/administrador.png" alt="Administrador"> 
+                <img src="assets/images/administrador.png" alt="Administrador"> 
             </div>
             <div class="sidebar__info">
                 <h3>Juan Jose Bermudez</h3>
@@ -24,7 +24,7 @@
                 <h3 class="sidebar__title">MANAGE</h3>
                 <div class="sidebar__list">
                     <a href="/Administrador" class="sidebar__link">
-                        <i class="ri-vip-crown-fill"></i>
+                      <i class="fi fi-sr-crown"></i>
                         <span>Administrador</span>
                     </a>
                     <a href="/adicionales/all" class="sidebar__link">
@@ -97,27 +97,25 @@
             </td>
             <td>
               <div class="btn-container">
+
                 <!-- Botón de editar -->
                 <button
                   class="btn green"
-                  routerLink="/productos/editar/{{ producto.id }}"
-                >
+                  routerLink="/productos/editar/{{ producto.id }}">
                   <i class="fas fa-edit"></i>
                 </button>
                <!-- Botón de detalle -->
                <button
                class="btn yellow"
-               routerLink="/productos/detalle/{{ producto.id }}"
-                           >
+               routerLink="/productos/detalle/{{ producto.id }}">
                <i class="fas fa-edit"></i>
              </button>
                 <!-- Botón de eliminar -->
                 <button
-                  class="btn red"
-                  (click)="deleteProducto(producto.id)"
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
+              class="btn red"
+              (click)="deleteProducto(producto.id)">
+              <i class="fas fa-trash"></i>
+            </button>
               </div>
             </td>
           </tr>
