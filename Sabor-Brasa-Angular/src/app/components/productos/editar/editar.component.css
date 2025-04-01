@@ -785,43 +785,74 @@ body {
     margin-top: 15px;
   }
   
-  /* Estilo uniforme para botones */
-  .btn {
-    flex: 1; /* Ambos botones ocupan el mismo espacio */
-    max-width: 150px; /* Controla el tamaño máximo */
-    width: 100%; /* Asegura que ambos tengan el mismo ancho */
-    padding: 10px 0;
-    text-align: center;
-    text-decoration: none;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: 0.3s;
-    display: flex; 
-    align-items: center; 
-    justify-content: center;
-  }
+/* Botones */
+.btn {
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 16px;
+  color: white;
+}
+
+.green {
+  background: #28a745;
+}
+
+.yellow {
+  background: #ffc107;
+}
+
+.red {
+  background: #dc3545;
+}
+
+/* Imágenes de avatar */
+td img {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+}
+.btn-container {
+  display:flex;
+  justify-content: center;
+  gap: 5px; /* Espacio entre los botones */
+}
+.button-container-add {
+  display: flex;
+  justify-content: center; /* Centra el botón horizontalmente */
+  align-items: center; /* Centra el botón verticalmente (si es necesario) */
+  width: 100%; /* Asegura que el contenedor ocupe todo el ancho del formulario */
+  margin-top: 20px; /* Agrega un margen superior para separar el botón del resto del formulario */
+}
+.btn {
+  border: none;
+  cursor: pointer;
+  padding: 10px 20px;
+  border-radius: 8px;
+  font-size: 18px;
+  background-color: #28a745;
+  transition: all 0.3s ease;
+  margin: 5px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+}
   
   /* Ajuste para enlaces con clase btn */
   .btn[href] {
     display: inline-flex; /* Hace que los <a> tengan el mismo comportamiento que <button> */
   }
   
-  /* Colores de los botones */
-  .btn:nth-child(1) {
-    background-color: #28a745; /* Verde para actualizar */
-    color: white;
-  }
-  
-  .btn:nth-child(2) {
-    background-color: #dc3545; /* Rojo para cancelar */
-    color: white;
-  }
+
   
   .btn:hover {
-    opacity: 0.8;
+    
+    opacity: 0.9;
   }
   .check-container {
   display: grid;
