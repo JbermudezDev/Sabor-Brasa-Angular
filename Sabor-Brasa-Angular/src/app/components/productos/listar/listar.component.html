@@ -98,18 +98,20 @@
             <td>
               <div class="btn-container">
 
+                <!-- Botón de detalle -->
+               <button
+               class="btn yellow"
+               routerLink="/productos/detalle/{{ producto.id }}">
+               <i class="fi fi-sr-eye"></i>
+             </button>
+             
                 <!-- Botón de editar -->
                 <button
                   class="btn green"
                   routerLink="/productos/editar/{{ producto.id }}">
                   <i class="fas fa-edit"></i>
                 </button>
-               <!-- Botón de detalle -->
-               <button
-               class="btn yellow"
-               routerLink="/productos/detalle/{{ producto.id }}">
-               <i class="fas fa-edit"></i>
-             </button>
+               
                 <!-- Botón de eliminar -->
                 <button
               class="btn red"
