@@ -1,0 +1,92 @@
+<div class="main container" id="main">
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+      <div class="header__container">
+        <button class="header__toggle" id="header-toggle">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </header>
+  
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar__container">
+        <div class="sidebar__user">
+          <div class="sidebar__img">
+            <img src="assets/images/administrador.png" alt="Administrador" />
+          </div>
+          <div class="sidebar__info">
+            <h3>Juan Jose Bermudez</h3>
+          </div>
+        </div>
+        <div class="sidebar__content">
+          <div>
+            <div class="sidebar__list">
+              <a routerLink="/Administrador" class="sidebar__link">
+                <i class="ri-vip-crown-fill"></i>
+                <span>Administrador</span>
+              </a>
+              <a routerLink="/adicionales/all" class="sidebar__link">
+                <i class="ri-goblet-2-fill"></i>
+                <span>Adicionales</span>
+              </a>
+              <a routerLink="/productos/all" class="sidebar__link">
+                <i class="ri-restaurant-fill"></i>
+                <span>Productos</span>
+              </a>
+              <a routerLink="/clientes/all" class="sidebar__link">
+                <i class="ri-user-fill"></i>
+                <span>Clientes</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar__actions">
+          <button class="sidebar__link">
+            <i class="ri-logout-box-r-fill"></i>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Detalles del Cliente</h1>
+      <div class="details-container" *ngIf="cliente">
+        <div class="detail-item">
+          <i class="ri-user-line"></i>
+          <span class="detail-label">Nombre:</span>
+          <span class="detail-value">{{ cliente.nombre }}</span>
+        </div>
+        <div class="detail-item">
+          <i class="ri-user-line"></i>
+          <span class="detail-label">Apellido:</span>
+          <span class="detail-value">{{ cliente.apellido }}</span>
+        </div>
+        <div class="detail-item">
+          <i class="ri-mail-line"></i>
+          <span class="detail-label">Email:</span>
+          <span class="detail-value">{{ cliente.email }}</span>
+        </div>
+        <div class="detail-item">
+          <i class="ri-phone-line"></i>
+          <span class="detail-label">Teléfono:</span>
+          <span class="detail-value">{{ cliente.telefono }}</span>
+        </div>
+        <div class="detail-item">
+          <i class="ri-map-pin-line"></i>
+          <span class="detail-label">Dirección:</span>
+          <span class="detail-value">{{ cliente.direccion }}</span>
+        </div>
+        <div class="actions-container">
+          <a routerLink="/clientes" class="btn btn-back">
+            <i class="ri-arrow-left-line"></i> Volver al Listado
+          </a>
+          <button class="btn green" routerLink="/clientes/editar/{{ cliente.id }}">
+            <i class="ri-edit-line"></i> Editar
+          </button>
+        </div>
+      </div>
+    </main>
+  </div>

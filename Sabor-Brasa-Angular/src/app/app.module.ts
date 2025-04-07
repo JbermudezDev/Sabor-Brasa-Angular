@@ -15,6 +15,10 @@ import { EditarProductoComponent } from './components/productos/editar/editar.co
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { ListarComponent } from './components/clientes/listar/listar.component';
+import { AgregarComponent } from './components/clientes/agregar/agregar.component';
+import { EditarComponent } from './components/clientes/editar/editar.component';
+import { DetalleComponent } from './components/clientes/detalle/detalle.component';
 
 
 @NgModule({
@@ -24,6 +28,10 @@ import { HttpClientModule } from '@angular/common/http';
     ListarProductosComponent,
     AgregarProductoComponent,
     EditarProductoComponent,
+    ListarComponent,
+    AgregarComponent,
+    EditarComponent,
+    DetalleComponent,
     
   ],
   imports: [
