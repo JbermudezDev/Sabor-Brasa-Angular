@@ -9,21 +9,22 @@ import { Adicional } from 'src/app/models/adicional.model';
 })
 export class ListarAdicionalesComponent implements OnInit {
 
-  adicionales: Adicional[] = [];
-  filteredAdicionales: Adicional[] = [];  // Lista filtrada
-  searchTerm: string = '';  // Variable para el término de búsqueda
+  adicionales: Adicional[] = [];  // Lista completa de adicionales
+  filteredAdicionales: Adicional[] = [];  // Lista filtrada para búsqueda
+  searchTerm: string = '';  // Término de búsqueda
 
   constructor(private adicionalService: AdicionalService) {}
 
   ngOnInit(): void {
-    this.getAdicionales();  // Carga los adicionales al iniciar
-  }
-
-  // Método para obtener todos los adicionales
-  getAdicionales(): void {
-    this.adicionalService.getAdicionales().subscribe(data => {
-      this.adicionales = data;
-      this.filteredAdicionales = data;  // Inicializa la lista filtrada con todos los adicionales
+    // Llama al servicio para obtener todos los adicionales
+    this.adicionalService.getAdicional().subscribe({
+      next: (data) => {
+        this.adicionales = data;
+        this.filteredAdicionales = data;  // Inicializa la lista filtrada con todos los adicionales
+      },
+      error: (err) => {
+        console.error('Error al obtener los adicionales:', err);
+      }
     });
   }
 
@@ -37,8 +38,13 @@ export class ListarAdicionalesComponent implements OnInit {
 
   // Método para eliminar un adicional
   deleteAdicional(id: number): void {
-    this.adicionalService.deleteAdicional(id).subscribe(() => {
-      this.getAdicionales();  // Refresca la lista después de eliminar
-    });
+    if (confirm('¿Estás seguro de que deseas eliminar este adicional?')) {
+      // Llama al servicio para eliminar el adicional
+      this.adicionalService.deleteById(id);
+      // Actualiza la lista filtrada eliminando el adicional correspondiente
+      this.filteredAdicionales = this.filteredAdicionales.filter(adicional => adicional.id !== id);
+      // También actualiza la lista completa de adicionales
+      this.adicionales = this.adicionales.filter(adicional => adicional.id !== id);
+    }
   }
 }

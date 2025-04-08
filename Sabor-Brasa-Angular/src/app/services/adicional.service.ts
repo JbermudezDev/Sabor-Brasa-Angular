@@ -1,45 +1,40 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-
-export interface Adicional {
-  id: number;
-  nombre: string;
-  precio: number;
-  descripcion: string;
-}
+import { Adicional } from '../models/adicional.model';  // Asegúrate de tener este modelo de Adicional
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdicionalService {
 
-  private apiUrl = 'http://localhost:8090/adicionales';  
-
-  constructor(private http: HttpClient) { }
+  constructor( 
+    private http: HttpClient
+  ) { }
 
   // Obtener todos los adicionales
-  getAdicionales(): Observable<Adicional[]> {
-    return this.http.get<Adicional[]>(`${this.apiUrl}/all`);  
+  getAdicional(id?: number): Observable<Adicional[]> {
+    return this.http.get<Adicional[]>('http://localhost:8090/adicionales/all');  // Conexión con el backend de Spring Boot
   }
 
-  // Obtener un adicional por ID
-  getAdicional(id: number): Observable<Adicional> {
-    return this.http.get<Adicional>(`${this.apiUrl}/view/${id}`);  
-  }
-
-  // Agregar un nuevo adicional
-  addAdicional(adicional: Adicional): Observable<Adicional> {
-    return this.http.post<Adicional>(`${this.apiUrl}/add`, adicional);  
-  }
-
-  // Editar un adicional existente
-  updateAdicional(id: number, adicional: Adicional): Observable<Adicional> {
-    return this.http.put<Adicional>(`${this.apiUrl}/update/${id}`, adicional);  
+  // Obtener un adicional por su ID
+  findById(id: number): Observable<Adicional> {
+    return this.http.get<Adicional>(`http://localhost:8090/adicionales/view/${id}`);  // Conexión con el backend de Spring Boot
   }
 
   // Eliminar un adicional
-  deleteAdicional(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);  
+  deleteById(id: number): void {
+    console.log(id);
+    this.http.delete(`http://localhost:8090/adicionales/delete/${id}`).subscribe();  // Conexión con el backend de Spring Boot
+  }
+
+  // Agregar un nuevo adicional
+  addAdicional(adicional: Adicional): void {
+    this.http.post<Adicional>('http://localhost:8090/adicionales/add', adicional).subscribe();  // Conexión con el backend de Spring Boot
+  }
+
+  // Actualizar un adicional
+  updateAdicional(id: number, adicional: Adicional): Observable<Adicional> {
+    return this.http.put<Adicional>(`http://localhost:8090/adicionales/update/${id}`, adicional);
   }
 }

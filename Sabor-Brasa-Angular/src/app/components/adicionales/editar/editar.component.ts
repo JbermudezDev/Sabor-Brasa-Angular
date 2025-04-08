@@ -10,13 +10,8 @@ import { Adicional } from 'src/app/models/adicional.model';
 })
 export class EditarAdicionalComponent implements OnInit {
 
-  adicional: Adicional = {
-    id: 0,
-    nombre: '',
-    precio: 0,
-    descripcion: '',
-    productos: []  // Inicializa como un array vacío
-  };
+  // Inicializar 'adicional' con valores predeterminados para evitar que sea 'undefined'
+  adicional: Adicional = { id: 0, nombre: '', precio: 0, descripcion: '' };  
 
   constructor(
     private route: ActivatedRoute,
@@ -25,16 +20,28 @@ export class EditarAdicionalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
-    this.adicionalService.getAdicional(id).subscribe(data => {
-      this.adicional = data;  // Obtiene los datos del adicional a editar
+    const id = Number(this.route.snapshot.paramMap.get('id'));  // Obtén el ID desde la URL
+    this.adicionalService.getAdicional(id).subscribe({
+      next: (data) => {
+        this.adicional = Array.isArray(data) ? data[0] : data;  // Asigna el primer adicional si es un array
+      },
+      error: (err) => {
+        console.error('Error al obtener el adicional:', err);
+      }
     });
   }
 
   // Método para actualizar el adicional
   updateAdicional(): void {
-    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe(() => {
-      this.router.navigate(['/adicionales/all']);  // Redirige al listado de adicionales después de editar
-    });
+    if (this.adicional) {
+      this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe({
+        next: () => {
+          this.router.navigate(['/adicionales/all']);  // Redirige al listado de adicionales después de actualizar
+        },
+        error: (err) => {
+          console.error('Error al actualizar el adicional:', err);
+        }
+      });
+    }
   }
 }

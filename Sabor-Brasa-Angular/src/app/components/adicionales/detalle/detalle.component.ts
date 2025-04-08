@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute } from '@angular/router';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
 
@@ -14,14 +14,18 @@ export class DetalleAdicionalComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private adicionalService: AdicionalService,
-    private router: Router
+    private adicionalService: AdicionalService
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));  // Obtén el ID desde la URL
-    this.adicionalService.getAdicional(id).subscribe(data => {
-      this.adicional = data;  // Asigna los datos del adicional
+    const id = Number(this.route.snapshot.paramMap.get('id')); // Obtiene el ID desde la URL
+    this.adicionalService.findById(id).subscribe({
+      next: (data) => {
+        this.adicional = data; // Asigna los datos del adicional
+      },
+      error: (err) => {
+        console.error('Error al obtener el adicional:', err);
+      }
     });
   }
 }

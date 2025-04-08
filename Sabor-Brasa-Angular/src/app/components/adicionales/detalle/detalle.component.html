@@ -1,5 +1,4 @@
 <div class="main container" id="main">
-  <!--=============== HEADER ===============-->
   <header class="header" id="header">
     <div class="header__container">
       <button class="header__toggle" id="header-toggle">
@@ -54,10 +53,9 @@
   <!--=============== MAIN ===============-->
   <main class="main-content">
     <h1>Detalles del Adicional</h1>
-
-    <div class="details-container" *ngIf="adicional">
+    <div *ngIf="adicional">
       <div class="detail-item">
-        <i class="ri-goblet-2-fill"></i>
+        <i class="ri-file-text-line"></i>
         <span class="detail-label">Nombre:</span>
         <span class="detail-value">{{ adicional.nombre }}</span>
       </div>
@@ -80,11 +78,8 @@
         </button>
       </div>
     </div>
-
-    <div *ngIf="!adicional" class="error-container">
-      <i class="ri-error-warning-line error-icon"></i>
-      <p>Adicional no encontrado.</p>
-      <a routerLink="/adicionales/all" class="btn">Volver al Listado</a>
+    <div *ngIf="!adicional">
+      <p>No se encontró el adicional.</p>
     </div>
   </main>
 </div>
