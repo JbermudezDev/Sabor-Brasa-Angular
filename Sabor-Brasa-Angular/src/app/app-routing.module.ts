@@ -34,8 +34,8 @@ const routes: Routes = [
   // Rutas para Adicionales
   { path: 'adicionales/all', component: ListarAdicionalesComponent },
   { path: 'adicionales/agregar', component: AgregarAdicionalComponent },
-  { path: 'adicionales/update/:id', component: EditarAdicionalComponent },
-  { path: 'adicionales/view/:id', component: DetalleAdicionalComponent },
+  { path: 'adicionales/editar/:id', component: EditarAdicionalComponent },
+  { path: 'adicionales/ver/:id', component: DetalleAdicionalComponent },
   
    
 ];

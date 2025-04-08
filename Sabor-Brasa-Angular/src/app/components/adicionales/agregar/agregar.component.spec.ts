@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AgregarComponent } from './agregar.component';
+import { AgregarAdicionalComponent } from './agregar.component';
 
 describe('AgregarComponent', () => {
-  let component: AgregarComponent;
-  let fixture: ComponentFixture<AgregarComponent>;
+  let component: AgregarAdicionalComponent;
+  let fixture: ComponentFixture<AgregarAdicionalComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [AgregarComponent]
+      declarations: [AgregarAdicionalComponent]
     });
-    fixture = TestBed.createComponent(AgregarComponent);
+    fixture = TestBed.createComponent(AgregarAdicionalComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
