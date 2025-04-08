@@ -279,9 +279,7 @@ body {
     background-color: #28a745;
     color: white;
   }
-  .btn-edit:hover {
-    background-color: #218838;
-  }
+  
   
   /* Botón de visualización (azul) */
   .btn-view {
@@ -819,6 +817,7 @@ td img {
   justify-content: center;
   gap: 5px; /* Espacio entre los botones */
 }
+
 .button-container-add {
   display: flex;
   justify-content: center; /* Centra el botón horizontalmente */
@@ -826,13 +825,13 @@ td img {
   width: 100%; /* Asegura que el contenedor ocupe todo el ancho del formulario */
   margin-top: 20px; /* Agrega un margen superior para separar el botón del resto del formulario */
 }
+
 .btn {
   border: none;
   cursor: pointer;
-  padding: 10px 20px;
+  padding: 10px;
   border-radius: 8px;
   font-size: 18px;
-  background-color: #28a745;
   transition: all 0.3s ease;
   margin: 5px;
   display: inline-flex;
@@ -847,8 +846,6 @@ td img {
   .btn[href] {
     display: inline-flex; /* Hace que los <a> tengan el mismo comportamiento que <button> */
   }
-  
-
   
   .btn:hover {
     

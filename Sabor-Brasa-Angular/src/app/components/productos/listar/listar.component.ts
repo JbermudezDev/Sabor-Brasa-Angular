@@ -24,21 +24,19 @@ export class ListarProductosComponent implements OnInit {
   }
 
   deleteProducto(id: number): void {
-    console.log('Intentando eliminar producto con ID:', id);
-    if (confirm('¿Estás seguro de que deseas eliminar este producto?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       this.productoService.deleteProducto(id).subscribe({
         next: () => {
-          console.log('Producto eliminado correctamente');
-          alert('Producto eliminado correctamente');
-          this.getProductos(); // Actualiza la lista de productos
+          // Actualizar la lista de productos (filtrando el eliminado)
+          this.productos = this.productos.filter(p => p.id !== id);
         },
         error: (err) => {
           console.error('Error al eliminar el producto:', err);
-          alert('Ocurrió un error al intentar eliminar el producto');
         }
       });
     }
   }
+  
   
   
 }

@@ -15,12 +15,15 @@ import { EditarProductoComponent } from './components/productos/editar/editar.co
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CommonModule } from '@angular/common';
+import { DetalleComponent } from './components/productos/detalle/detalle.component';
 
 
 @NgModule({
   declarations: [
     AppComponent,
     MenuComponent,
+    DetalleComponent,
     ListarProductosComponent,
     AgregarProductoComponent,
     EditarProductoComponent,
@@ -35,7 +38,8 @@ import { HttpClientModule } from '@angular/common/http';
     InfoLandingComponent,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    CommonModule
     
   ],
   providers: [],
