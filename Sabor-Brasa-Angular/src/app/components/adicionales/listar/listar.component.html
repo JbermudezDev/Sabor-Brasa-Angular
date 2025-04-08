@@ -1,0 +1,122 @@
+<div class="main container" id="main">
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+      <div class="header__container">
+        <button class="header__toggle" id="header-toggle">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </header>
+  
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar__container">
+        <div class="sidebar__user">
+          <div class="sidebar__img">
+            <img src="assets/images/administrador.png" alt="Administrador" />
+          </div>
+          <div class="sidebar__info">
+            <h3>Juan Jose Bermudez</h3>
+          </div>
+        </div>
+        <div class="sidebar__content">
+          <div>
+            <h3 class="sidebar__title">MANAGE</h3>
+            <div class="sidebar__list">
+              <a routerLink="/Administrador" class="sidebar__link">
+                <i class="ri-vip-crown-fill"></i>
+                <span>Administrador</span>
+              </a>
+              <a routerLink="/adicionales/all" class="sidebar__link">
+                <i class="ri-goblet-2-fill"></i>
+                <span>Adicionales</span>
+              </a>
+              <a routerLink="/productos/all" class="sidebar__link">
+                <i class="ri-restaurant-fill"></i>
+                <span>Productos</span>
+              </a>
+              <a routerLink="/clientes/all" class="sidebar__link">
+                <i class="ri-user-fill"></i>
+                <span>Clientes</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar__actions">
+          <button class="sidebar__link">
+            <i class="ri-logout-box-r-fill"></i>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Listado de Adicionales</h1>
+  
+      <!-- Buscar adicionales -->
+      <div class="search-container">
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar adicionales..."
+          [(ngModel)]="searchTerm"
+          (keyup)="buscarAdicionales()"
+        />
+        <i class="fas fa-search"></i>
+      </div>
+  
+      <!-- Botón para agregar adicional -->
+      <div class="button-container">
+        <button routerLink="/adicionales/agregar" class="btn-submit">
+          Agregar Adicional
+        </button>
+      </div>
+  
+      <!-- Tabla de adicionales -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>#</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let adicional of filteredAdicionales; let i = index">
+              <td>{{ i + 1 }}</td>
+              <td>{{ adicional.nombre }}</td>
+              <td>{{ adicional.precio | currency:'COP' }}</td>
+              <td>{{ adicional.descripcion }}</td>
+              <td>
+                <div class="btn-container">
+                  <button
+                    class="btn yellow"
+                    routerLink="/adicionales/detalle/{{ adicional.id }}"
+                  >
+                    <i class="fas fa-eye"></i>
+                  </button>
+                  <button
+                    class="btn green"
+                    routerLink="/adicionales/editar/{{ adicional.id }}"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
+                  <button
+                    class="btn red"
+                    (click)="deleteAdicional(adicional.id)"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>

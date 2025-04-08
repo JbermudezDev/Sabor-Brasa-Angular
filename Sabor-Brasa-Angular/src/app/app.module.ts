@@ -19,6 +19,13 @@ import { ListarComponent } from './components/clientes/listar/listar.component';
 import { AgregarComponent } from './components/clientes/agregar/agregar.component';
 import { EditarComponent } from './components/clientes/editar/editar.component';
 import { DetalleComponent } from './components/clientes/detalle/detalle.component';
+import { CommonModule } from '@angular/common';
+import { RouterLink } from '@angular/router';
+import { ListarAdicionalComponent } from './components/adicionales/listar/listar.component';
+import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
+import { AgregarAdicionalComponent } from './components/adicionales/agregar/agregar.component';
+import { EditarAdicionalComponent } from './components/adicionales/editar/editar.component';
+
 
 
 @NgModule({
@@ -32,6 +39,10 @@ import { DetalleComponent } from './components/clientes/detalle/detalle.componen
     AgregarComponent,
     EditarComponent,
     DetalleComponent,
+    ListarAdicionalComponent,
+    DetalleAdicionalComponent,
+    AgregarAdicionalComponent,
+    EditarAdicionalComponent,
     
   ],
   imports: [
