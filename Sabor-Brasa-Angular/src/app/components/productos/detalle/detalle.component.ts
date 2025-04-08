@@ -21,20 +21,17 @@ export class DetalleComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const idParam = this.route.snapshot.paramMap.get('id');
-    const id = idParam ? Number(idParam) : null;
+    
+    const id = Number(this.route.snapshot.paramMap.get('id'));
 
-    if (id) {
-      this.productoService.getProductoById(id).subscribe({
-        next: (data) => {
-          this.producto = data;
-        },
-        error: (err) => {
-          console.error('Error al obtener el producto:', err);
-        }
-      });
-    } else {
-      console.error('ID de producto inválido');
-    }
+ this.productoService.getProductoById(id).subscribe({
+   next: (data) => {
+     this.producto = data;
+   },
+   error: (err) => {
+     console.error('Error al obtener el producto:', err);
+     alert('Error al obtener el producto. Intente nuevamente más tarde.');
+   }
+ });
   }
 }
