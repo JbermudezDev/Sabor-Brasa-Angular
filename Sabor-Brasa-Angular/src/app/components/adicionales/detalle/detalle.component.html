@@ -1,0 +1,8 @@
+<div *ngIf="adicional">
+    <h2>{{ adicional.nombre }}</h2>
+    <p>{{ adicional.descripcion }}</p>
+    <p>{{ adicional.precio | currency }}</p>
+    <button [routerLink]="['/adicionales/all']">Volver al Listado</button>
+    <button [routerLink]="['/editar', adicional.id]">Editar</button>
+  </div>
+  

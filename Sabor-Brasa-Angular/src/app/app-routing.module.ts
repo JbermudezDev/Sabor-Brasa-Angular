@@ -10,6 +10,15 @@ import { AgregarComponent } from './components/clientes/agregar/agregar.componen
 import { EditarComponent } from './components/clientes/editar/editar.component';
 import { DetalleComponent } from './components/clientes/detalle/detalle.component';
 
+//Rutas para adicionales
+
+import { ListarAdicionalesComponent } from './components/adicionales/listar/listar.component';
+import { AgregarAdicionalComponent } from './components/adicionales/agregar/agregar.component';
+import { EditarAdicionalComponent } from './components/adicionales/editar/editar.component';
+import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
+
+
+
 
 const routes: Routes = [
   { path: '', component: LandingComponent },
@@ -22,10 +31,13 @@ const routes: Routes = [
   { path: 'clientes/editar/:id', component: EditarComponent },
   { path: 'clientes/detalle/:id', component: DetalleComponent },
   
-
+  // Rutas para Adicionales
+  { path: 'adicionales/all', component: ListarAdicionalesComponent },
+  { path: 'adicionales/agregar', component: AgregarAdicionalComponent },
+  { path: 'adicionales/update/:id', component: EditarAdicionalComponent },
+  { path: 'adicionales/view/:id', component: DetalleAdicionalComponent },
   
- 
-  
+   
 ];
 
 @NgModule({

@@ -1,0 +1,19 @@
+<div class="form-container">
+    <h2>Agregar Adicional</h2>
+    <form (ngSubmit)="addAdicional()">
+      <div class="form-group">
+        <label>Nombre:</label>
+        <input type="text" [(ngModel)]="adicional.nombre" name="nombre" required>
+      </div>
+      <div class="form-group">
+        <label>Precio:</label>
+        <input type="number" [(ngModel)]="adicional.precio" name="precio" required>
+      </div>
+      <div class="form-group">
+        <label>Descripción:</label>
+        <input type="text" [(ngModel)]="adicional.descripcion" name="descripcion" required>
+      </div>
+      <button type="submit">Agregar Adicional</button>
+    </form>
+  </div>
+  
