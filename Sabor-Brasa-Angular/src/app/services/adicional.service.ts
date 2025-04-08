@@ -14,7 +14,7 @@ export interface Adicional {
 })
 export class AdicionalService {
 
-  private apiUrl = 'http://localhost:8090/adicionales'; 
+  private apiUrl = 'http://localhost:8090/adicionales/all'; 
 
   constructor(private http: HttpClient) { }
 
