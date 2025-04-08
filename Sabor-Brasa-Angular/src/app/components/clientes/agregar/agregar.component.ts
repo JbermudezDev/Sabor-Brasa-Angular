@@ -2,11 +2,13 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
-  styleUrls: ['./agregar.component.css']
+  styleUrls: ['./agregar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AgregarComponent {
   cliente: Cliente = {

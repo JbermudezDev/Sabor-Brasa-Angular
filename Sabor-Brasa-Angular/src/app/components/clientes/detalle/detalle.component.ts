@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css']
+  styleUrls: ['./detalle.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DetalleComponent implements OnInit {
   cliente: Cliente | undefined;

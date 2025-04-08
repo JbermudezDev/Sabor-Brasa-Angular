@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
 
 @Component({
   selector: 'app-listar-clientes',
   templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  styleUrls: ['./listar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListarComponent implements OnInit {
   clientes: Cliente[] = []; // Lista completa de clientes

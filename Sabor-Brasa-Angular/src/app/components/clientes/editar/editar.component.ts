@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-editar',
   templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  styleUrls: ['./editar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditarComponent implements OnInit {
   cliente: Cliente = {
