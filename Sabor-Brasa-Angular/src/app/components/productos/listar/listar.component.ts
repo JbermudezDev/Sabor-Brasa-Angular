@@ -25,15 +25,10 @@ export class ListarProductosComponent implements OnInit {
 
   deleteProducto(id: number): void {
     if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
-      this.productoService.deleteProducto(id).subscribe({
-        next: () => {
-          // Actualizar la lista de productos (filtrando el eliminado)
-          this.productos = this.productos.filter(p => p.id !== id);
-        },
-        error: (err) => {
-          console.error('Error al eliminar el producto:', err);
-        }
-      });
+      this.productoService.deleteProducto(id);
+      this.productos = this.productos.filter(producto => producto.id !== id);
+      alert('Producto eliminado correctamente');
+      this.productos= this.productos.filter(producto => producto.id !== id);
     }
   }
   
