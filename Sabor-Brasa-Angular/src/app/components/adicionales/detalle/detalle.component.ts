@@ -10,18 +10,18 @@ import { Adicional } from 'src/app/models/adicional.model';
 })
 export class DetalleAdicionalComponent implements OnInit {
 
-  adicional: Adicional | null = null;
+  adicional: Adicional | undefined;
 
-  constructor(private route: ActivatedRoute, private adicionalService: AdicionalService, private router: Router) {}
+  constructor(
+    private route: ActivatedRoute,
+    private adicionalService: AdicionalService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));
+    const id = Number(this.route.snapshot.paramMap.get('id'));  // Obtén el ID desde la URL
     this.adicionalService.getAdicional(id).subscribe(data => {
-      this.adicional = data;  // Obtiene los detalles del adicional
+      this.adicional = data;  // Asigna los datos del adicional
     });
-  }
-
-  backToList(): void {
-    this.router.navigate(['/adicionales/all']);  // Redirige al listado de adicionales
   }
 }
