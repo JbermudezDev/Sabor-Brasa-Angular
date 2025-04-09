@@ -24,7 +24,14 @@ export class AgregarComponent {
   constructor(private clienteService: ClienteService, private router: Router) {}
 
   onSubmit(): void {
-    this.clienteService.addCliente(this.cliente); // Llama al servicio para agregar el cliente
-    this.router.navigate(['/clientes']); // Redirige al listado de clientes
+    this.clienteService.addCliente(this.cliente).subscribe({
+      next: (data) => {
+        console.log('Cliente añadido correctamente:', data);
+        this.router.navigate(['/clientes']); // Redirige al listado de clientes
+      },
+      error: (err) => {
+        console.error('Error al añadir el cliente:', err);
+      }
+    });
   }
 }

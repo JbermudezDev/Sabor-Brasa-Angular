@@ -20,13 +20,17 @@ export class ClienteService {
     return this.http.get<Cliente>(`http://localhost:8090/clientes/find/${id}`);
   }
 
-  deleteById(id: number){
-    console.log(id);
-    this.http.delete(`http://localhost:8090/clientes/delete/${id}`).subscribe();
+  updateCliente(id: number, cliente: Cliente): Observable<Cliente> {
+    return this.http.put<Cliente>(`http://localhost:8090/clientes/update/${id}`, cliente);
   }
 
-  addCliente(cliente: Cliente){
-    this.http.post<Cliente>('http://localhost:8090/clientes/add', cliente).subscribe();
+ 
+  deleteById(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8090/clientes/delete/${id}`);
+  }
+
+  addCliente(cliente: Cliente): Observable<Cliente> {
+    return this.http.post<Cliente>('http://localhost:8090/clientes/add', cliente);
   }
 
 

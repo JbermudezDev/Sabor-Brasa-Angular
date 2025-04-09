@@ -39,7 +39,14 @@ export class EditarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.clienteService.addCliente(this.cliente); // Actualiza el cliente
-    this.router.navigate(['/clientes']); // Redirige al listado de clientes
+    this.clienteService.updateCliente(this.cliente.id, this.cliente).subscribe({
+      next: (data) => {
+        console.log('Cliente actualizado correctamente:', data);
+        this.router.navigate(['/clientes']); // Redirige al listado de clientes
+      },
+      error: (err) => {
+        console.error('Error al actualizar el cliente:', err);
+      }
+    });
   }
 }

@@ -42,11 +42,18 @@ export class ListarComponent implements OnInit {
   deleteCliente(id: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
       // Llama al servicio para eliminar el cliente
-      this.clienteService.deleteById(id);
-      // Actualiza la lista filtrada eliminando el cliente correspondiente
-      this.filteredClientes = this.filteredClientes.filter(cliente => cliente.id !== id);
-      // También actualiza la lista completa de clientes
-      this.clientes = this.clientes.filter(cliente => cliente.id !== id);
+      this.clienteService.deleteById(id).subscribe({
+        next: () => {
+          // Actualiza la lista filtrada eliminando el cliente correspondiente
+          this.filteredClientes = this.filteredClientes.filter(cliente => cliente.id !== id);
+          // También actualiza la lista completa de clientes
+          this.clientes = this.clientes.filter(cliente => cliente.id !== id);
+          console.log(`Cliente con ID ${id} eliminado correctamente.`);
+        },
+        error: (err) => {
+          console.error('Error al eliminar el cliente:', err);
+        }
+      });
     }
   }
 }
