@@ -54,6 +54,7 @@ export class EditarProductoComponent implements OnInit {
     this.adicionalService.getAdicionales().subscribe({
       next: (data) => {
         this.adicionales = data;
+        this.producto.adicionales = data
       },
       error: (err) => {
         console.error('Error al cargar los adicionales:', err);
@@ -74,6 +75,7 @@ export class EditarProductoComponent implements OnInit {
 
   // Verificar si un adicional está seleccionado
   isAdicionalSelected(adicional: Adicional): boolean {
+    console.log("Ayuda: ",this.producto)
     return this.producto.adicionales.some(a => a.id === adicional.id);
   }
 
