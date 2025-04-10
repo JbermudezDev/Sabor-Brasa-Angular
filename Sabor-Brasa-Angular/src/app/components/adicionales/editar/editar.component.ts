@@ -21,9 +21,9 @@ export class EditarAdicionalComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));  // Obtén el ID desde la URL
-    this.adicionalService.getAdicional(id).subscribe({
+    this.adicionalService.findById(id).subscribe({
       next: (data) => {
-        this.adicional = Array.isArray(data) ? data[0] : data;  // Asigna el primer adicional si es un array
+        this.adicional = data;  // Asigna los datos del adicional
       },
       error: (err) => {
         console.error('Error al obtener el adicional:', err);
