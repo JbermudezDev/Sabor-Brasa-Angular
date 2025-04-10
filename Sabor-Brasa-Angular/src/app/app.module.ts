@@ -30,8 +30,8 @@ import { DetalleProductosComponent } from './components/productos/detalle/detall
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { LoginComponent } from './components/login/login.component';
 import { LoginClienteComponent } from './components/login-cliente/login-cliente.component';
-
-
+import { InfoClienteComponent } from './components/Landing-cliente/info-cliente/info-cliente.component';
+import { HeaderclienteComponent } from './components/Landing-cliente/headercliente/headercliente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -52,11 +52,14 @@ import { LoginClienteComponent } from './components/login-cliente/login-cliente.
     LoginComponent,
     LoginClienteComponent,
     
+    
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LandingComponent,
+    InfoClienteComponent,
+    HeaderclienteComponent,
     HeaderComponent,
     FooterComponent,
     InfoLandingComponent,

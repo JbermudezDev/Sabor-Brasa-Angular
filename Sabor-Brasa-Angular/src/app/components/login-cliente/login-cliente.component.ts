@@ -21,7 +21,7 @@ email: string = '';
     this.authService.logiincliente(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);
-        this.router.navigate(['/pordefinir']);
+        this.router.navigate(['/info-cliente']); // Redirigir a la página de información del cliente
       },
       error: (err) => {
         // Manejar errores de autenticación
