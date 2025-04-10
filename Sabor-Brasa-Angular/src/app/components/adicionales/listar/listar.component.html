@@ -13,18 +13,18 @@
     <div class="sidebar__container">
       <div class="sidebar__user">
         <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="Administrador" />
+          <img src="assets/images/administrador.png" alt="image" />
         </div>
         <div class="sidebar__info">
           <h3>Juan Jose Bermudez</h3>
+          <span></span>
         </div>
       </div>
       <div class="sidebar__content">
         <div>
-          <h3 class="sidebar__title">MANAGE</h3>
           <div class="sidebar__list">
             <a routerLink="/Administrador" class="sidebar__link">
-              <i class="ri-vip-crown-fill"></i>
+              <i class="fi fi-sr-crown"></i>
               <span>Administrador</span>
             </a>
             <a routerLink="/adicionales/all" class="sidebar__link">
@@ -55,17 +55,26 @@
   <main class="main-content">
     <h1>Listado de Adicionales</h1>
 
+    <!-- Buscar adicionales -->
     <div class="search-container">
-      <input type="text" [(ngModel)]="filtro" placeholder="Buscar adicionales...">
+      <input
+        type="text"
+        id="search-input"
+        placeholder="Buscar adicionales..."
+        [(ngModel)]="searchTerm"
+        (keyup)="buscarAdicionales()"
+      />
       <i class="fas fa-search"></i>
     </div>
 
-    <div class="button-container">
-      <button (click)="agregarAdicional()" class="btn-submit">
+    <!-- Botón para agregar adicional -->
+    <div class="button-submit">
+      <button routerLink="/adicionales/agregar" class="btn-submit">
         Agregar Adicional
       </button>
     </div>
 
+    <!-- Tabla de adicionales -->
     <div class="table-container">
       <table>
         <thead>
@@ -78,20 +87,20 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let adicional of adicionalesFiltrados(); let i = index">
+          <tr *ngFor="let adicional of adicionales; let i = index">
             <td>{{ i + 1 }}</td>
             <td>{{ adicional.nombre }}</td>
-            <td>{{ adicional.precio }}</td>
+            <td>{{ adicional.precio | currency }}</td>
             <td>{{ adicional.descripcion }}</td>
             <td>
               <div class="btn-container">
-                <button class="btn yellow" (click)="verAdicional(adicional.id)">
+                <button class="btn yellow" [routerLink]="['/adicionales/view', adicional.id]">
                   <i class="fas fa-eye"></i>
                 </button>
-                <button class="btn green" (click)="editarAdicional(adicional.id)">
+                <button class="btn green" [routerLink]="['/adicionales/update', adicional.id]">
                   <i class="fas fa-edit"></i>
                 </button>
-                <button class="btn red" (click)="eliminarAdicional(adicional.id)">
+                <button class="btn red" (click)="deleteAdicional(adicional.id)">
                   <i class="fas fa-trash"></i>
                 </button>
               </div>

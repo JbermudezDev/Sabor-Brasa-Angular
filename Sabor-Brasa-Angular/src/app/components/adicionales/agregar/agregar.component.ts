@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
 import { Router } from '@angular/router';
@@ -6,8 +6,7 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-agregar-adicional',
   templateUrl: './agregar.component.html',
-  styleUrls: ['./agregar.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./agregar.component.css']
 })
 export class AgregarAdicionalComponent implements OnInit {
 
@@ -15,10 +14,9 @@ export class AgregarAdicionalComponent implements OnInit {
     id: 0,
     nombre: '',
     precio: 0,
-    descripcion: '',
-    productos: [],
-    seleccionado: false // or true, depending on the default value you want
+    descripcion: ''
   };
+
   constructor(
     private adicionalService: AdicionalService,
     private router: Router
