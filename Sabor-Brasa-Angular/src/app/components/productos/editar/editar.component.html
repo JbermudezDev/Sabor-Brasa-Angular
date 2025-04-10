@@ -13,17 +13,18 @@
     <div class="sidebar__container">
       <div class="sidebar__user">
         <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="image">
+          <img src="assets/images/administrador.png" alt="image" />
         </div>
         <div class="sidebar__info">
           <h3>Juan Jose Bermudez</h3>
+          <span></span>
         </div>
       </div>
       <div class="sidebar__content">
         <div>
           <div class="sidebar__list">
             <a routerLink="/Administrador" class="sidebar__link">
-              <i class="ri-vip-crown-fill"></i>
+              <i class="fi fi-sr-crown"></i>
               <span>Administrador</span>
             </a>
             <a routerLink="/adicionales/all" class="sidebar__link">
@@ -54,66 +55,69 @@
   <main class="main-content">
     <h1>Editar Producto</h1>
     <div class="details-container">
-      <form (ngSubmit)="onSubmit()">
+      <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
+
         <!-- Campo oculto para el ID del producto -->
-        <input type="hidden" [(ngModel)]="producto.id" name="id" />
+        <input type="hidden" name="id" [(ngModel)]="producto.id" />
 
-        <label for="nombre">Nombre:</label>
-        <input
-          type="text"
-          id="nombre"
-          name="nombre"
-          [(ngModel)]="producto.nombre"
-          required
-        />
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            [(ngModel)]="producto.nombre"
+            required
+            class="form-control"
+          />
+        </div>
 
-        <label for="precio">Precio:</label>
-        <input
-          type="number"
-          id="precio"
-          name="precio"
-          step="0.01"
-          [(ngModel)]="producto.precio"
-          required
-        />
+        <div class="form-group">
+          <label for="precio">Precio:</label>
+          <input
+            type="number"
+            id="precio"
+            name="precio"
+            [(ngModel)]="producto.precio"
+            step="0.01"
+            required
+            class="form-control"
+          />
+        </div>
 
-        <label for="descripcion">Descripción:</label>
-        <input
-          type="text"
-          id="descripcion"
-          name="descripcion"
-          [(ngModel)]="producto.descripcion"
-          required
-        />
+        <div class="form-group">
+          <label for="descripcion">Descripción:</label>
+          <input
+            type="text"
+            id="descripcion"
+            name="descripcion"
+            [(ngModel)]="producto.descripcion"
+            required
+            class="form-control"
+          />
+        </div>
 
-        <label for="imagen">URL de Imagen:</label>
-        <input
-          type="text"
-          id="imagen"
-          name="imagen"
-          [(ngModel)]="producto.imagen"
-          required
-        />
-
-        <label>Seleccionar Adicionales:</label>
-        <div class="check-container">
-          <div
-            class="check-item"
-            *ngFor="let adicional of producto.adicionales"
-          >
-            <label>{{ adicional.nombre }}</label>
-            <input
-              type="checkbox"
-              [value]="adicional.id"
-              [(ngModel)]="adicional.selected"
-              name="adicionales"
-            />
-          </div>
+        <div class="form-group">
+          <label for="imagen">URL de Imagen:</label>
+          <input
+            type="text"
+            id="imagen"
+            name="imagen"
+            [(ngModel)]="producto.imagen"
+            required
+            class="form-control"
+          />
         </div>
 
         <!-- Botón para enviar el formulario -->
-        <div class="button-container">
-          <button type="submit" class="btn btn-green">Actualizar</button>
+        <div class="button-container-add">
+          <button
+            type="submit"
+            class="button-container-add btn-green"
+            [disabled]="!productoForm.valid"
+          >
+            Actualizar
+          </button>
         </div>
       </form>
     </div>

@@ -8,6 +8,7 @@
     </div>
   </header>
 
+
   <!--=============== SIDEBAR ===============-->
   <nav class="sidebar" id="sidebar">
     <div class="sidebar__container">
@@ -17,6 +18,7 @@
         </div>
         <div class="sidebar__info">
           <h3>Juan Jose Bermudez</h3>
+          <span></span>
         </div>
       </div>
       <div class="sidebar__content">
@@ -65,9 +67,6 @@
             required
             class="form-control"
           />
-          <div *ngIf="productoForm.controls['nombre']?.invalid && productoForm.controls['nombre']?.touched">
-            <small class="error">El nombre es obligatorio.</small>
-          </div>
         </div>
         <div class="form-group">
           <label for="precio">Precio:</label>
@@ -80,9 +79,6 @@
             required
             class="form-control"
           />
-          <div *ngIf="productoForm.controls['precio']?.invalid && productoForm.controls['precio']?.touched">
-            <small class="error">El precio es obligatorio.</small>
-          </div>
         </div>
         <div class="form-group">
           <label for="descripcion">Descripción:</label>
@@ -94,9 +90,6 @@
             required
             class="form-control"
           />
-          <div *ngIf="productoForm.controls['descripcion']?.invalid && productoForm.controls['descripcion']?.touched">
-            <small class="error">La descripción es obligatoria.</small>
-          </div>
         </div>
         <div class="form-group">
           <label for="imagen">Imagen URL:</label>
@@ -105,12 +98,8 @@
             id="imagen"
             name="imagen"
             [(ngModel)]="producto.imagen"
-            required
             class="form-control"
           />
-          <div *ngIf="productoForm.controls['imagen']?.invalid && productoForm.controls['imagen']?.touched">
-            <small class="error">La URL de la imagen es obligatoria.</small>
-          </div>
         </div>
         <button
           type="submit"

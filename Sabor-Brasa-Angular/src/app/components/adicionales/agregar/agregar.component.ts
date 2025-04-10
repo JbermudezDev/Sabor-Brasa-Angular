@@ -16,9 +16,9 @@ export class AgregarAdicionalComponent implements OnInit {
     nombre: '',
     precio: 0,
     descripcion: '',
-    productos: [] // Default value for productos
+    productos: [],
+    seleccionado: false // or true, depending on the default value you want
   };
-
   constructor(
     private adicionalService: AdicionalService,
     private router: Router
