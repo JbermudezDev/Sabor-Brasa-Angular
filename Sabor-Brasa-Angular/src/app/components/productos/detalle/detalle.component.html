@@ -1,0 +1,107 @@
+<div class="main container" id="main">
+    <!--=============== HEADER ===============-->
+    <header class="header" id="header">
+      <div class="header__container">
+        <button class="header__toggle" id="header-toggle">
+          <i class="ri-menu-line"></i>
+        </button>
+      </div>
+    </header>
+  
+    <!--=============== SIDEBAR ===============-->
+    <nav class="sidebar" id="sidebar">
+      <div class="sidebar__container">
+        <div class="sidebar__user">
+          <div class="sidebar__img">
+            <img src="assets/images/administrador.png" alt="image" />
+          </div>
+          <div class="sidebar__info">
+            <h3>Juan Jose Bermudez</h3>
+            <span></span>
+          </div>
+        </div>
+        <div class="sidebar__content">
+          <div>
+            <div class="sidebar__list">
+              <a routerLink="/Administrador" class="sidebar__link">
+                <i class="fi fi-sr-crown"></i>
+                <span>Administrador</span>
+              </a>
+              <a routerLink="/adicionales/all" class="sidebar__link">
+                <i class="ri-goblet-2-fill"></i>
+                <span>Adicionales</span>
+              </a>
+              <a routerLink="/productos/all" class="sidebar__link">
+                <i class="ri-restaurant-fill"></i>
+                <span>Productos</span>
+              </a>
+              <a routerLink="/clientes/all" class="sidebar__link">
+                <i class="ri-user-fill"></i>
+                <span>Clientes</span>
+              </a>
+            </div>
+          </div>
+        </div>
+        <div class="sidebar__actions">
+          <button class="sidebar__link">
+            <i class="ri-logout-box-r-fill"></i>
+            <span>Log Out</span>
+          </button>
+        </div>
+      </div>
+    </nav>
+  
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Detalles del Producto</h1>
+  
+      <div *ngIf="producto">
+        <div class="product-container">
+          <div class="product-image">
+            <!-- Imagen del producto -->
+            <img [src]="producto?.imagen" alt="Imagen del plato" />
+          </div>
+  
+          <div class="product-details">
+            <h2 class="product-title">{{ producto?.nombre }}</h2>
+  
+            <div class="detail-item">
+              <i class="ri-money-dollar-circle-line"></i>
+              <span class="detail-label">Precio:</span>
+              <span class="detail-value">{{ producto?.precio | currency:'COP' }}</span>
+            </div>
+  
+            <div class="detail-item">
+              <i class="ri-file-text-line"></i>
+              <span class="detail-label">Descripción:</span>
+              <span class="detail-value">{{ producto?.descripcion }}</span>
+            </div>
+  
+            <div class="detail-item adicionales-section">
+              <i class="ri-list-check"></i>
+              <span class="detail-label">Adicionales:</span>
+              <ul class="adicionales-list">
+                <li *ngFor="let adicional of producto.adicionales">{{ adicional.nombre }}</li>
+                <li *ngIf="!producto.adicionales || producto.adicionales.length === 0">
+                  No hay adicionales disponibles
+                </li>
+              </ul>
+            </div>
+  
+            <div class="actions-container">
+              <a routerLink="/productos" class="btn btn-back">
+                <i class="ri-arrow-left-line"></i> Volver al Listado
+              </a>
+              
+            </div>
+          </div>
+        </div>
+      </div>
+  
+      <div *ngIf="!producto" class="error-container">
+        <i class="ri-error-warning-line error-icon"></i>
+        <p>Producto no encontrado.</p>
+        <a routerLink="/productos/all" class="btn">Volver al Listado</a>
+      </div>
+    </main>
+  </div>

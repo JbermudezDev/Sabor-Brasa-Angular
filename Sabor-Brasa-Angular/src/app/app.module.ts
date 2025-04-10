@@ -25,7 +25,8 @@ import { ListarAdicionalComponent } from './components/adicionales/listar/listar
 import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
 import { AgregarAdicionalComponent } from './components/adicionales/agregar/agregar.component';
 import { EditarAdicionalComponent } from './components/adicionales/editar/editar.component';
-
+import { CurrencyPipe } from '@angular/common';
+import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
 
 
 @NgModule({
@@ -43,6 +44,7 @@ import { EditarAdicionalComponent } from './components/adicionales/editar/editar
     DetalleAdicionalComponent,
     AgregarAdicionalComponent,
     EditarAdicionalComponent,
+    DetalleProductosComponent,
     
   ],
   imports: [
@@ -57,7 +59,7 @@ import { EditarAdicionalComponent } from './components/adicionales/editar/editar
     HttpClientModule
     
   ],
-  providers: [],
+  providers: [CurrencyPipe],
   bootstrap: [AppComponent]
   
 })

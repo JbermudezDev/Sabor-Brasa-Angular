@@ -17,6 +17,10 @@ import { ListarAdicionalComponent } from './components/adicionales/listar/listar
 import { EditarAdicionalComponent } from './components/adicionales/editar/editar.component';
 import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
 import { HttpClientModule } from '@angular/common/http';
+import { CurrencyPipe } from '@angular/common';
+import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
+
+
 
 
 
@@ -34,6 +38,7 @@ const routes: Routes = [
   { path: 'adicionales', component: ListarAdicionalComponent },
   { path: 'adicionales/editar/:id', component: EditarAdicionalComponent },
   { path: 'adicionales/detalle/:id', component: DetalleAdicionalComponent },
+  { path: 'productos/detalle/:id', component: DetalleProductosComponent },
 
   
 
