@@ -19,7 +19,7 @@ export class DetalleAdicionalComponent implements OnInit {
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id')); // Obtiene el ID desde la URL
-    this.adicionalService.findById(id).subscribe({
+    this.adicionalService.getById(id).subscribe({
       next: (data) => {
         this.adicional = data; // Asigna los datos del adicional
       },

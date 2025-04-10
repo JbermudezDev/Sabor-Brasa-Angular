@@ -25,25 +25,17 @@ export class EditarAdicionalComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id')); // Obtiene el ID de la URL
-    this.adicionalService.findById(id).subscribe({
-      next: (data) => {
-        this.adicional = data; // Carga los datos del adicional en el formulario
-      },
-      error: (err) => {
-        console.error('Error al obtener el adicional:', err);
-      }
-    });
+    const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (id) {
+      this.adicionalService.getById(id).subscribe((data) => {
+        this.adicional = data;
+      });
+    }
   }
 
-  onSubmit(): void {
-    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe({
-      next: () => {
-        this.router.navigate(['/adicionales/all']); // Redirige al listado de adicionales
-      },
-      error: (err) => {
-        console.error('Error al actualizar el adicional:', err);
-      }
+  actualizarAdicional(): void {
+    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe(() => {
+      this.router.navigate(['/adicionales']);
     });
   }
 }

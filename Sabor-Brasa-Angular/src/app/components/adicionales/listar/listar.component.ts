@@ -1,50 +1,61 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-listar-adicionales',
   templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  styleUrls: ['./listar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListarAdicionalComponent implements OnInit {
-  adicionales: Adicional[] = []; // Lista completa de adicionales
-  filteredAdicionales: Adicional[] = []; // Lista filtrada para búsqueda
-  searchTerm: string = ''; // Término de búsqueda
+  adicionales: Adicional[] = [];
+  filtro: string = '';
 
-  constructor(private adicionalService: AdicionalService) {}
+  constructor(
+    private adicionalService: AdicionalService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
-    // Llama al servicio para obtener todos los adicionales
-    this.adicionalService.getAllAdicionales().subscribe({
-      next: (data) => {
-        this.adicionales = data;
-        this.filteredAdicionales = data; // Inicializa la lista filtrada con todos los adicionales
-      },
-      error: (err) => {
-        console.error('Error al obtener los adicionales:', err);
-      }
+    this.cargarAdicionales();
+  }
+
+  cargarAdicionales(): void {
+    this.adicionalService.getAll().subscribe(data => {
+      this.adicionales = data;
     });
   }
 
-  // Método para filtrar los adicionales según el término de búsqueda
-  buscarAdicionales(): void {
-    this.filteredAdicionales = this.adicionales.filter(adicional =>
-      adicional.nombre.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      adicional.descripcion.toLowerCase().includes(this.searchTerm.toLowerCase())
+  adicionalesFiltrados(): Adicional[] {
+    return this.adicionales.filter(a =>
+      a.nombre?.toLowerCase().includes(this.filtro.toLowerCase()) ||
+      a.descripcion?.toLowerCase().includes(this.filtro.toLowerCase())
     );
   }
 
-  // Método para eliminar un adicional
-  deleteAdicional(id: number): void {
-    if (confirm('¿Estás seguro de que deseas eliminar este adicional?')) {
-      this.adicionalService.deleteById(id);
-        
-          // Actualiza la lista filtrada eliminando el adicional correspondiente
-          this.filteredAdicionales = this.filteredAdicionales.filter(adicional => adicional.id !== id);
-          // También actualiza la lista completa de adicionales
-          this.adicionales = this.adicionales.filter(adicional => adicional.id !== id);
-       
+  verAdicional(id: number | undefined): void {
+    if (id) {
+      this.router.navigate(['/adicionales/view', id]);
     }
+  }
+
+  editarAdicional(id: number | undefined): void {
+    if (id) {
+      this.router.navigate(['/adicionales/update', id]);
+    }
+  }
+
+  eliminarAdicional(id: number | undefined): void {
+    if (id && confirm('¿Estás seguro de eliminar este adicional?')) {
+      this.adicionalService.deleteAdicional(id).subscribe(() => {
+        this.cargarAdicionales();
+      });
+    }
+  }
+
+  agregarAdicional(): void {
+    this.router.navigate(['/adicionales/agregar']);
   }
 }

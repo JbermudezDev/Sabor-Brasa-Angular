@@ -52,47 +52,24 @@
     </nav>
   
     <!--=============== MAIN ===============-->
-    <main class="main-content">
-      <h1>Editar Adicional</h1>
-      <div class="details-container">
-        <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm">
-          <label for="nombre">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="adicional.nombre"
-            required
-            class="form-control"
-          />
-  
-          <label for="descripcion">Descripción:</label>
-          <input
-            type="text"
-            id="descripcion"
-            name="descripcion"
-            [(ngModel)]="adicional.descripcion"
-            required
-            class="form-control"
-          />
-  
-          <label for="precio">Precio:</label>
-          <input
-            type="number"
-            step="0.01"
-            id="precio"
-            name="precio"
-            [(ngModel)]="adicional.precio"
-            required
-            class="form-control"
-          />
-  
-          <div class="button-container">
-            <button type="submit" class="btn btn-green" [disabled]="!adicionalForm.valid">
-              Actualizar
-            </button>
-          </div>
-        </form>
+    <main class="main container" id="main">
+      <div class="main-content">
+        <h1>Editar Adicional</h1>
+        <div class="details-container">
+          <form (ngSubmit)="actualizarAdicional()">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre" [(ngModel)]="adicional.nombre" required>
+    
+            <label for="descripcion">Descripción:</label>
+            <input type="text" id="descripcion" name="descripcion" [(ngModel)]="adicional.descripcion" required>
+    
+            <label for="precio">Precio:</label>
+            <input type="number" step="0.01" id="precio" name="precio" [(ngModel)]="adicional.precio" required>
+    
+            <div class="button-container">
+              <button type="submit" class="btn btn-green">Actualizar</button>
+            </div>
+          </form>
+        </div>
       </div>
     </main>
-  </div>
