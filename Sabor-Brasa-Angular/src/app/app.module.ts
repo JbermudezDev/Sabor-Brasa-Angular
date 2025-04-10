@@ -29,6 +29,7 @@ import { CurrencyPipe } from '@angular/common';
 import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { LoginComponent } from './components/login/login.component';
+import { LoginClienteComponent } from './components/login-cliente/login-cliente.component';
 
 
 @NgModule({
@@ -49,6 +50,7 @@ import { LoginComponent } from './components/login/login.component';
     DetalleProductosComponent,
     AdministradorComponent,
     LoginComponent,
+    LoginClienteComponent,
     
   ],
   imports: [

@@ -14,4 +14,8 @@ export class AuthService {
     const credenciales = { email, password };
     return this.http.post(`${this.baseUrl}/admin`, credenciales);
   }
+  logiincliente(email: string, password: string): Observable<any> {
+    const credenciales = { email, password };
+    return this.http.post(`${this.baseUrl}/cliente`, credenciales);
+  }
 }
