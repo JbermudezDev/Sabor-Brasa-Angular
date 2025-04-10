@@ -21,7 +21,8 @@ import { CurrencyPipe } from '@angular/common';
 import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { LoginComponent } from './components/login/login.component';
-
+import { LoginClienteComponent } from './components/login-cliente/login-cliente.component';
+import { InfoClienteComponent } from './components/Landing-cliente/info-cliente/info-cliente.component';
 
 
 
@@ -43,6 +44,10 @@ const routes: Routes = [
   { path: 'productos/detalle/:id', component: DetalleProductosComponent },
   { path: 'administrador', component: AdministradorComponent },
   {path: 'login', component: LoginComponent},
+  {path: 'login-cliente', component: LoginClienteComponent},
+  {path: 'info-cliente', component: InfoClienteComponent},
+
+
 
 
 

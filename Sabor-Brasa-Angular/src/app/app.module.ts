@@ -29,8 +29,9 @@ import { CurrencyPipe } from '@angular/common';
 import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
 import { LoginComponent } from './components/login/login.component';
-
-
+import { LoginClienteComponent } from './components/login-cliente/login-cliente.component';
+import { InfoClienteComponent } from './components/Landing-cliente/info-cliente/info-cliente.component';
+import { HeaderclienteComponent } from './components/Landing-cliente/headercliente/headercliente.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,12 +50,16 @@ import { LoginComponent } from './components/login/login.component';
     DetalleProductosComponent,
     AdministradorComponent,
     LoginComponent,
+    LoginClienteComponent,
+    
     
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     LandingComponent,
+    InfoClienteComponent,
+    HeaderclienteComponent,
     HeaderComponent,
     FooterComponent,
     InfoLandingComponent,
