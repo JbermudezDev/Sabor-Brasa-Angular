@@ -872,7 +872,6 @@ body {
     text-align: center;
     width: 100%;
     padding: 10px;
-    background: #007bff;
     color: white;
     text-decoration: none;
     border-radius: 5px;
@@ -880,7 +879,9 @@ body {
     margin-top: 15px;
     transition: background 0.3s ease;
   }
-  
+  .btn-back {
+    background: #0056b3;
+  }
   .btn:hover {
     background: #0056b3;
   }

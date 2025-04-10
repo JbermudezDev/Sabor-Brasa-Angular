@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
-
+import { ViewEncapsulation } from '@angular/core';
 @Component({
   selector: 'app-detalle-adicional',
   templateUrl: './detalle.component.html',
-  styleUrls: ['./detalle.component.css']
+  styleUrls: ['./detalle.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class DetalleAdicionalComponent implements OnInit {
 

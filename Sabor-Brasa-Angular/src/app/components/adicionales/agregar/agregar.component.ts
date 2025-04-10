@@ -2,11 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
 import { Router } from '@angular/router';
-
+import { ViewEncapsulation } from '@angular/core';  
 @Component({
   selector: 'app-agregar-adicional',
   templateUrl: './agregar.component.html',
-  styleUrls: ['./agregar.component.css']
+  styleUrls: ['./agregar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class AgregarAdicionalComponent implements OnInit {
 

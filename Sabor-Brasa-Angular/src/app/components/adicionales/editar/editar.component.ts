@@ -2,11 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
+import { ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-editar-adicional',
   templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  styleUrls: ['./editar.component.css'],
+  encapsulation: ViewEncapsulation.None 
 })
 export class EditarAdicionalComponent implements OnInit {
 
