@@ -240,6 +240,16 @@ tr:hover {
   background: #28a745;
   
 }
+.greenn {
+  background: #28a745;
+  color: white;
+  border: none;
+  padding: 8px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-right: 5px;
+  font-size: 16px;
+}
 
 .yellow {
   background: #ffc107;

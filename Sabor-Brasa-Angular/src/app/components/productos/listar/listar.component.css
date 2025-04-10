@@ -707,28 +707,3 @@ border-radius: 4px;
 cursor: pointer;
 transition: background-color 0.3s ease;
 }
-
-.btn-green:hover {
-background-color: #218838;
-}
-
-/* Botón de eliminar */
-.btn-red {
-background-color: #dc3545;
-color: white;
-border: none;
-padding: 8px 12px;
-border-radius: 4px;
-cursor: pointer;
-transition: background-color 0.3s ease;
-}
-
-.btn-red:hover {
-background-color: #c82333;
-}
-
-/* Contenedor de botones */
-.btn-container {
-display: flex;
-gap: 10px;
-}
