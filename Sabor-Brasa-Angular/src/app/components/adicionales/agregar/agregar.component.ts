@@ -23,15 +23,9 @@ export class AgregarAdicionalComponent {
   ) {}
 
   onSubmit(): void {
-    this.adicionalService.createAdicional(this.adicional).subscribe({
-      next: () => {
-        console.log('Adicional agregado correctamente');
-        this.router.navigate(['/adicionales/all']); // Redirige al listado de adicionales
-      },
-      error: (err) => {
-        console.error('Error al agregar el adicional:', err);
-        alert('Ocurrió un error al agregar el adicional. Intente nuevamente.');
-      }
+    this.adicionalService.createAdicional(this.adicional).subscribe(() => {
+      this.router.navigate(['/adicionales']);
     });
   }
+      
 }

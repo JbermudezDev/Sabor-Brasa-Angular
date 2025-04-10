@@ -56,6 +56,9 @@
     <h1>Editar Adicional</h1>
     <div class="details-container">
       <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm">
+        <!-- Campo oculto para el ID del adicional -->
+        <input type="hidden" name="id" [(ngModel)]="adicional.id" />
+
         <!-- Campo Nombre -->
         <div class="form-group">
           <label for="nombre">Nombre:</label>
@@ -107,11 +110,11 @@
         </div>
 
         <!-- Botones -->
-        <div class="button-container">
+        <div class="button-container-add">
           <button type="submit" class="btn btn-green" [disabled]="!adicionalForm.valid">
             Actualizar Adicional
           </button>
-          <a routerLink="/adicionales/all" class="btn btn-back">
+          <a routerLink="/adicionales" class="btn btn-back">
             <i class="ri-arrow-left-line"></i> Volver al Listado
           </a>
         </div>

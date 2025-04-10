@@ -39,27 +39,17 @@ export class ListarAdicionalComponent implements OnInit {
   }
 
   deleteAdicional(id: number): void {
-    console.log('Intentando eliminar adicional con ID:', id);
-  
-    if (confirm('¿Estás seguro de que deseas eliminar este adicional?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       this.adicionalService.deleteAdicional(id).subscribe({
         next: () => {
           // Actualiza las listas eliminando el adicional correspondiente
-          this.adicionales = this.adicionales.filter(a => a.id !== id);
-          this.filteredAdicionales = this.filteredAdicionales.filter(a => a.id !== id);
-          alert('Adicional eliminado correctamente');
+          this.adicionales = this.adicionales.filter(adicional => adicional.id !== id);
+          this.filteredAdicionales = this.filteredAdicionales.filter(adicional => adicional.id !== id);
+          alert('Producto eliminado correctamente');
         },
         error: (err) => {
           console.error('Error al eliminar el adicional:', err);
-  
-          // Manejo de errores basado en el código de estado HTTP
-          if (err.status === 404) {
-            alert('El adicional no existe o ya fue eliminado.');
-          } else if (err.status === 500) {
-            alert('Error interno del servidor. Intente nuevamente más tarde.');
-          } else {
-            alert('Ocurrió un error al intentar eliminar el adicional.');
-          }
+          alert('Ocurrió un error al intentar eliminar el adicional.');
         }
       });
     }

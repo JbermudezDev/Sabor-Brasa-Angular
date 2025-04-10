@@ -38,14 +38,9 @@ export class EditarAdicionalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe({
-      next: () => {
-        console.log('Adicional actualizado correctamente');
-        this.router.navigate(['/adicionales/all']); // Redirige al listado de adicionales
-      },
-      error: (err) => {
-        console.error('Error al actualizar el adicional:', err);
-      }
-    });
+    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe(() => {  
+      this.router.navigate(['/adicionales']);
+    }); // Redirige al listado de adicionales
+      
   }
 }

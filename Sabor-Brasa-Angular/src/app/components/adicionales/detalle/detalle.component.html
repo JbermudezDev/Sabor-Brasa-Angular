@@ -73,7 +73,7 @@
         <span class="detail-value">{{ adicional.descripcion }}</span>
       </div>
       <div class="actions-container">
-        <a routerLink="/adicionales/all" class="btn btn-back">
+        <a routerLink="/adicionales" class="btn btn-back">
           <i class="ri-arrow-left-line"></i> Volver al Listado
         </a>
         <button class="btn green" routerLink="/adicionales/editar/{{ adicional.id }}">
@@ -87,7 +87,7 @@
       <div class="error-container">
         <i class="ri-error-warning-line error-icon"></i>
         <p>No se encontró el adicional.</p>
-        <a routerLink="/adicionales/all" class="btn">Volver al Listado</a>
+        <a routerLink="/adicionales" class="btn">Volver al Listado</a>
       </div>
     </ng-template>
   </main>
