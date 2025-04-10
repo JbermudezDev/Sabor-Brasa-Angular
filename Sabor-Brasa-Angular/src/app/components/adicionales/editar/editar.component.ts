@@ -14,7 +14,8 @@ export class EditarAdicionalComponent implements OnInit {
     id: 0,
     nombre: '',
     precio: 0,
-    descripcion: ''
+    descripcion: '',
+    productos: [] 
   };
 
   constructor(

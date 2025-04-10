@@ -5,7 +5,7 @@ export interface Adicional {
     nombre: string;
     precio: number;
     descripcion: string;
-    productos?: Producto[];
+    productos: Producto[];
   }
   
  

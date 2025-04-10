@@ -109,6 +109,20 @@
           />
         </div>
 
+        <!-- Selección de adicionales como checkboxes -->
+        <div class="form-group">
+          <label for="adicionales">Adicionales:</label>
+          <div *ngFor="let adicional of adicionales" class="checkbox-group">
+            <input
+              type="checkbox"
+              [value]="adicional.id"
+              (change)="toggleAdicional(adicional)"
+              [checked]="isAdicionalSelected(adicional)"
+            />
+            <label>{{ adicional.nombre }}</label>
+          </div>
+        </div>
+
         <!-- Botón para enviar el formulario -->
         <div class="button-container-add">
           <button
