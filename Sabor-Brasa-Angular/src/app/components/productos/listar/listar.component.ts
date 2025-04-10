@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ProductoService } from 'src/app/services/producto.service';
 import { Producto } from 'src/app/models/producto.model';
 import { Adicional } from 'src/app/models/adicional.model';
@@ -6,7 +6,8 @@ import { Adicional } from 'src/app/models/adicional.model';
 @Component({
   selector: 'app-listar-productos',
   templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  styleUrls: ['./listar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListarProductosComponent implements OnInit {
   productos: Producto[] = []; // Lista de productos
