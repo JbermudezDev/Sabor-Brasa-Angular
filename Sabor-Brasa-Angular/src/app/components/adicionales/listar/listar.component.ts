@@ -1,26 +1,29 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
 
 @Component({
   selector: 'app-listar-adicionales',
   templateUrl: './listar.component.html',
-  styleUrls: ['./listar.component.css']
+  styleUrls: ['./listar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class ListarAdicionalComponent implements OnInit {
-
-  adicionales: Adicional[] = [];  // Lista completa de adicionales
-  filteredAdicionales: Adicional[] = [];  // Lista filtrada para búsqueda
-  searchTerm: string = '';  // Término de búsqueda
+  adicionales: Adicional[] = []; // Lista completa de adicionales
+  filteredAdicionales: Adicional[] = []; // Lista filtrada para búsqueda
+  searchTerm: string = ''; // Término de búsqueda
 
   constructor(private adicionalService: AdicionalService) {}
 
   ngOnInit(): void {
-    // Llama al servicio para obtener todos los adicionales
-    this.adicionalService.getAdicional().subscribe({
+    this.getAdicionales(); // Carga los adicionales al inicializar el componente
+  }
+
+  getAdicionales(): void {
+    this.adicionalService.getAdicionales().subscribe({
       next: (data) => {
-        this.adicionales = data;
-        this.filteredAdicionales = data;  // Inicializa la lista filtrada con todos los adicionales
+        this.adicionales = data; // Asigna los adicionales obtenidos
+        this.filteredAdicionales = data; // Inicializa la lista filtrada
       },
       error: (err) => {
         console.error('Error al obtener los adicionales:', err);
@@ -28,23 +31,37 @@ export class ListarAdicionalComponent implements OnInit {
     });
   }
 
-  // Método para filtrar los adicionales según el término de búsqueda
   buscarAdicionales(): void {
+    const term = this.searchTerm.toLowerCase();
     this.filteredAdicionales = this.adicionales.filter(adicional =>
-      adicional.nombre.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
-      adicional.descripcion.toLowerCase().includes(this.searchTerm.toLowerCase())
+      adicional.nombre.toLowerCase().includes(term)
     );
   }
 
-  // Método para eliminar un adicional
   deleteAdicional(id: number): void {
+    console.log('Intentando eliminar adicional con ID:', id);
+  
     if (confirm('¿Estás seguro de que deseas eliminar este adicional?')) {
-      // Llama al servicio para eliminar el adicional
-      this.adicionalService.deleteById(id);
-      // Actualiza la lista filtrada eliminando el adicional correspondiente
-      this.filteredAdicionales = this.filteredAdicionales.filter(adicional => adicional.id !== id);
-      // También actualiza la lista completa de adicionales
-      this.adicionales = this.adicionales.filter(adicional => adicional.id !== id);
+      this.adicionalService.deleteAdicional(id).subscribe({
+        next: () => {
+          // Actualiza las listas eliminando el adicional correspondiente
+          this.adicionales = this.adicionales.filter(a => a.id !== id);
+          this.filteredAdicionales = this.filteredAdicionales.filter(a => a.id !== id);
+          alert('Adicional eliminado correctamente');
+        },
+        error: (err) => {
+          console.error('Error al eliminar el adicional:', err);
+  
+          // Manejo de errores basado en el código de estado HTTP
+          if (err.status === 404) {
+            alert('El adicional no existe o ya fue eliminado.');
+          } else if (err.status === 500) {
+            alert('Error interno del servidor. Intente nuevamente más tarde.');
+          } else {
+            alert('Ocurrió un error al intentar eliminar el adicional.');
+          }
+        }
+      });
     }
   }
-}
+  }

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { AdicionalService } from 'src/app/services/adicional.service';
 import { Adicional } from 'src/app/models/adicional.model';
@@ -6,24 +6,30 @@ import { Adicional } from 'src/app/models/adicional.model';
 @Component({
   selector: 'app-editar-adicional',
   templateUrl: './editar.component.html',
-  styleUrls: ['./editar.component.css']
+  styleUrls: ['./editar.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class EditarAdicionalComponent implements OnInit {
-
-  // Inicializar 'adicional' con valores predeterminados para evitar que sea 'undefined'
-  adicional: Adicional = { id: 0, nombre: '', precio: 0, descripcion: '' };  
+  adicional: Adicional = {
+    id: 0,
+    nombre: '',
+    precio: 0,
+    descripcion: ''
+  };
 
   constructor(
-    private route: ActivatedRoute,
     private adicionalService: AdicionalService,
+    private route: ActivatedRoute,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    const id = Number(this.route.snapshot.paramMap.get('id'));  // Obtén el ID desde la URL
-    this.adicionalService.findById(id).subscribe({
+    const id = Number(this.route.snapshot.paramMap.get('id')); // Obtiene el ID de la URL
+    this.adicionalService.getAdicionalById(id).subscribe({
       next: (data) => {
-        this.adicional = data;  // Asigna los datos del adicional
+        if (data) {
+          this.adicional = data; // Carga los datos del adicional en el formulario
+        }
       },
       error: (err) => {
         console.error('Error al obtener el adicional:', err);
@@ -31,17 +37,15 @@ export class EditarAdicionalComponent implements OnInit {
     });
   }
 
-  // Método para actualizar el adicional
-  updateAdicional(): void {
-    if (this.adicional) {
-      this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe({
-        next: () => {
-          this.router.navigate(['/adicionales/all']);  // Redirige al listado de adicionales después de actualizar
-        },
-        error: (err) => {
-          console.error('Error al actualizar el adicional:', err);
-        }
-      });
-    }
+  onSubmit(): void {
+    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe({
+      next: () => {
+        console.log('Adicional actualizado correctamente');
+        this.router.navigate(['/adicionales/all']); // Redirige al listado de adicionales
+      },
+      error: (err) => {
+        console.error('Error al actualizar el adicional:', err);
+      }
+    });
   }
 }

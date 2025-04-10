@@ -1,66 +1,43 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
-import { Adicional } from '../models/adicional.model'; 
-import { catchError } from 'rxjs/operators';
-import { throwError } from 'rxjs';
+import { Adicional } from '../models/adicional.model';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AdicionalService {
+  private baseUrl = 'http://localhost:8090/adicionales'; // Base URL del backend
 
-  constructor( 
-    private http: HttpClient
-  ) { }
+  constructor(private http: HttpClient) {}
 
   // Obtener todos los adicionales
-  getAdicional(): Observable<Adicional[]> {
-    return this.http.get<Adicional[]>('http://localhost:8090/adicionales/all').pipe(
-      catchError((error) => {
-        console.error('Error al obtener los adicionales:', error);
-        return throwError(error);  // Propaga el error
-      })
-    );
+  getAdicionales(): Observable<Adicional[]> {
+    return this.http.get<Adicional[]>(`${this.baseUrl}/all`);
   }
 
-  // Obtener un adicional por su ID
-  findById(id: number): Observable<Adicional> {
-    return this.http.get<Adicional>(`http://localhost:8090/adicionales/view/${id}`).pipe(
-      catchError((error) => {
-        console.error('Error al obtener el adicional por ID:', error);
-        return throwError(error);
-      })
-    );
+  // Obtener un adicional por ID
+  getAdicionalById(id: number): Observable<Adicional> {
+    return this.http.get<Adicional>(`${this.baseUrl}/find/${id}`);
   }
 
-  // Eliminar un adicional
-  deleteById(id: number): void {
-    this.http.delete(`http://localhost:8090/adicionales/delete/${id}`).pipe(
-      catchError((error) => {
-        console.error('Error al eliminar el adicional:', error);
-        return throwError(error);
-      })
-    ).subscribe();
+  // Crear un nuevo adicional
+  createAdicional(adicional: Adicional): Observable<Adicional> {
+    return this.http.post<Adicional>(`${this.baseUrl}/add`, adicional);
   }
 
-  // Agregar un nuevo adicional
-  addAdicional(adicional: Adicional): void {
-    this.http.post<Adicional>('http://localhost:8090/adicionales/add', adicional).pipe(
-      catchError((error) => {
-        console.error('Error al agregar el adicional:', error);
-        return throwError(error);
-      })
-    ).subscribe();
+  // Actualizar un adicional existente
+  updateAdicional(id: number, adicional: Adicional): Observable<void> {
+    return this.http.put<void>(`${this.baseUrl}/update/${id}`, adicional);
   }
 
-  // Actualizar un adicional
-  updateAdicional(id: number, adicional: Adicional): Observable<Adicional> {
-    return this.http.put<Adicional>(`http://localhost:8090/adicionales/update/${id}`, adicional).pipe(
-      catchError((error) => {
-        console.error('Error al actualizar el adicional:', error);
-        return throwError(error);
-      })
-    );
+  // Guardar cambios de un adicional (usando POST en lugar de PUT)
+  saveAdicional(id: number, adicional: Adicional): Observable<void> {
+    return this.http.post<void>(`${this.baseUrl}/update/${id}`, adicional);
+  }
+
+  // Eliminar un adicional por ID
+  deleteAdicional(id: number): Observable<void> {
+    return this.http.delete<void>(`http://localhost:8090/adicionales/delete/${id}`);
   }
 }

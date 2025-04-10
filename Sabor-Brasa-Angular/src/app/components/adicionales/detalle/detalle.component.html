@@ -1,4 +1,5 @@
 <div class="main container" id="main">
+  <!--=============== HEADER ===============-->
   <header class="header" id="header">
     <div class="header__container">
       <button class="header__toggle" id="header-toggle">
@@ -53,7 +54,9 @@
   <!--=============== MAIN ===============-->
   <main class="main-content">
     <h1>Detalles del Adicional</h1>
-    <div *ngIf="adicional">
+
+    <!-- Mostrar detalles del adicional si está disponible -->
+    <div *ngIf="adicional; else noAdicional">
       <div class="detail-item">
         <i class="ri-file-text-line"></i>
         <span class="detail-label">Nombre:</span>
@@ -62,7 +65,7 @@
       <div class="detail-item">
         <i class="ri-money-dollar-circle-line"></i>
         <span class="detail-label">Precio:</span>
-        <span class="detail-value">{{ adicional.precio | currency }}</span>
+        <span class="detail-value">{{ adicional.precio | currency:'COP' }}</span>
       </div>
       <div class="detail-item">
         <i class="ri-file-text-line"></i>
@@ -73,13 +76,19 @@
         <a routerLink="/adicionales/all" class="btn btn-back">
           <i class="ri-arrow-left-line"></i> Volver al Listado
         </a>
-        <button class="btn green" routerLink="/adicionales/update/{{ adicional.id }}">
+        <button class="btn green" routerLink="/adicionales/editar/{{ adicional.id }}">
           <i class="ri-edit-line"></i> Editar
         </button>
       </div>
     </div>
-    <div *ngIf="!adicional">
-      <p>No se encontró el adicional.</p>
-    </div>
+
+    <!-- Mostrar mensaje de error si no se encuentra el adicional -->
+    <ng-template #noAdicional>
+      <div class="error-container">
+        <i class="ri-error-warning-line error-icon"></i>
+        <p>No se encontró el adicional.</p>
+        <a routerLink="/adicionales/all" class="btn">Volver al Listado</a>
+      </div>
+    </ng-template>
   </main>
 </div>

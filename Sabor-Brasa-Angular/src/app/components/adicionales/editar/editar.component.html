@@ -55,7 +55,8 @@
   <main class="main-content">
     <h1>Editar Adicional</h1>
     <div class="details-container">
-      <form (ngSubmit)="updateAdicional()" #adicionalForm="ngForm">
+      <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm">
+        <!-- Campo Nombre -->
         <div class="form-group">
           <label for="nombre">Nombre:</label>
           <input
@@ -66,8 +67,12 @@
             required
             class="form-control"
           />
+          <div *ngIf="adicionalForm.controls['nombre']?.invalid && adicionalForm.controls['nombre']?.touched">
+            <small class="error">El nombre es obligatorio.</small>
+          </div>
         </div>
 
+        <!-- Campo Precio -->
         <div class="form-group">
           <label for="precio">Precio:</label>
           <input
@@ -77,9 +82,15 @@
             [(ngModel)]="adicional.precio"
             required
             class="form-control"
+            min="0"
+            step="0.01"
           />
+          <div *ngIf="adicionalForm.controls['precio']?.invalid && adicionalForm.controls['precio']?.touched">
+            <small class="error">El precio debe ser mayor o igual a 0.</small>
+          </div>
         </div>
 
+        <!-- Campo Descripción -->
         <div class="form-group">
           <label for="descripcion">Descripción:</label>
           <input
@@ -90,12 +101,19 @@
             required
             class="form-control"
           />
+          <div *ngIf="adicionalForm.controls['descripcion']?.invalid && adicionalForm.controls['descripcion']?.touched">
+            <small class="error">La descripción es obligatoria.</small>
+          </div>
         </div>
 
+        <!-- Botones -->
         <div class="button-container">
           <button type="submit" class="btn btn-green" [disabled]="!adicionalForm.valid">
             Actualizar Adicional
           </button>
+          <a routerLink="/adicionales/all" class="btn btn-back">
+            <i class="ri-arrow-left-line"></i> Volver al Listado
+          </a>
         </div>
       </form>
     </div>
