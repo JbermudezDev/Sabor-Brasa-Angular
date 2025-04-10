@@ -28,6 +28,7 @@ import { EditarAdicionalComponent } from './components/adicionales/editar/editar
 import { CurrencyPipe } from '@angular/common';
 import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { AdministradorComponent } from './components/administrador/administrador
     EditarAdicionalComponent,
     DetalleProductosComponent,
     AdministradorComponent,
+    LoginComponent,
     
   ],
   imports: [

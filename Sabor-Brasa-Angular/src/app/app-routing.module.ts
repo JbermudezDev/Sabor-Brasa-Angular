@@ -20,6 +20,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
 import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
 import { AdministradorComponent } from './components/administrador/administrador.component';
+import { LoginComponent } from './components/login/login.component';
 
 
 
@@ -41,6 +42,9 @@ const routes: Routes = [
   { path: 'adicionales/detalle/:id', component: DetalleAdicionalComponent },
   { path: 'productos/detalle/:id', component: DetalleProductosComponent },
   { path: 'administrador', component: AdministradorComponent },
+  {path: 'login', component: LoginComponent},
+
+
 
   
 
