@@ -19,6 +19,7 @@ import { DetalleAdicionalComponent } from './components/adicionales/detalle/deta
 import { HttpClientModule } from '@angular/common/http';
 import { CurrencyPipe } from '@angular/common';
 import { DetalleProductosComponent } from './components/productos/detalle/detalle.component';
+import { AdministradorComponent } from './components/administrador/administrador.component';
 
 
 
@@ -39,6 +40,7 @@ const routes: Routes = [
   { path: 'adicionales/editar/:id', component: EditarAdicionalComponent },
   { path: 'adicionales/detalle/:id', component: DetalleAdicionalComponent },
   { path: 'productos/detalle/:id', component: DetalleProductosComponent },
+  { path: 'administrador', component: AdministradorComponent },
 
   
 
