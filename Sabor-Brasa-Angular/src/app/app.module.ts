@@ -25,8 +25,8 @@ import { ListarAdicionalComponent } from './components/adicionales/listar/listar
 import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
 import { AgregarAdicionalComponent } from './components/adicionales/agregar/agregar.component';
 import { EditarAdicionalComponent } from './components/adicionales/editar/editar.component';
-
-
+import {LoginComponent} from './components/login/login.component';
+import { LoginService } from './services/login.service';
 
 @NgModule({
   declarations: [
@@ -43,6 +43,7 @@ import { EditarAdicionalComponent } from './components/adicionales/editar/editar
     DetalleAdicionalComponent,
     AgregarAdicionalComponent,
     EditarAdicionalComponent,
+    LoginComponent,
     
   ],
   imports: [
@@ -57,7 +58,7 @@ import { EditarAdicionalComponent } from './components/adicionales/editar/editar
     HttpClientModule
     
   ],
-  providers: [],
+  providers: [LoginService],
   bootstrap: [AppComponent]
   
 })

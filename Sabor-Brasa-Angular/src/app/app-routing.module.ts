@@ -17,7 +17,7 @@ import { ListarAdicionalComponent } from './components/adicionales/listar/listar
 import { EditarAdicionalComponent } from './components/adicionales/editar/editar.component';
 import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
 import { HttpClientModule } from '@angular/common/http';
-
+import { LoginComponent } from './components/login/login.component';
 
 
 const routes: Routes = [
@@ -34,7 +34,7 @@ const routes: Routes = [
   { path: 'adicionales', component: ListarAdicionalComponent },
   { path: 'adicionales/editar/:id', component: EditarAdicionalComponent },
   { path: 'adicionales/detalle/:id', component: DetalleAdicionalComponent },
-
+  { path: 'login', component: LoginComponent },
   
 
   
