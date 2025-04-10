@@ -13,18 +13,17 @@
       <div class="sidebar__container">
         <div class="sidebar__user">
           <div class="sidebar__img">
-            <img src="assets/images/administrador.png" alt="image" />
+            <img src="assets/images/administrador.png" alt="image">
           </div>
           <div class="sidebar__info">
             <h3>Juan Jose Bermudez</h3>
-            <span></span>
           </div>
         </div>
         <div class="sidebar__content">
           <div>
             <div class="sidebar__list">
               <a routerLink="/Administrador" class="sidebar__link">
-                <i class="fi fi-sr-crown"></i>
+                <i class="ri-vip-crown-fill"></i>
                 <span>Administrador</span>
               </a>
               <a routerLink="/adicionales/all" class="sidebar__link">
@@ -55,26 +54,27 @@
     <main class="main-content">
       <h1>Detalles del Producto</h1>
   
-      <div *ngIf="producto">
+      <!-- Mostrar detalles del producto si está disponible -->
+      <div *ngIf="producto; else noProducto">
         <div class="product-container">
           <div class="product-image">
             <!-- Imagen del producto -->
-            <img [src]="producto?.imagen" alt="Imagen del plato" />
+            <img [src]="producto.imagen" alt="Imagen del producto">
           </div>
   
           <div class="product-details">
-            <h2 class="product-title">{{ producto?.nombre }}</h2>
+            <h2 class="product-title">{{ producto.nombre }}</h2>
   
             <div class="detail-item">
               <i class="ri-money-dollar-circle-line"></i>
               <span class="detail-label">Precio:</span>
-              <span class="detail-value">{{ producto?.precio | currency:'COP' }}</span>
+              <span class="detail-value">{{ producto.precio | currency:'COP' }}</span>
             </div>
   
             <div class="detail-item">
               <i class="ri-file-text-line"></i>
               <span class="detail-label">Descripción:</span>
-              <span class="detail-value">{{ producto?.descripcion }}</span>
+              <span class="detail-value">{{ producto.descripcion }}</span>
             </div>
   
             <div class="detail-item adicionales-section">
@@ -89,19 +89,24 @@
             </div>
   
             <div class="actions-container">
-              <a routerLink="/productos" class="btn btn-back">
+              <a routerLink="/productos/all" class="btn btn-back">
                 <i class="ri-arrow-left-line"></i> Volver al Listado
               </a>
-              
+              <button class="btn green" [routerLink]="'/productos/editar/' + producto.id">
+                <i class="ri-edit-line"></i> Editar
+              </button>
             </div>
           </div>
         </div>
       </div>
   
-      <div *ngIf="!producto" class="error-container">
-        <i class="ri-error-warning-line error-icon"></i>
-        <p>Producto no encontrado.</p>
-        <a routerLink="/productos/all" class="btn">Volver al Listado</a>
-      </div>
+      <!-- Mostrar mensaje de error si no se encuentra el producto -->
+      <ng-template #noProducto>
+        <div class="error-container">
+          <i class="ri-error-warning-line error-icon"></i>
+          <p>Producto no encontrado.</p>
+          <a routerLink="/productos/all" class="btn">Volver al Listado</a>
+        </div>
+      </ng-template>
     </main>
   </div>

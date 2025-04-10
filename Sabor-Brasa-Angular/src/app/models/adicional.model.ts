@@ -5,6 +5,7 @@ export interface Adicional {
     nombre: string;
     precio: number;
     descripcion: string;
+    selected?: boolean;
     productos: Producto[];
   }
   
