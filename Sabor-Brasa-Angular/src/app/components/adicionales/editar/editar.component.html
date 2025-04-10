@@ -27,15 +27,15 @@
               <i class="ri-vip-crown-fill"></i>
               <span>Administrador</span>
             </a>
-            <a routerLink="/adicionales/all" class="sidebar__link">
+            <a routerLink="/adicionales" class="sidebar__link">
               <i class="ri-goblet-2-fill"></i>
               <span>Adicionales</span>
             </a>
-            <a routerLink="/productos/all" class="sidebar__link">
+            <a routerLink="/productos" class="sidebar__link">
               <i class="ri-restaurant-fill"></i>
               <span>Productos</span>
             </a>
-            <a routerLink="/clientes/all" class="sidebar__link">
+            <a routerLink="/clientes" class="sidebar__link">
               <i class="ri-user-fill"></i>
               <span>Clientes</span>
             </a>
@@ -54,7 +54,7 @@
   <!--=============== MAIN ===============-->
   <main class="main-content">
     <h1>Editar Adicional</h1>
-    <div class="details-container">
+    <div class="form-container">
       <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm">
         <!-- Campo oculto para el ID del adicional -->
         <input type="hidden" name="id" [(ngModel)]="adicional.id" />
@@ -111,10 +111,10 @@
 
         <!-- Botones -->
         <div class="button-container-add">
-          <button type="submit" class="btn btn-green" [disabled]="!adicionalForm.valid">
+          <button type="submit" class="btn-submit " [disabled]="!adicionalForm.valid">
             Actualizar Adicional
           </button>
-          <a routerLink="/adicionales" class="btn btn-back">
+          <a routerLink="/adicionales" class="btn-submit ">
             <i class="ri-arrow-left-line"></i> Volver al Listado
           </a>
         </div>

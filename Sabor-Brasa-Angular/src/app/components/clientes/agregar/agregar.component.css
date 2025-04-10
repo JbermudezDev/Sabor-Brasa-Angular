@@ -85,7 +85,12 @@ body {
 .menu li:hover, .menu .active {
     background: rgba(203, 35, 35, 0.2);
 }
-
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    background-color: white;
+}
 /* Contenido principal */
 .main-content {
     margin-left: 260px;
