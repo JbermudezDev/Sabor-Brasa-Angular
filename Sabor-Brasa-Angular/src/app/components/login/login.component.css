@@ -1,6 +1,6 @@
 /* Estilos para la página de inicio de sesión */
 body {
-    background-color: beige;
+    background-image: url('/assets/images/fondo.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -38,7 +38,7 @@ body {
   height: 100%;
   object-fit: cover;
   z-index: -1;
-  background-image: url('/images/imagendiv3.jpeg');
+  background-image: url('/assets/images/fondo.jpg');
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
@@ -179,6 +179,11 @@ body {
     margin-bottom: 20px;
     text-align: center;
 }
+.btn-primary {
+    background-color: #007bff;
+    border-color: #007bff;
+}   
+
 
 /* From Uiverse.io by micaelgomestavares */
 .form {
@@ -264,7 +269,6 @@ body {
     margin: 20px 0 10px 0;
     background-color: #151717;
     border: none;
-    color: white;
     font-size: 15px;
     font-weight: 500;
     border-radius: 10px;
@@ -294,8 +298,7 @@ body {
     align-items: center;
     font-weight: 500;
     gap: 10px;
-    border: 1px solid #ededef;
-    background-color: white;
+    color: aliceblue;
     cursor: pointer;
     transition: 0.2s ease-in-out;
 }
