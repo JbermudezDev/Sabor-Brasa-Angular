@@ -652,10 +652,10 @@ input {
 }
 
 /* Estilo uniforme para botones */
-.btn {
-  flex: 1; /* Ambos botones ocupan el mismo espacio */
-  max-width: 150px; /* Controla el tamaño máximo */
-  width: 100%; /* Asegura que ambos tengan el mismo ancho */
+/* .btn {
+  flex: 1; 
+  max-width: 150px; 
+  width: 100%; 
   padding: 10px 0;
   text-align: center;
   text-decoration: none;
@@ -668,7 +668,7 @@ input {
   display: flex; 
   align-items: center; 
   justify-content: center;
-}
+} */
 
 /* Ajuste para enlaces con clase btn */
 .btn[href] {
@@ -676,15 +676,7 @@ input {
 }
 
 /* Colores de los botones */
-.btn:nth-child(1) {
-  background-color: #28a745; /* Verde para actualizar */
-  color: white;
-}
 
-.btn:nth-child(2) {
-  background-color: #dc3545; /* Rojo para cancelar */
-  color: white;
-}
 
 .btn:hover {
   opacity: 0.8;
