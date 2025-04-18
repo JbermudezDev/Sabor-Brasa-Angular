@@ -851,6 +851,7 @@ box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
   
   opacity: 0.9;
 }
+
 .check-container {
 display: grid;
 grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); /* Ajuste automático */

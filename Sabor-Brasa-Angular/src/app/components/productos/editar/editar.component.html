@@ -112,26 +112,22 @@
         <!-- Selección de adicionales como checkboxes -->
         <div class="form-group">
           <label for="adicionales">Adicionales:</label>
-          <div *ngFor="let adicional of adicionales" class="checkbox-group">
-            <input
-              type="checkbox"
-              [value]="adicional.id"
-              (change)="toggleAdicional(adicional)"
-              [checked]="isAdicionalSelected(adicional)"
-            />
-            <label>{{ adicional.nombre }}</label>
+          <div *ngFor="let adicional of adicionales; let i = index" class="checkbox-group">
+            <label>
+              <input
+                type="checkbox"
+                [checked]="isAdicionalSelected(adicional)"
+                (change)="toggleAdicional(adicional)"
+              />
+              {{ adicional.nombre }}
+            </label>
           </div>
+          
         </div>
 
         <!-- Botón para enviar el formulario -->
         <div class="button-container-add">
-          <button
-            type="submit"
-            class="button-container-add btn-green"
-            [disabled]="!productoForm.valid"
-          >
-            Actualizar
-          </button>
+          <button type="submit" class="button-container-add btn-green" [disabled]="!productoForm.valid">Actualizar</button>
         </div>
       </form>
     </div>

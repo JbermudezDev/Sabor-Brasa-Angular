@@ -53,8 +53,8 @@ export class EditarProductoComponent implements OnInit {
   getAdicionales(): void {
     this.adicionalService.getAdicionales().subscribe({
       next: (data) => {
+        console.log('Adicionales cargados:', data);
         this.adicionales = data;
-        this.producto.adicionales = data
       },
       error: (err) => {
         console.error('Error al cargar los adicionales:', err);
@@ -62,9 +62,12 @@ export class EditarProductoComponent implements OnInit {
       }
     });
   }
-
   // Alternar la selección de un adicional
   toggleAdicional(adicional: Adicional): void {
+    if (!this.producto.adicionales) {
+      this.producto.adicionales = []; // Inicializa adicionales si es undefined
+    }
+  
     const index = this.producto.adicionales.findIndex(a => a.id === adicional.id);
     if (index === -1) {
       this.producto.adicionales.push(adicional); // Agregar adicional si no está seleccionado
@@ -75,13 +78,26 @@ export class EditarProductoComponent implements OnInit {
 
   // Verificar si un adicional está seleccionado
   isAdicionalSelected(adicional: Adicional): boolean {
-    console.log("Ayuda: ",this.producto)
+    if (!this.producto.adicionales) {
+      return false; // Si adicionales no está definido, retorna false
+    }
     return this.producto.adicionales.some(a => a.id === adicional.id);
   }
 
   // Enviar el producto actualizado al backend
   onSubmit(): void {
-    this.productoService.updateProducto(this.producto.id, this.producto).subscribe({
+    if (!this.producto.adicionales) {
+      this.producto.adicionales = []; // Asegúrate de que adicionales sea un arreglo
+    }
+  
+    const productoActualizado = {
+      ...this.producto,
+      adicionales: this.producto.adicionales.map(a => ({ id: a.id })) // Solo envía los IDs de los adicionales
+    };
+  
+    console.log('Datos enviados al backend:', productoActualizado);
+  
+    this.productoService.updateProducto(this.producto.id, productoActualizado).subscribe({
       next: () => {
         alert('Producto actualizado correctamente');
         this.router.navigate(['/productos']); // Redirigir al listado de productos

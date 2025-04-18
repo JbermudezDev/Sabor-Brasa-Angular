@@ -14,7 +14,7 @@ export class ProductoService {
 
   // Obtener todos los productos
    // Obtener todos los productos con sus adicionales
-   getAllProductos(): Observable<{ productosList: Producto[]; adicionalesList: Adicional[] }> {
+  getAllProductos(): Observable<{ productosList: Producto[]; adicionalesList: Adicional[] }> {
     return this.http.get<{ productosList: Producto[]; adicionalesList: Adicional[] }>(`${this.baseUrl}/all`);
   }
 
@@ -34,10 +34,9 @@ export class ProductoService {
   }
 
   // Modificar un producto existente
-  updateProducto(id: number, producto: Producto): Observable<Producto> {
+  updateProducto(id: number, producto: any): Observable<Producto> {
     return this.http.put<Producto>(`${this.baseUrl}/update/${id}`, producto);
   }
-
   // Eliminar un producto por ID
   deleteProducto(id: number): Observable<void> {
     return this.http.delete<void>(`${this.baseUrl}/delete/${id}`);
