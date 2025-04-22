@@ -86,7 +86,10 @@
            <td>{{ producto.precio | currency:'COP' }}</td>
            <td>{{ producto.descripcion }}</td>
            <td>
-             <img [src]="producto.imagen" alt="Imagen del producto" width="50" />
+            <img [src]="'http://localhost:8090' + producto.imagen" alt="Imagen del producto" width="50" />
+
+
+
            </td>
            <td>
               <ul>
