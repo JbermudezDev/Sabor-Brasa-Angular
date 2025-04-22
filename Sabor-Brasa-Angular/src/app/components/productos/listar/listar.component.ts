@@ -11,7 +11,7 @@ import { Adicional } from 'src/app/models/adicional.model';
 })
 export class ListarProductosComponent implements OnInit {
   productos: Producto[] = []; // Lista de productos
-  adicionales: Adicional[] = []; // Lista de adicionales disponibles
+  adicionales: Adicional[] = []; // Lista de adicionales disponiAbles
 
   constructor(private productoService: ProductoService) {}
 
@@ -35,7 +35,7 @@ export class ListarProductosComponent implements OnInit {
     });
   }
 
-  // Eliminar un producto
+  // Eliminar un producto 
   deleteProducto(id: number): void {
     if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
       this.productoService.deleteProducto(id).subscribe({
