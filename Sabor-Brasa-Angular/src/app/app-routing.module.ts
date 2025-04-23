@@ -27,6 +27,7 @@ import { ListarOperadorComponent } from './components/operador/listar/listar.com
 import { AgregarOperadorComponent } from './components/operador/agregar/agregar.component';
 import { EditarOperadorComponent } from './components/operador/editar/editar.component';
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
+import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
 
 
 
@@ -54,19 +55,8 @@ const routes: Routes = [
   {path: 'operadores/agregar', component: AgregarOperadorComponent},
   {path: 'operadores/editar/:id', component: EditarOperadorComponent},
   {path: 'operadores/detalle/:id', component: DetalleOperadorComponent},
-  
-
-
-
-
-
-  
-
-  
-
-  
- 
-  
+  {path: 'info-plato', component: InfoPlatoComponent},
+  { path: 'info-plato/:id', component: InfoPlatoComponent }
 ];
 
 @NgModule({

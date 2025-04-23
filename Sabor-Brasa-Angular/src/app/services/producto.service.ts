@@ -44,11 +44,16 @@ export class ProductoService {
 
   // Obtener el menú con productos
   getMenu(): Observable<Producto[]> {
-    return this.http.get<Producto[]>('http://localhost:8090/productos/menu');
+    return this.http.get<Producto[]>(`${this.baseUrl}/menu`);
   }
   
   // Obtener información de un plato por ID
   getInfoPlato(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.baseUrl}/info/${id}`);
   }
+
+  getProductoInfo(id: number): Observable<Producto> {
+    return this.http.get<Producto>(`${this.baseUrl}/info/${id}`);
+  }
+  
 }

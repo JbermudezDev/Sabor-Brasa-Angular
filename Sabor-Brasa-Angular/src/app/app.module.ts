@@ -36,6 +36,7 @@ import { ListarOperadorComponent } from './components/operador/listar/listar.com
 import { AgregarOperadorComponent } from './components/operador/agregar/agregar.component';
 import { EditarOperadorComponent } from './components/operador/editar/editar.component';
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
+import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,6 +60,7 @@ import { DetalleOperadorComponent } from './components/operador/detalle/detalle.
     AgregarOperadorComponent,
     EditarOperadorComponent,
     DetalleOperadorComponent,
+    InfoPlatoComponent,
 
 
     

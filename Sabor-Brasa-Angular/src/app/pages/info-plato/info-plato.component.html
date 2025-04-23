@@ -1,0 +1,70 @@
+<div id="header">
+    <img src="/assets/images/imagendiv3.jpeg" alt="Imagen de fondo del header" class="header-bg" />
+    <div id="logo">
+      <img src="/assets/images/logo brasa.png" alt="Brasa & Corte" />
+    </div>
+    <ul>
+      <li style="flex-grow: 1;"></li>
+      <li><h1>Personalizar</h1></li>
+      <li style="flex-grow: 1;"></li>
+  
+      <div class="styled-wrapper">
+        <a routerLink="/menu">
+          <button class="button">
+            <div class="button-box">
+              <span class="button-elem">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                  <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                </svg>
+              </span>
+              <span class="button-elem">
+                <svg fill="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+                </svg>
+              </span>
+            </div>
+          </button>
+        </a>
+      </div>
+    </ul>
+  </div>
+  
+  <main *ngIf="producto">
+    <div class="container">
+      <div class="left-container">
+        <img [src]="'http://localhost:8090' + producto.imagen" alt="Imagen del plato" />
+      </div>
+  
+      <div class="right-container">
+        <div class="inner-container">
+          <h2>{{ producto.nombre }}</h2>
+          <p>{{ producto.descripcion }}</p>
+  
+          <!-- Mostrar adicionales como checkboxes -->
+          <div class="checkbox-group" *ngIf="producto.adicionales && producto.adicionales.length">
+            <h3>Seleccionar Adicionales:</h3>
+            <div class="checkbox-container">
+              <label *ngFor="let adicional of producto.adicionales" class="checkbox-item">
+                <input
+                  type="checkbox"
+                  [value]="adicional.id"
+                  (change)="toggleAdicional(adicional.id)"
+                  [checked]="selectedAdicionales.includes(adicional.id)"
+                />
+                <span class="custom-checkmark"></span>
+                <span class="checkbox-label">
+                  {{ adicional.nombre }} (+{{ adicional.precio | currency:'COP' }})
+                </span>
+              </label>
+            </div>
+          </div>
+  
+          <!-- Mostrar total y botón -->
+          <div class="total-container">
+            <p><strong>Total:</strong> {{ getTotal() | currency:'COP' }}</p>
+            <button class="buttonadd" (click)="agregarAlCarrito()">Agregar al carrito</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>

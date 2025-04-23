@@ -30,7 +30,7 @@
   <section class="section-container mb-8">
     <h2>Todos los Productos</h2>
     <div class="grid grid-cols-2 gap-4">
-      <div class="card" *ngFor="let producto of productos">
+      <a class="card" *ngFor="let producto of productos" [routerLink]="['/info-plato', producto.id]">
         <div class="content">
           <div class="back">
             <div class="back-content">
@@ -63,7 +63,7 @@
             </div>
           </div>
         </div>
-      </div>
+      </a>
     </div>
   </section>
 </main>
