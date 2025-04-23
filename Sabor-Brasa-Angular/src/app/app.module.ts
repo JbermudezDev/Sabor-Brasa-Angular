@@ -32,6 +32,10 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginClienteComponent } from './components/login-cliente/login-cliente.component';
 import { InfoClienteComponent } from './components/Landing-cliente/info-cliente/info-cliente.component';
 import { HeaderclienteComponent } from './components/Landing-cliente/headercliente/headercliente.component';
+import { ListarOperadorComponent } from './components/operador/listar/listar.component';
+import { AgregarOperadorComponent } from './components/operador/agregar/agregar.component';
+import { EditarOperadorComponent } from './components/operador/editar/editar.component';
+import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +55,12 @@ import { HeaderclienteComponent } from './components/Landing-cliente/headerclien
     AdministradorComponent,
     LoginComponent,
     LoginClienteComponent,
+    ListarOperadorComponent,
+    AgregarOperadorComponent,
+    EditarOperadorComponent,
+    DetalleOperadorComponent,
+
+
     
     
   ],

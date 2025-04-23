@@ -23,6 +23,10 @@ import { AdministradorComponent } from './components/administrador/administrador
 import { LoginComponent } from './components/login/login.component';
 import { LoginClienteComponent } from './components/login-cliente/login-cliente.component';
 import { InfoClienteComponent } from './components/Landing-cliente/info-cliente/info-cliente.component';
+import { ListarOperadorComponent } from './components/operador/listar/listar.component';
+import { AgregarOperadorComponent } from './components/operador/agregar/agregar.component';
+import { EditarOperadorComponent } from './components/operador/editar/editar.component';
+import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
 
 
 
@@ -46,6 +50,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'login-cliente', component: LoginClienteComponent},
   {path: 'info-cliente', component: InfoClienteComponent},
+  {path: 'operadores', component: ListarOperadorComponent},
+  {path: 'operadores/agregar', component: AgregarOperadorComponent},
+  {path: 'operadores/editar/:id', component: EditarOperadorComponent},
+  {path: 'operadores/detalle/:id', component: DetalleOperadorComponent},
+  
 
 
 
