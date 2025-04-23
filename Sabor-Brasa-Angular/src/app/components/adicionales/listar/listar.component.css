@@ -1,54 +1,67 @@
 /* Estilos generales */
 body {
-  font-family: Arial, sans-serif;
+  font-family: "Poltaski Nowy";
   margin: 0;
   padding: 0;
   background-image: url('/Sabor-Brasa-Angular/src/assets/images/fondo.jpg');
   background-size: cover;
-}
 
-/* Contenedor principal */
-.container {
-  display: flex;
-  height: 100vh;
-}
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: background-color .4s;
+    }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: rgba(86, 87, 87, 0.542);
-  color: white;
-  padding-top: 20px;
-  position: fixed;
-  height: 100%;
-}
+.search-input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  font-size: 16px;
+  }
+  .search-container {
+  position: relative;
+  width: 100%;
+  max-width: 1500px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  }
+  
+  .search-container input {
+  width: 100%;
+  padding: 12px 15px 12px 40px;
+  font-size: 16px;
+  border: 2px solid #ddd;
+  border-radius: 25px;
+  outline: none;
+  transition: all 0.3s ease;
+  box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .search-container input:focus {
+  border-color: #fcfc5093; /* Color dorado */
+  box-shadow: 0px 0px 10px rgba(7, 7, 7, 0.5);
+  }
+  
+  .search-container i {
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #aaa;
+  font-size: 18px;
+  }
 
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
 
-.menu li {
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.menu li i {
-  margin-right: 10px;
-}
-
-.menu li:hover, .menu .active {
-  background: rgba(255, 255, 255, 0.2);
-}
 
 /* Contenido principal */
 .main-content {
   margin-left: 260px;
   padding: 20px;
+  font-family: "Poltaski Nowy";
+  color: rgb(0, 0, 0);
   flex-grow: 1;
 }
 
@@ -91,15 +104,7 @@ tr:hover {
 }
 
 /* Botones */
-.btn {
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 5px;
-  font-size: 16px;
-  color: white;
-}
+
 
 .green {
   background: #28a745;
@@ -137,34 +142,11 @@ td img {
   width: 42px;
   height: 42px;
   box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+  color: white  ;
 }
 
-/* Botón de edición (verde) */
-.btn-edit {
-  background-color: #28a745;
-  color: white;
-}
-.btn-edit:hover {
-  background-color: #218838;
-}
 
-/* Botón de visualización (azul) */
-.btn-view {
-  background-color: #007bff;
-  color: white;
-}
-.btn-view:hover {
-  background-color: #0056b3;
-}
 
-/* Botón de eliminación (rojo) */
-.btn-delete {
-  background-color: #dc3545;
-  color: white;
-}
-.btn-delete:hover {
-  background-color: #c82333;
-}
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap");
 
@@ -211,13 +193,7 @@ padding: 0;
 margin: 0;
 }
 
-body {
-font-family: var(--body-font);
-font-size: var(--normal-font-size);
-background-color: var(--body-color);
-color: var(--text-color);
-transition: background-color .4s;
-}
+
 
 a {
 text-decoration: none;
@@ -259,9 +235,7 @@ background-color: hsl(228, 16%, 40%);
 margin-inline: 1.5rem;
 }
 
-.main {
-padding-top: 5rem;
-}
+
 
 /*=============== HEADER ===============*/
 .header {
@@ -286,21 +260,7 @@ border-radius: 1rem;
 transition: background-color .4s;
 }
 
-.header__logo {
-display: inline-flex;
-align-items: center;
-column-gap: .25rem;
-}
 
-.header__logo i {
-font-size: 1.5rem;
-color: var(--first-color);
-}
-
-.header__logo span {
-color: var(--title-color);
-font-weight: var(--font-semi-bold);
-}
 
 .header__toggle {
 font-size: 1.5rem;
@@ -506,9 +466,7 @@ background-color: var(--first-color);
   height: calc(var(--header-height) + 2rem);
   padding-inline: 2rem;
 }
-.header__logo {
-  order: 1;
-}
+
 
 .sidebar {
   left: 0;
@@ -546,33 +504,20 @@ background-color: var(--first-color);
   transition: padding .4s;
 }
 
+
 /* Add padding left */
 .left-pd {
   padding-left: 114px;
 }
 }
 
-.form-container {
-  width: 100%;
-  max-width: 400px;
-  background: #bababa;
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-  margin: 20px auto;
-  font-family: Arial, sans-serif;
-}
 
 h2 {
   text-align: center;
   color: #020202;
 }
 
-.form-group {
-  display: flex;
-  flex-direction: column;
-  margin-bottom: 15px;
-}
+
 
 label {
   font-weight: bold;
@@ -621,7 +566,7 @@ input:focus {
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
-  font-family: Arial, sans-serif;
+  font-family: "Poltaski Nowy";
   border: 1px solid rgba(0, 0, 0, 0.71);
 }
 

@@ -1,11 +1,15 @@
-/* Estilos generales */
 body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   background-image: url('/Sabor-Brasa-Angular/src/assets/images/fondo.jpg');
   background-size: cover;
-}
+    font-family: var(--body-font);
+    font-size: var(--normal-font-size);
+    background-color: var(--body-color);
+    color: var(--text-color);
+    transition: background-color .4s;
+    }
 
 /* Contenedor principal */
 .container {
@@ -13,15 +17,6 @@ body {
   height: 100vh;
 }
 
-/* Sidebar */
-.sidebar {
-  width: 250px;
-  background: rgba(86, 87, 87, 0.542);
-  color: white;
-  padding-top: 20px;
-  position: fixed;
-  height: 100%;
-}
 .search-input {
 width: 100%;
 padding: 10px;
@@ -64,27 +59,6 @@ font-size: 18px;
 }
 
 
-.menu {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-
-.menu li {
-  padding: 15px;
-  display: flex;
-  align-items: center;
-  cursor: pointer;
-  transition: background 0.3s;
-}
-
-.menu li i {
-  margin-right: 10px;
-}
-
-.menu li:hover, .menu .active {
-  background: rgba(203, 35, 35, 0.2);
-}
 
 /* Contenido principal */
 .main-content {
@@ -102,150 +76,9 @@ h1 {
   border-radius: 10px;
   font-family: "Poltawski Nowy";
 }
-.dashboard {
-display: flex;
-gap: 20px;
-justify-content: space-between;
-flex-wrap: wrap;
-}
 
-.card {
-background: #fff;
-padding: 20px;
-border-radius: 8px;
-text-align: center;
-box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-flex: 1;
-min-width: 200px;
-border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
-}
 
-.card i {
-font-size: 2rem;
-color: #ff9800;
-}
 
-.card h2 {
-font-size: 1.5rem;
-margin-top: 10px;
-color: #000000;
-font-family: "Poltawski Nowy";
-}
-.card p {
-font-size: 1.2rem;
-margin-top: 5px;
-color: #000000;
-font-family: "Poltawski Nowy";
-}
-
-/* Tabla */
-.table-container {
-  background: rgba(255, 255, 255, 0.8);
-  border-radius: 10px;
-  padding: 15px;
-  overflow-x: auto;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-th, td {
-  padding: 10px;
-  text-align: left;
-  font-family: "Poltawski Nowy";
-  color: #000000;
-  border-bottom: 1px solid #000000;
-  
-}
-
-th {
-  background: #3a3a3a;
-  color: white;
-}
-
-tr:hover {
-  background: rgba(0, 0, 0, 0.1);
-}
-
-/* Botones */
-.btn {
-  border: none;
-  padding: 8px;
-  border-radius: 5px;
-  cursor: pointer;
-  margin-right: 5px;
-  font-size: 16px;
-  color: white;
-}
-
-.green {
-  background: #28a745;
-}
-
-.yellow {
-  background: #ffc107;
-}
-
-.red {
-  background: #dc3545;
-}
-
-/* Imágenes de avatar */
-td img {
-  width: 40px;
-  height: 40px;
-  border-radius: 50%;
-}
-.btn-container {
-  display:flex;
-  justify-content: center;
-  gap: 5px; /* Espacio entre los botones */
-}
-.btn {
-  border: none;
-  cursor: pointer;
-  padding: 10px;
-  border-radius: 8px;
-  font-size: 18px;
-  transition: all 0.3s ease;
-  margin: 5px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 42px;
-  height: 42px;
-  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
-}
-
-/* Botón de edición (verde) */
-.btn-edit {
-  background-color: #28a745;
-  color: white;
-}
-.btn-edit:hover {
-  background-color: #218838;
-}
-
-/* Botón de visualización (azul) */
-.btn-view {
-  background-color: #007bff;
-  color: white;
-}
-.btn-view:hover {
-  background-color: #0056b3;
-}
-
-/* Botón de eliminación (rojo) */
-.btn-delete {
-  background-color: #dc3545;
-  color: white;
-}
-.btn-delete:hover {
-  background-color: #c82333;
-}
 /*=============== GOOGLE FONTS ===============*/
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap");
 
@@ -292,14 +125,6 @@ padding: 0;
 margin: 0;
 }
 
-body {
-font-family: var(--body-font);
-font-size: var(--normal-font-size);
-background-color: var(--body-color);
-color: var(--text-color);
-transition: background-color .4s;
-}
-
 a {
 text-decoration: none;
 }
@@ -342,7 +167,11 @@ margin-inline: 1.5rem;
 
 .main {
 padding-top: 5rem;
+padding-left: 340px;
+  padding-top: 8rem;
+  transition: padding .4s;
 }
+
 
 /*=============== HEADER ===============*/
 .header {
@@ -356,6 +185,7 @@ margin: .75rem;
 
 .header__container {
 width: 100%;
+padding-inline: 1rem;
 height: var(--header-height);
 background-color: var(--body-color);
 box-shadow: 0 2px 24px var(--shadow-color);
@@ -368,21 +198,6 @@ transition: background-color .4s;
  border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
 }
 
-.header__logo {
-display: inline-flex;
-align-items: center;
-column-gap: .25rem;
-}
-
-.header__logo i {
-font-size: 1.5rem;
-color: var(--first-color);
-}
-
-.header__logo span {
-color: var(--title-color);
-font-weight: var(--font-semi-bold);
-}
 
 .header__toggle {
 font-size: 1.5rem;
@@ -406,6 +221,8 @@ border-radius: 1rem;
 transition: left .4s, background-color .4s, width .4s;
 border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
 }
+
+
 
 .sidebar__container, 
 .sidebar__content {
@@ -546,9 +363,7 @@ background-color: var(--first-color);
 /*=============== BREAKPOINTS ===============*/
 /* For small devices */
 @media screen and (max-width: 360px) {
-.header__container {
-  padding-inline: 1rem;
-}
+
 
 .sidebar {
   width: max-content;
@@ -589,9 +404,7 @@ background-color: var(--first-color);
   height: calc(var(--header-height) + 2rem);
   padding-inline: 2rem;
 }
-.header__logo {
-  order: 1;
-}
+
 
 .sidebar {
   left: 0;
@@ -623,11 +436,7 @@ background-color: var(--first-color);
   opacity: 0;
 }
 
-.main {
-  padding-left: 340px;
-  padding-top: 8rem;
-  transition: padding .4s;
-}
+
 
 /* Add padding left */
 .left-pd {
@@ -638,12 +447,12 @@ background-color: var(--first-color);
 .form-container {
   width: 100%;
   max-width: 400px;
+  font-family: "Poltaski Nowy"; 
   background: #efefee;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   margin: 20px auto;
-  font-family: "Poltawski Nowy";
   border: 1px solid rgba(0, 0, 0, 0.71);
 }
 
