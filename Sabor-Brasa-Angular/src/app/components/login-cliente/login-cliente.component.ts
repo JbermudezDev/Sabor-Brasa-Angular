@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { ViewEncapsulation } from '@angular/core';
+import { AgregarComponent } from '../clientes/agregar/agregar.component';
 
 @Component({
   selector: 'app-login-cliente',
@@ -10,7 +11,7 @@ import { ViewEncapsulation } from '@angular/core';
   encapsulation: ViewEncapsulation.None
 })
 export class LoginClienteComponent {
-email: string = '';
+  email: string = '';
   password: string = '';
   errorMessage: string = '';
 
@@ -36,4 +37,7 @@ email: string = '';
       }
     });
   }
+
+
+
 }

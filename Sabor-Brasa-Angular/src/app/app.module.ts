@@ -36,6 +36,8 @@ import { ListarOperadorComponent } from './components/operador/listar/listar.com
 import { AgregarOperadorComponent } from './components/operador/agregar/agregar.component';
 import { EditarOperadorComponent } from './components/operador/editar/editar.component';
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
+import { ListarDashClienteComponent } from './components/DashCliente/listar/listar.component';
+import { RegistrarComponent } from './components/registrar/registrar.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -59,7 +61,8 @@ import { DetalleOperadorComponent } from './components/operador/detalle/detalle.
     AgregarOperadorComponent,
     EditarOperadorComponent,
     DetalleOperadorComponent,
-
+    ListarDashClienteComponent,
+    RegistrarComponent,
 
     
     
