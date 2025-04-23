@@ -1,98 +1,97 @@
 <div id="header">
-    <img src="assets/images/reservas2.jpeg" alt="Imagen de fondo del header" class="header-bg" />
-    <div id="logo">
-      <img src="assets/images/logo brasa.png" alt="Brasa & Corte" />
-    </div>
-    <ul>
-      <li><h1>Menú</h1></li>
-      <div class="styled-wrapper">
-        <a routerLink="/"> 
-          <button class="button">
-            <div class="button-box">
-              <span class="button-elem">
-                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
-                  <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
-                </svg>
-              </span>
-              <span class="button-elem">
-                <svg fill="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
-                  <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
-                </svg>
-              </span>
-            </div>
-          </button>
-        </a>
-      </div>
-    </ul>
+  <img src="assets/images/reservas2.jpeg" alt="Imagen de fondo del header" class="header-bg" />
+  <div id="logo">
+    <img src="assets/images/logo brasa.png" alt="Brasa & Corte" />
   </div>
-  
-  <!-- Aquí iría la lógica dinámica de productos cuando conectemos con servicio -->
-  <main class="p-8">
-    <section class="section-container mb-8">
-      <h2>Entradas</h2>
-      <div class="grid grid-cols-2 gap-4">
-        <div class="card">
-          <a [routerLink]="['/productos', 1]">
-            <div class="content">
-              <div class="back">
-                <div class="back-content">
-                  <img src="assets/images/croquetas.jpeg" alt="Croquetas" class="food-image" />
+  <ul>
+    <li><h1>Menú</h1></li>
+    <div class="styled-wrapper">
+      <a routerLink="/">
+        <button class="button">
+          <div class="button-box">
+            <span class="button-elem">
+              <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                <path fill="black" d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+              </svg>
+            </span>
+            <span class="button-elem">
+              <svg fill="black" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" class="arrow-icon">
+                <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"></path>
+              </svg>
+            </span>
+          </div>
+        </button>
+      </a>
+    </div>
+  </ul>
+</div>
+
+<main class="p-8">
+  <section class="section-container mb-8">
+    <h2>Todos los Productos</h2>
+    <div class="grid grid-cols-2 gap-4">
+      <div class="card" *ngFor="let producto of productos">
+        <div class="content">
+          <div class="back">
+            <div class="back-content">
+              <img
+                  [src]="'http://localhost:8090' + producto.imagen"
+                  alt="Imagen del producto"
+                  class="product-image"
+                />
+            </div>
+          </div>
+          <div class="front">
+            <div class="img">
+              <div class="circle"></div>
+              <div class="circle" id="right"></div>
+              <div class="circle" id="bottom"></div>
+            </div>
+            <div class="front-content">
+              <small class="badge">{{ producto.descripcion }}</small>
+              <div class="description">
+                <div class="title">
+                  <p class="title">{{ producto.nombre }}</p>
+                  <svg height="15px" width="15px" viewBox="0,0,256,256" xmlns="http://www.w3.org/2000/svg">
+                    <g transform="scale(8,8)">
+                      <path d="M25,27l-9,-6.75l-9,6.75v-23h18z" fill="#20c997"></path>
+                    </g>
+                  </svg>
                 </div>
-              </div>
-              <div class="front">
-                <div class="img">
-                  <div class="circle"></div>
-                  <div class="circle" id="right"></div>
-                  <div class="circle" id="bottom"></div>
-                </div>
-                <div class="front-content">
-                  <small class="badge">Deliciosas croquetas de jamón</small>
-                  <div class="description">
-                    <div class="title">
-                      <p class="title">Croquetas</p>
-                      <svg height="15px" width="15px" viewBox="0,0,256,256" xmlns="http://www.w3.org/2000/svg">
-                        <g transform="scale(8,8)">
-                          <path d="M25,27l-9,-6.75l-9,6.75v-23h18z" fill="#20c997"></path>
-                        </g>
-                      </svg>
-                    </div>
-                    <p class="card-footer">Precio: $15.000</p>
-                  </div>
-                </div>
+                <p class="card-footer">Precio: {{ producto.precio | currency:'COP' }}</p>
               </div>
             </div>
-          </a>
-        </div>
-        <!-- Puedes duplicar y personalizar más productos aquí -->
-      </div>
-    </section>
-  </main>
-  
-  <footer>
-    <div class="footer-container">
-      <div class="footer-column2">
-        <img src="assets/images/logo brasa.png" alt="Logo de Brasa y Corte" class="footer-logo" />
-        <p>&copy; 2025 Brasa y Corte. Todos los derechos reservados.</p>
-      </div>
-      <div class="footer-column">
-        <h3>Contacto</h3>
-        <p><a href="mailto:info@brasaycorte.com">info@brasaycorte.com</a></p>
-        <p><a href="tel:+123456789">+123 456 789</a></p>
-        <p>Dirección: Calle Falsa 123, Ciudad</p>
-      </div>
-      <div class="footer-column">
-        <h3>Horarios</h3>
-        <p>Lunes a Viernes: 12:00 - 23:00</p>
-        <p>Sábado y Domingo: 12:00 - 00:00</p>
-      </div>
-      <div class="footer-column social-links">
-        <h3>Síguenos</h3>
-        <div class="social-icons">
-          <a href="#"><img src="assets/images/facebook.png" alt="Facebook" /></a>
-          <a href="#"><img src="assets/images/instagram.png" alt="Instagram" /></a>
-          <a href="#"><img src="assets/images/logotipos.png" alt="X" /></a>
+          </div>
         </div>
       </div>
     </div>
-  </footer>
-  
+  </section>
+</main>
+
+<footer>
+  <div class="footer-container">
+    <div class="footer-column2">
+      <img src="assets/images/logo brasa.png" alt="Logo de Brasa y Corte" class="footer-logo" />
+      <p>&copy; 2025 Brasa y Corte. Todos los derechos reservados.</p>
+    </div>
+    <div class="footer-column">
+      <h3>Contacto</h3>
+      <p><a href="mailto:info@brasaycorte.com">info@brasaycorte.com</a></p>
+      <p><a href="tel:+123456789">+123 456 789</a></p>
+      <p>Dirección: Calle Falsa 123, Ciudad</p>
+    </div>
+    <div class="footer-column">
+      <h3>Horarios</h3>
+      <p>Lunes a Viernes: 12:00 - 23:00</p>
+      <p>Sábado y Domingo: 12:00 - 00:00</p>
+    </div>
+    <div class="footer-column social-links">
+      <h3>Síguenos</h3>
+      <div class="social-icons">
+        <a href="#"><img src="assets/images/facebook.png" alt="Facebook" /></a>
+        <a href="#"><img src="assets/images/instagram.png" alt="Instagram" /></a>
+        <a href="#"><img src="assets/images/logotipos.png" alt="X" /></a>
+      </div>
+    </div>
+  </div>
+</footer>
