@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ChangeDetectorRef } from '@angular/core';
 import { OperadorService } from 'src/app/services/operador.service';
 import { Operador } from 'src/app/models/operador.model';
 
@@ -13,7 +13,7 @@ export class ListarOperadorComponent implements OnInit {
   filteredOperadores: Operador[] = []; // Lista filtrada para búsqueda
   searchTerm: string = ''; // Término de búsqueda
 
-  constructor(private operadorService: OperadorService) {}
+  constructor(private operadorService: OperadorService, private cdr: ChangeDetectorRef) {}
 
   ngOnInit(): void {
     // Llama al servicio para obtener todos los operadores
@@ -46,6 +46,8 @@ export class ListarOperadorComponent implements OnInit {
           // También actualiza la lista completa de operadores
           this.operadores = this.operadores.filter(operador => operador.id !== id);
           console.log(`Operador con ID ${id} eliminado correctamente.`);
+          // Forzar la detección de cambios
+          this.cdr.detectChanges();
         },
         error: (err) => {
           console.error('Error al eliminar el operador:', err);
