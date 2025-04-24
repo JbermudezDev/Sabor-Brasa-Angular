@@ -18,4 +18,10 @@ export class AuthService {
     const credenciales = { email, password };
     return this.http.post(`${this.baseUrl}/cliente`, credenciales);
   }
+  loginOperador(usuario: string, contrasena: string): Observable<any> {
+    const credenciales = { usuario, contrasena };
+    return this.http.post(`${this.baseUrl}/operador`, credenciales);
+  }
+
+  
 }
