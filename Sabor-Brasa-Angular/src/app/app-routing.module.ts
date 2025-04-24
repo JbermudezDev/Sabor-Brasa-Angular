@@ -28,7 +28,9 @@ import { AgregarOperadorComponent } from './components/operador/agregar/agregar.
 import { EditarOperadorComponent } from './components/operador/editar/editar.component';
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
 import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
-import { LoginOperadorComponent } from './components/login-operador/login-operador.component';  
+import { LoginOperadorComponent } from './components/login-operador/login-operador.component'; 
+import { DireccionComponent } from './pages/direccion/direccion.component';
+import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-icon.component'; 
 
 
 
@@ -59,6 +61,9 @@ const routes: Routes = [
   {path: 'info-plato', component: InfoPlatoComponent},
   { path: 'info-plato/:id', component: InfoPlatoComponent },
   { path: 'login-operador', component: LoginOperadorComponent },
+  { path: 'direccion', component: DireccionComponent },
+  { path: 'carrito-icon', component: CarritoIconComponent },
+
 ];
 
 @NgModule({

@@ -38,6 +38,9 @@ import { EditarOperadorComponent } from './components/operador/editar/editar.com
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
 import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
 import { LoginOperadorComponent } from './components/login-operador/login-operador.component';
+import { DireccionComponent } from './pages/direccion/direccion.component';
+import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-icon.component';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,6 +66,8 @@ import { LoginOperadorComponent } from './components/login-operador/login-operad
     DetalleOperadorComponent,
     InfoPlatoComponent,
     LoginOperadorComponent,
+    DireccionComponent,
+    CarritoIconComponent,
 
 
     
