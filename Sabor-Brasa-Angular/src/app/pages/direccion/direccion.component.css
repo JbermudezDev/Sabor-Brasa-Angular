@@ -1,0 +1,81 @@
+.direccion-container {
+    max-width: 600px;
+    margin: 40px auto;
+    padding: 24px;
+    background-color: #fff;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    font-family: 'Segoe UI', sans-serif;
+  }
+  
+  .direccion-header {
+    text-align: center;
+    margin-bottom: 24px;
+  }
+  
+  .logo {
+    height: 70px;
+    margin-bottom: 8px;
+  }
+  
+  h1 {
+    margin: 0;
+    color: #333;
+    font-size: 24px;
+  }
+  
+  p {
+    margin: 4px 0;
+    color: #666;
+    font-size: 14px;
+  }
+  
+  .direccion-form {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+  
+  .form-row {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .form-row label {
+    font-weight: 500;
+    margin-bottom: 6px;
+  }
+  
+  .form-row input,
+  .form-row textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    font-size: 14px;
+  }
+  
+  textarea {
+    resize: none;
+  }
+  
+  .button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+  }
+  
+  .btn-confirmar {
+    background-color: #d02b2b;
+    color: #fff;
+    border: none;
+    padding: 12px 24px;
+    font-size: 16px;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: 0.3s ease;
+  }
+  
+  .btn-confirmar:hover {
+    background-color: #b42424;
+  }
+  

@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
-import { ProductoService } from 'src/app/services/producto.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto.model';
+import { Adicional } from 'src/app/models/adicional.model';
+import { ProductoService } from 'src/app/services/producto.service';
 
 @Component({
   selector: 'app-info-plato',
@@ -9,54 +10,51 @@ import { Producto } from 'src/app/models/producto.model';
   styleUrls: ['./info-plato.component.css']
 })
 export class InfoPlatoComponent implements OnInit {
-  producto: Producto | null = null;
-  selectedAdicionales: number[] = []; // Lista de IDs de adicionales seleccionados
+  producto!: Producto;
+  adicionales: Adicional[] = [];
+  adicionalesSeleccionados: Adicional[] = [];
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private productoService: ProductoService
   ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
-    if (id) {
-      this.productoService.getProductoInfo(id).subscribe({
-        next: (data) => {
-          this.producto = data;
-        },
-        error: (err) => {
-          console.error('Error al cargar la información del plato:', err);
-        }
-      });
-    }
+    this.productoService.getInfoPlato(id).subscribe({
+      next: (producto) => {
+        this.producto = producto;
+        this.adicionales = producto.adicionales || [];
+      }
+    });
   }
-  toggleAdicional(adicionalId: number): void {
-    const index = this.selectedAdicionales.indexOf(adicionalId);
+
+  toggleAdicional(adicional: Adicional): void {
+    const index = this.adicionalesSeleccionados.findIndex(a => a.id === adicional.id);
     if (index === -1) {
-      this.selectedAdicionales.push(adicionalId);
+      this.adicionalesSeleccionados.push(adicional);
     } else {
-      this.selectedAdicionales.splice(index, 1);
+      this.adicionalesSeleccionados.splice(index, 1);
     }
-  }
-
-  getAdicionalesSeleccionados(): any[] {
-    return this.producto?.adicionales?.filter(a => this.selectedAdicionales.includes(a.id)) || [];
-  }
-
-  getTotal(): number {
-    const base = this.producto?.precio || 0;
-    const adicionales = this.getAdicionalesSeleccionados().reduce((sum, a) => sum + a.precio, 0);
-    return base + adicionales;
   }
 
   agregarAlCarrito(): void {
-    const pedido = {
-      producto: this.producto,
-      adicionales: this.getAdicionalesSeleccionados(),
-      total: this.getTotal()
-    };
-    console.log('Pedido agregado al carrito:', pedido);
-    alert('¡Producto agregado al carrito!');
-  }
+    const total = this.producto.precio + this.adicionalesSeleccionados.reduce((sum, a) => sum + a.precio, 0);
 
+    this.router.navigate(['/direccion'], {
+      state: {
+        producto: this.producto,
+        adicionales: this.adicionalesSeleccionados,
+        total: total
+      }
+    });
+  }
+  esAdicionalSeleccionado(adicionalId: number): boolean {
+    return this.adicionalesSeleccionados.some(a => a.id === adicionalId);
+  }
+  getTotal(): number {
+    return this.producto.precio + this.adicionalesSeleccionados.reduce((s, a) => s + a.precio, 0);
+  }
+ 
 }

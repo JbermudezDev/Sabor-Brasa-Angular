@@ -1,0 +1,29 @@
+<div class="carrito-icon-container">
+    <button class="carrito-btn" (click)="toggleModal()">
+      🛒
+      <span class="badge" *ngIf="carritoService.items.length > 0">
+        {{ carritoService.items.length }}
+      </span>
+    </button>
+  
+    <!-- Modal -->
+    <div class="modal-backdrop" *ngIf="mostrarModal" (click)="toggleModal()"></div>
+    <div class="carrito-modal" *ngIf="mostrarModal">
+      <h3>Resumen del pedido</h3>
+      <ul>
+        <li *ngFor="let item of carritoService.items">
+          <strong>{{ item.producto.nombre }}</strong>
+          <ul>
+            <li *ngFor="let adicional of item.adicionales">
+              + {{ adicional.nombre }} ({{ adicional.precio | currency:'COP' }})
+            </li>
+          </ul>
+          <p><strong>Subtotal:</strong> {{ calcularSubtotal(item) | currency:'COP' }}</p>
+          <hr />
+        </li>
+      </ul>
+      <p><strong>Total:</strong> {{ getTotal() | currency:'COP' }}</p>
+      <button routerLink="/facturacion" class="btn-ver-carrito">Ir a pagar</button>
+    </div>
+  </div>
+  

@@ -47,9 +47,8 @@
               <label *ngFor="let adicional of producto.adicionales" class="checkbox-item">
                 <input
                   type="checkbox"
-                  [value]="adicional.id"
-                  (change)="toggleAdicional(adicional.id)"
-                  [checked]="selectedAdicionales.includes(adicional.id)"
+                  (change)="toggleAdicional(adicional)"
+                  [checked]="esAdicionalSeleccionado(adicional.id)"
                 />
                 <span class="custom-checkmark"></span>
                 <span class="checkbox-label">
