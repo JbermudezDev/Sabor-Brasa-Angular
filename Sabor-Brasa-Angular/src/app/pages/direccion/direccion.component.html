@@ -1,0 +1,45 @@
+<div class="direccion-container">
+    <div class="direccion-header">
+      <img src="assets/images/logo brasa.png" alt="Logo" class="logo" />
+      <h1>Confirmar dirección de entrega</h1>
+      <p>Completa los datos para agregar el producto al carrito</p>
+    </div>
+  
+    <form class="direccion-form" (ngSubmit)="confirmarDireccion()">
+      <div class="form-row">
+        <label for="ciudad">Ciudad</label>
+        <input type="text" id="ciudad" [(ngModel)]="ciudad" name="ciudad" required />
+      </div>
+  
+      <div class="form-row">
+        <label for="barrio">Barrio</label>
+        <input type="text" id="barrio" [(ngModel)]="barrio" name="barrio" required />
+      </div>
+  
+      <!-- Campo unificado: Dirección -->
+      <div class="form-row">
+        <label for="direccion">Dirección</label>
+        <input type="text" id="direccion" [(ngModel)]="direccion" name="direccion" placeholder="Ej: Calle 45 #12-34" required />
+      </div>
+  
+      <div class="form-row">
+        <label for="tipoInmueble">Tipo de inmueble</label>
+        <input type="text" id="tipoInmueble" [(ngModel)]="tipoInmueble" name="tipoInmueble" placeholder="Apartamento, Casa..." />
+      </div>
+  
+      <div class="form-row">
+        <label for="complemento">Complemento</label>
+        <input type="text" id="complemento" [(ngModel)]="complemento" name="complemento" placeholder="Torre, piso, interior..." />
+      </div>
+  
+      <div class="form-row">
+        <label for="instrucciones">Instrucciones de entrega</label>
+        <textarea id="instrucciones" [(ngModel)]="instrucciones" name="instrucciones" rows="3" placeholder="Ej: Timbre dañado, llamar al llegar..."></textarea>
+      </div>
+  
+      <div class="button-container">
+        <button type="submit" class="btn-confirmar">Confirmar y agregar al carrito</button>
+      </div>
+    </form>
+  </div>
+  

@@ -37,6 +37,8 @@ import { AgregarOperadorComponent } from './components/operador/agregar/agregar.
 import { EditarOperadorComponent } from './components/operador/editar/editar.component';
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
 import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
+import { DireccionComponent } from './pages/direccion/direccion.component';
+import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-icon.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -61,6 +63,8 @@ import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
     EditarOperadorComponent,
     DetalleOperadorComponent,
     InfoPlatoComponent,
+    DireccionComponent,
+    CarritoIconComponent,
 
 
     
