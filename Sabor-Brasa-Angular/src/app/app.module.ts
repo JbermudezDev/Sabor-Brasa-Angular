@@ -65,9 +65,6 @@ import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-i
     InfoPlatoComponent,
     DireccionComponent,
     CarritoIconComponent,
-
-
-    
     
   ],
   imports: [
