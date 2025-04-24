@@ -11,23 +11,28 @@ export class OperadorService {
 
   constructor(private http: HttpClient) {}
 
+  // Obtener todos los operadores
   getAll(): Observable<Operador[]> {
     return this.http.get<Operador[]>(`${this.apiUrl}/all`);
   }
 
+  // Obtener un operador por ID
   getById(id: number): Observable<Operador> {
     return this.http.get<Operador>(`${this.apiUrl}/find/${id}`);
   }
 
-  add(operador: Operador): Observable<void> {
-    return this.http.post<void>(`${this.apiUrl}/add`, operador);
+  // Agregar un nuevo operador
+  add(operador: Operador): Observable<string> {
+    return this.http.post<string>(`${this.apiUrl}/add`, operador);
   }
 
-  update(id: number, operador: Operador): Observable<void> {
-    return this.http.put<void>(`${this.apiUrl}/update/${id}`, operador);
+  // Actualizar un operador existente
+  update(id: number, operador: Operador): Observable<Operador> {
+    return this.http.put<Operador>(`${this.apiUrl}/update/${id}`, operador);
   }
 
-  delete(id: number): Observable<void> {
-    return this.http.delete<void>(`${this.apiUrl}/delete/${id}`);
+  // Eliminar un operador por ID
+  delete(id: number): Observable<string> {
+    return this.http.delete<string>(`${this.apiUrl}/delete/${id}`);
   }
 }
