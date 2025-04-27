@@ -39,10 +39,6 @@
               <i class="ri-user-fill"></i>
               <span>Clientes</span>
             </a>
-            <a routerLink="/operadores" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Operadores</span>
-            </a>
           </div>
         </div>
       </div>
@@ -131,7 +127,7 @@
 
         <!-- Botón para enviar el formulario -->
         <div class="button-container-add">
-          <button type="submit" class="button-container-add btn-green" [disabled]="!productoForm.valid">Actualizar</button>
+          <button type="submit" class="btn-submit " [disabled]="!productoForm.valid">Actualizar</button>
         </div>
       </form>
     </div>

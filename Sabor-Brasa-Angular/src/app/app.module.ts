@@ -40,6 +40,8 @@ import { InfoPlatoComponent } from './pages/info-plato/info-plato.component';
 import { LoginOperadorComponent } from './components/login-operador/login-operador.component';
 import { DireccionComponent } from './pages/direccion/direccion.component';
 import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-icon.component';
+import { RegistrarComponent } from './components/registrar/registrar.component';
+import { DashclienteListarComponent } from './components/dashcliente-listar/dashcliente-listar.component';
 
 @NgModule({
   declarations: [
@@ -68,6 +70,8 @@ import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-i
     LoginOperadorComponent,
     DireccionComponent,
     CarritoIconComponent,
+    RegistrarComponent,
+    DashclienteListarComponent,
 
 
     
