@@ -3,9 +3,10 @@ import { Producto } from '../models/producto.model';
 import { Adicional } from '../models/adicional.model';
 
 export interface ItemCarrito {
-  producto: Producto;
-  adicionales: Adicional[];
+  producto: any;
+  adicionales: any[];
   total: number;
+  clienteId: number; 
 }
 
 @Injectable({
@@ -13,15 +14,29 @@ export interface ItemCarrito {
 })
 export class CarritoService {
   private carrito: ItemCarrito[] = [];
+  private clienteId!: number;
 
   constructor() {}
 
-  agregar(item: ItemCarrito): void {
-    this.carrito.push(item);
+  setClienteId(id: number) {
+    this.clienteId = id;
+  }
+
+  getClienteId(): number {
+    return this.clienteId;
+  }
+  
+
+  agregar(item: Omit<ItemCarrito, 'clienteId'>): void {
+    this.carrito.push({ ...item, clienteId: this.clienteId });
   }
 
   obtenerCarrito(): ItemCarrito[] {
     return this.carrito;
+  }
+
+  obtenerCarritoPorCliente(id: number): ItemCarrito[] {
+    return this.carrito.filter(item => item.clienteId === id);
   }
 
   eliminar(index: number): void {
@@ -34,10 +49,5 @@ export class CarritoService {
 
   calcularTotalGeneral(): number {
     return this.carrito.reduce((sum, item) => sum + item.total, 0);
-  }
-
-  //  Esta es la propiedad que necesita CarritoIconComponent:
-  get items(): ItemCarrito[] {
-    return this.carrito;
   }
 }

@@ -1,0 +1,27 @@
+<div class="main-content">
+    <h1>Mis Pedidos</h1>
+  
+    <div *ngIf="pedidos.length > 0; else sinPedidos">
+      <div *ngFor="let pedido of pedidos" class="pedido-card">
+        <h3>{{ pedido.producto.nombre }}</h3>
+        <p>{{ pedido.producto.descripcion }}</p>
+        <p><strong>Precio:</strong> {{ pedido.producto.precio | currency:'COP' }}</p>
+  
+        <div *ngIf="pedido.adicionales.length > 0">
+          <p><strong>Adicionales:</strong></p>
+          <ul>
+            <li *ngFor="let adicional of pedido.adicionales">
+              {{ adicional.nombre }} ({{ adicional.precio | currency:'COP' }})
+            </li>
+          </ul>
+        </div>
+  
+        <p><strong>Total Pedido:</strong> {{ getTotalPedido(pedido) | currency:'COP' }}</p>
+      </div>
+    </div>
+  
+    <ng-template #sinPedidos>
+      <p>No tienes pedidos confirmados todavía.</p>
+    </ng-template>
+  </div>
+  

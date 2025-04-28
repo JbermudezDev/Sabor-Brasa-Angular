@@ -17,7 +17,7 @@ export class DireccionComponent implements OnInit {
  // Dirección
  ciudad: string = '';
  barrio: string = '';
- direccion: string = ''; // <--- AÑADE ESTA LÍNEA
+ direccion: string = ''; 
  tipoInmueble: string = '';
  complemento: string = '';
  instrucciones: string = '';
@@ -38,8 +38,9 @@ export class DireccionComponent implements OnInit {
     const item: ItemCarrito = {
       producto: this.producto,
       adicionales: this.adicionales,
-      total: this.total
-      // puedes extender esto con una interfaz para "Direccion"
+      total: this.total,
+      clienteId: 1 // Asignar un valor adecuado para clienteId
+      // se puede extender esto con una interfaz para "Direccion"
     };
 
     this.carritoService.agregar(item);

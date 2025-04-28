@@ -1,29 +1,31 @@
-<div class="carrito-icon-container">
-    <button class="carrito-btn" (click)="toggleModal()">
-      🛒
-      <span class="badge" *ngIf="carritoService.items.length > 0">
-        {{ carritoService.items.length }}
-      </span>
-    </button>
-  
-    <!-- Modal -->
-    <div class="modal-backdrop" *ngIf="mostrarModal" (click)="toggleModal()"></div>
-    <div class="carrito-modal" *ngIf="mostrarModal">
-      <h3>Resumen del pedido</h3>
+<!-- Icono del carrito -->
+<div class="cart-container">
+  <button (click)="toggleModal()" class="cart-button">
+    <i class="ri-shopping-cart-line"></i>
+    <span class="badge" *ngIf="carrito.length > 0">{{ carrito.length }}</span>
+  </button>
+
+  <!-- Modal del carrito -->
+  <div *ngIf="mostrarModal" class="cart-modal">
+    <div class="cart-header">
+      <h3>Tu Carrito</h3>
+      <button (click)="toggleModal()" class="close-button">&times;</button>
+    </div>
+
+    <div class="cart-items">
       <ul>
-        <li *ngFor="let item of carritoService.items">
-          <strong>{{ item.producto.nombre }}</strong>
-          <ul>
-            <li *ngFor="let adicional of item.adicionales">
-              + {{ adicional.nombre }} ({{ adicional.precio | currency:'COP' }})
-            </li>
-          </ul>
-          <p><strong>Subtotal:</strong> {{ calcularSubtotal(item) | currency:'COP' }}</p>
-          <hr />
+        <li *ngFor="let item of carrito" class="cart-item">
+          <div class="item-details">
+            <strong>{{ item.producto.nombre }}</strong>
+            <p>Subtotal: {{ calcularSubtotal(item) | currency:'COP' }}</p>
+          </div>
         </li>
       </ul>
+    </div>
+
+    <div class="cart-footer">
       <p><strong>Total:</strong> {{ getTotal() | currency:'COP' }}</p>
-      <button routerLink="/facturacion" class="btn-ver-carrito">Ir a pagar</button>
+      <button class="checkout-button">Finalizar Compra</button>
     </div>
   </div>
-  
+</div>

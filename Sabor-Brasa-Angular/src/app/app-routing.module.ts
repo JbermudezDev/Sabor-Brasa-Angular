@@ -33,6 +33,7 @@ import { DireccionComponent } from './pages/direccion/direccion.component';
 import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-icon.component';
 import { RegistrarComponent } from './components/registrar/registrar.component'; 
 import { DashclienteListarComponent } from './components/dashcliente-listar/dashcliente-listar.component';
+import { MisPedidosComponent } from './pages/clientes/mis-pedidos/mis-pedidos.component';
 
 
 
@@ -67,6 +68,7 @@ const routes: Routes = [
   { path: 'carrito-icon', component: CarritoIconComponent },
   { path: 'registrar', component: RegistrarComponent },
   { path: 'listarDashCliente', component: DashclienteListarComponent },
+  { path: 'clientes/pedidos', component: MisPedidosComponent },
 
 ];
 

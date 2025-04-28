@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { CarritoService } from 'src/app/services/carrito.service'; // Importa el servicio del carrito
 import { ViewEncapsulation } from '@angular/core';
-import { AgregarComponent } from '../clientes/agregar/agregar.component';
 
 @Component({
   selector: 'app-login-cliente',
@@ -15,14 +15,25 @@ export class LoginClienteComponent {
   password: string = '';
   errorMessage: string = '';
 
-  constructor(private authService: AuthService, private router: Router) {}
+  constructor(
+    private authService: AuthService,
+    private carritoService: CarritoService, // Inyecta el servicio del carrito
+    private router: Router
+  ) {}
 
   onSubmit(): void {
-    // Llamar al servicio para autenticar al administrador
+    // Llamar al servicio para autenticar al cliente
     this.authService.logiincliente(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);
-        this.router.navigate(['/info-cliente']); // Redirigir a la página de información del cliente
+
+        // Asociar el ID del cliente logueado al CarritoService
+        if (response && response.id) {
+          this.carritoService.setClienteId(response.id);
+        }
+
+        // Redirigir a la página de información del cliente
+        this.router.navigate(['/info-cliente']);
       },
       error: (err) => {
         // Manejar errores de autenticación
@@ -37,7 +48,4 @@ export class LoginClienteComponent {
       }
     });
   }
-
-
-
 }

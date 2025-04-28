@@ -3,6 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto.model';
 import { Adicional } from 'src/app/models/adicional.model';
 import { ProductoService } from 'src/app/services/producto.service';
+import { CarritoService } from 'src/app/services/carrito.service'; // Import CarritoService
+import { ItemCarrito } from 'src/app/models/carrodecompras.model'; 
 
 @Component({
   selector: 'app-info-plato',
@@ -16,8 +18,8 @@ export class InfoPlatoComponent implements OnInit {
 
   constructor(
     private route: ActivatedRoute,
-    private router: Router,
-    private productoService: ProductoService
+    private productoService: ProductoService,
+    private carritoService: CarritoService // Add CarritoService to the constructor
   ) {}
 
   ngOnInit(): void {
@@ -40,16 +42,19 @@ export class InfoPlatoComponent implements OnInit {
   }
 
   agregarAlCarrito(): void {
-    const total = this.producto.precio + this.adicionalesSeleccionados.reduce((sum, a) => sum + a.precio, 0);
-
-    this.router.navigate(['/direccion'], {
-      state: {
+    if (this.producto) {
+      const item: ItemCarrito = {
         producto: this.producto,
         adicionales: this.adicionalesSeleccionados,
-        total: total
-      }
-    });
+        total: this.getTotal()
+      };
+  
+      this.carritoService.agregar(item);
+      alert('Producto agregado al carrito');
+      // Ya no navegamos aquí, solo agregamos al carrito
+    }
   }
+  
   esAdicionalSeleccionado(adicionalId: number): boolean {
     return this.adicionalesSeleccionados.some(a => a.id === adicionalId);
   }

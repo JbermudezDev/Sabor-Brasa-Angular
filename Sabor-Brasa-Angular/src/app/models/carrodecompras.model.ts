@@ -1,8 +1,11 @@
-export interface CarroDeCompras {
-    id: number;
-    cliente: Cliente;
-    detalles: DetallePedido[];
-  }
+import { Producto } from './producto.model';
+import { Adicional } from './adicional.model';
+
+export interface ItemCarrito {
+  producto: Producto;
+  adicionales: Adicional[];
+  total: number;
+}
   
   export interface Cliente {
     id: number;
@@ -19,4 +22,3 @@ export interface CarroDeCompras {
     cantidad: number;
     producto: string;
   }
-  
