@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService, ItemCarrito } from 'src/app/services/carrito.service';
-
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-carrito-icon',
   templateUrl: './carrito-icon.component.html',
@@ -8,9 +8,12 @@ import { CarritoService, ItemCarrito } from 'src/app/services/carrito.service';
 })
 export class CarritoIconComponent implements OnInit {
   mostrarModal = false;
-  carrito: ItemCarrito[] = []; // <<<< Agregado
+  carrito: ItemCarrito[] = []; 
 
-  constructor(public carritoService: CarritoService) {}
+  constructor(
+    public carritoService: CarritoService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // Cargamos el carrito al iniciar
@@ -31,4 +34,9 @@ export class CarritoIconComponent implements OnInit {
   calcularSubtotal(item: ItemCarrito): number {
     return item.producto.precio + item.adicionales.reduce((sum, adicional) => sum + adicional.precio, 0);
   }
+
+  irAPagar(): void {
+    this.router.navigate(['/direccion']);
+  }
+
 }

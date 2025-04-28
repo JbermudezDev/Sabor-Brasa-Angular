@@ -370,6 +370,25 @@ body {
   .btn-edit:hover {
     background-color: #218838;
   }
+  .button-container {
+    text-align: center;
+    margin-top: 20px;
+  }
+  
+  .btn-menu {
+    background-color: #52bfff;
+    color: white;
+    padding: 12px 30px;
+    border: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .btn-menu:hover {
+    background-color: #e04e4e;
+  }
   
   /* Botón de visualización (azul) */
   .btn-view {
