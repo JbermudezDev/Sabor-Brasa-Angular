@@ -27,7 +27,8 @@ export class AdicionalService {
       return this.http.put<void>(`http://localhost:8090/adicionales/update/${id}`, adicional);
     }
   
-    deleteAdicional(id: number): Observable<void> {
-      return this.http.delete<void>(`http://localhost:8090/adicionales/delete/${id}`);
+    deleteAdicional(id: number): Observable<any> {
+      return this.http.delete(`http://localhost:8090/adicionales/delete/${id}`, { responseType: 'text' });
     }
+    
 }

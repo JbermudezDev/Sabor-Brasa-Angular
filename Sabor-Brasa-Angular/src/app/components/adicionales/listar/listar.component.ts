@@ -19,6 +19,7 @@ export class ListarAdicionalComponent implements OnInit {
     this.getAdicionales(); // Carga los adicionales al inicializar el componente
   }
 
+  // Método para obtener todos los adicionales
   getAdicionales(): void {
     this.adicionalService.getAdicionales().subscribe({
       next: (data) => {
@@ -31,6 +32,7 @@ export class ListarAdicionalComponent implements OnInit {
     });
   }
 
+  // Método para buscar adicionales
   buscarAdicionales(): void {
     const term = this.searchTerm.toLowerCase();
     this.filteredAdicionales = this.adicionales.filter(adicional =>
@@ -38,20 +40,27 @@ export class ListarAdicionalComponent implements OnInit {
     );
   }
 
+  // Método para eliminar un adicional
   deleteAdicional(id: number): void {
-    if (confirm('¿Estás seguro de que quieres eliminar este producto?')) {
+    if (confirm('¿Estás seguro de que quieres eliminar este adicional?')) {
       this.adicionalService.deleteAdicional(id).subscribe({
         next: () => {
           // Actualiza las listas eliminando el adicional correspondiente
           this.adicionales = this.adicionales.filter(adicional => adicional.id !== id);
           this.filteredAdicionales = this.filteredAdicionales.filter(adicional => adicional.id !== id);
-          alert('Producto eliminado correctamente');
+          alert('Adicional eliminado correctamente');
         },
         error: (err) => {
           console.error('Error al eliminar el adicional:', err);
-          alert('Ocurrió un error al intentar eliminar el adicional.');
+          if (err.status === 404) {
+            alert('El adicional no existe.');
+          } else if (err.status === 500) {
+            alert('Error interno del servidor. Por favor, inténtalo más tarde.');
+          } else {
+            alert('Ocurrió un error inesperado al intentar eliminar el adicional.');
+          }
         }
       });
     }
   }
-  }
+}
