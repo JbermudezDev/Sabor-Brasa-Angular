@@ -1,42 +1,36 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
-import { CarritoService } from 'src/app/services/carrito.service'; // Importa el servicio del carrito
-import { ViewEncapsulation } from '@angular/core';
+import { CarritoService } from 'src/app/services/carrito.service';
 
 @Component({
   selector: 'app-login-cliente',
   templateUrl: './login-cliente.component.html',
-  styleUrls: ['./login-cliente.component.css'],
-  encapsulation: ViewEncapsulation.None
+  styleUrls: ['./login-cliente.component.css']
 })
-export class LoginClienteComponent {
+export class LoginClienteComponent {   
   email: string = '';
   password: string = '';
   errorMessage: string = '';
 
   constructor(
     private authService: AuthService,
-    private carritoService: CarritoService, // Inyecta el servicio del carrito
+    private carritoService: CarritoService,
     private router: Router
   ) {}
 
   onSubmit(): void {
-    // Llamar al servicio para autenticar al cliente
     this.authService.logiincliente(this.email, this.password).subscribe({
       next: (response) => {
         console.log('Inicio de sesión exitoso:', response);
-
-        // Asociar el ID del cliente logueado al CarritoService
-        if (response && response.id) {
-          this.carritoService.setClienteId(response.id);
-        }
-
+  
+        // ✅ Guardar cliente logueado correctamente
+        this.authService.loginClienteSuccess(response);
+  
         // Redirigir a la página de información del cliente
         this.router.navigate(['/info-cliente']);
       },
       error: (err) => {
-        // Manejar errores de autenticación
         console.error('Error al iniciar sesión:', err);
         if (err.status === 401) {
           this.errorMessage = 'Credenciales incorrectas. Por favor, intente nuevamente.';
@@ -48,4 +42,5 @@ export class LoginClienteComponent {
       }
     });
   }
+  
 }
