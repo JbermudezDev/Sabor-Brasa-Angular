@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, of } from 'rxjs';
 import { Cliente } from '../models/carrodecompras.model'; // Modelo de Cliente
+import { tap as rxjsTap } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -28,7 +29,12 @@ export class AuthService {
 
   logiincliente(email: string, password: string): Observable<Cliente> {
     const credenciales = { email, password };
-    return this.http.post<Cliente>(`${this.baseUrl}/cliente`, credenciales, { withCredentials: true });
+    return this.http.post<Cliente>(`${this.baseUrl}/cliente`, credenciales, { withCredentials: true }).pipe(
+      rxjsTap((cliente: Cliente) => {
+        // Guarda el cliente en localStorage después de un inicio de sesión exitoso
+        localStorage.setItem('clienteActual', JSON.stringify(cliente));
+      })
+    );
   }
 
   loginOperador(usuario: string, contrasena: string): Observable<any> {
@@ -57,3 +63,8 @@ export class AuthService {
     return this.clienteActual;
   }
 }
+
+function tap(arg0: (cliente: Cliente) => void): import("rxjs").OperatorFunction<Cliente, Cliente> {
+  return rxjsTap(arg0);
+}
+
