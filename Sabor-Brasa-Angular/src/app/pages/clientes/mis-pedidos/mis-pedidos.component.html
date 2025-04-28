@@ -1,27 +1,95 @@
-<div class="main-content">
-    <h1>Mis Pedidos</h1>
+<!-- Header -->
+<header class="header" id="header">
+    <div class="header__container">
+      <button class="header__toggle" id="header-toggle">
+        <i class="ri-menu-line"></i>
+      </button>
+    </div>
+  </header>
   
-    <div *ngIf="pedidos.length > 0; else sinPedidos">
-      <div *ngFor="let pedido of pedidos" class="pedido-card">
-        <h3>{{ pedido.producto.nombre }}</h3>
-        <p>{{ pedido.producto.descripcion }}</p>
-        <p><strong>Precio:</strong> {{ pedido.producto.precio | currency:'COP' }}</p>
-  
-        <div *ngIf="pedido.adicionales.length > 0">
-          <p><strong>Adicionales:</strong></p>
-          <ul>
-            <li *ngFor="let adicional of pedido.adicionales">
-              {{ adicional.nombre }} ({{ adicional.precio | currency:'COP' }})
-            </li>
-          </ul>
+  <!-- Sidebar -->
+  <nav class="sidebar" id="sidebar">
+    <div class="sidebar__container">
+      <div class="sidebar__user">
+        <div class="sidebar__img">
+          <img src="/assets/images/administrador.png" alt="image" />
         </div>
   
-        <p><strong>Total Pedido:</strong> {{ getTotalPedido(pedido) | currency:'COP' }}</p>
+        <div class="sidebar__info">
+          <h3>Juan Jose Bermudez</h3>
+          <span></span>
+        </div>
+      </div>
+  
+      <div class="sidebar__content">
+        <div class="sidebar__list">
+            <a routerLink="/listarDashCliente" class="sidebar__link">
+                <i class="ri-profile-line"></i>
+                <span>Mi Perfil</span>
+              </a>
+  
+          <a routerLink="/clientes/pedidos" class="sidebar__link">
+            <i class="ri-walk-line"></i>
+            <span>Mis Pedidos</span>
+          </a>
+  
+          <a routerLink="/clientes/historial" class="sidebar__link">
+            <i class="ri-riding-line"></i>
+            <span>Historial Pedidos</span>
+          </a>
+        </div>
+      </div>
+      <div class="button-container" style="margin-bottom: 20px;">
+        <a routerLink="/menu">
+          <button class="btn-menu">
+            Ir al Menú
+          </button>
+        </a>
+      </div>
+  
+      <div class="sidebar__actions">
+        <a routerLink="/" class="sidebar__link">
+          <i class="ri-logout-box-r-fill"></i>
+          <span>Log Out</span>
+        </a>
       </div>
     </div>
+  </nav>
   
-    <ng-template #sinPedidos>
-      <p>No tienes pedidos confirmados todavía.</p>
-    </ng-template>
-  </div>
+  <!-- Main Content -->
+  <main class="main container" id="main">
+    <div class="main-content">
+      <h1>Mis Pedidos</h1>
+  
+      <div class="table-container">
+        <section class="dashboard">
+  
+          <div *ngIf="pedidos.length > 0; else sinPedidos">
+            <div *ngFor="let pedido of pedidos" class="pedido-card">
+              <h3>{{ pedido.producto.nombre }}</h3>
+              <p>{{ pedido.producto.descripcion }}</p>
+              <p><strong>Precio base:</strong> {{ pedido.producto.precio | currency:'COP' }}</p>
+  
+              <div *ngIf="pedido.adicionales.length > 0">
+                <p><strong>Adicionales:</strong></p>
+                <ul>
+                  <li *ngFor="let adicional of pedido.adicionales">
+                    {{ adicional.nombre }} ({{ adicional.precio | currency:'COP' }})
+                  </li>
+                </ul>
+              </div>
+  
+              <p><strong>Total Pedido:</strong> {{ getTotalPedido(pedido) | currency:'COP' }}</p>
+              <hr>
+            </div>
+          </div>
+  
+          <ng-template #sinPedidos>
+            <p>No tienes pedidos confirmados todavía.</p>
+          </ng-template>
+  
+        </section>
+      </div>
+    </div>
+  </main>
   

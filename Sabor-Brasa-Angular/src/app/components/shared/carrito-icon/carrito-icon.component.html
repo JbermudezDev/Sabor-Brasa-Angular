@@ -25,7 +25,7 @@
 
     <div class="cart-footer">
       <p><strong>Total:</strong> {{ getTotal() | currency:'COP' }}</p>
-      <button class="checkout-button">Finalizar Compra</button>
+      <button class="btn-pagar" (click)="irAPagar()">Ir a Pagar</button>
     </div>
   </div>
 </div>
