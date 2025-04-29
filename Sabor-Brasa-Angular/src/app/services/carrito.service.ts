@@ -1,22 +1,29 @@
 import { Injectable } from '@angular/core';
 import { Producto } from '../models/producto.model';
 import { Adicional } from '../models/adicional.model';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface ItemCarrito {
   producto: any;
   adicionales: any[];
   total: number;
   clienteId: number; 
-}
+
+    
+  }
 
 @Injectable({
   providedIn: 'root'
 })
 export class CarritoService {
+  private baseUrl = 'http://localhost:8090/api/carrito'; // URL base del backend
   private carrito: ItemCarrito[] = [];
   private clienteId!: number;
+  
+  
 
-  constructor() {}
+  constructor(private http: HttpClient) {}
 
   setClienteId(id: number) {
     this.clienteId = id;
@@ -50,4 +57,8 @@ export class CarritoService {
   calcularTotalGeneral(): number {
     return this.carrito.reduce((sum, item) => sum + item.total, 0);
   }
+  guardarCarritoEnServidor(carrito: any): Observable<any> {
+    return this.http.post('http://localhost:8090/api/carrito/guardar', carrito);
+  }
+  
 }

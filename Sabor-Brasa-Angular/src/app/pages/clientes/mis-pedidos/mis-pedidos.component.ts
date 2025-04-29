@@ -19,4 +19,5 @@ export class MisPedidosComponent implements OnInit {
   getTotalPedido(pedido: ItemCarrito): number {
     return pedido.total;
   }
+  
 }

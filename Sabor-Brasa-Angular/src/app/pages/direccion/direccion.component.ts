@@ -43,8 +43,15 @@ export class DireccionComponent implements OnInit {
       // se puede extender esto con una interfaz para "Direccion"
     };
 
-    this.carritoService.agregar(item);
-    alert('Producto agregado al carrito');
+
+    this.carritoService.guardarCarritoEnServidor(item).subscribe({
+      next: (response) => {
+        console.log('Carrito guardado en el servidor:', response);
+      },
+      error: (error) => {
+        console.error('Error al guardar el carrito en el servidor:', error);
+      }
+    });
 
     // Redirigir a otra vista o mostrar pop-up
     this.router.navigate(['/menu']); // por ahora vuelve al menú

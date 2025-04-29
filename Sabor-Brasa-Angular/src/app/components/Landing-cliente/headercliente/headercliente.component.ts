@@ -7,6 +7,7 @@ import { Router, RouterLink } from '@angular/router';
   imports: [RouterLink],
   templateUrl: './headercliente.component.html',
   styleUrls: ['./headercliente.component.css']
+  // encapsulation: ViewEncapsulation.None
 })
 export class HeaderclienteComponent {
 

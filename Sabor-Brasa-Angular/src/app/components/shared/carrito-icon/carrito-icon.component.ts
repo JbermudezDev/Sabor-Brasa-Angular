@@ -1,10 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService, ItemCarrito } from 'src/app/services/carrito.service';
 import { Router } from '@angular/router';
+import { ViewEncapsulation } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-carrito-icon',
   templateUrl: './carrito-icon.component.html',
-  styleUrls: ['./carrito-icon.component.css']
+  styleUrls: ['./carrito-icon.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class CarritoIconComponent implements OnInit {
   mostrarModal = false;
@@ -12,7 +16,7 @@ export class CarritoIconComponent implements OnInit {
 
   constructor(
     public carritoService: CarritoService,
-    private router: Router
+    private router: Router, private http: HttpClient
   ) {}
 
   ngOnInit(): void {
@@ -39,4 +43,8 @@ export class CarritoIconComponent implements OnInit {
     this.router.navigate(['/direccion']);
   }
 
+  guardarCarritoEnServidor(carrito: any): Observable<any> {
+    return this.http.post('/guardar', carrito);
+  }
+  
 }
