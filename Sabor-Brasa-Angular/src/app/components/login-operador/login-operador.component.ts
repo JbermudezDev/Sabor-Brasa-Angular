@@ -22,7 +22,7 @@ export class LoginOperadorComponent {
       next: (response) => {
         // Redirigir al operador si la autenticación es exitosa
         console.log('Inicio de sesión exitoso:', response);
-        this.router.navigate(['/administrador']); // Cambia '/dashboard' por la ruta deseada
+        this.router.navigate(['/listarOperadores']); // Cambia '/dashboard' por la ruta deseada
       },
       error: (err) => {
         // Manejar errores de autenticación

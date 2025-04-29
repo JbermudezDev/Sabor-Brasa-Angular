@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
@@ -6,9 +6,11 @@ import { Cliente } from 'src/app/models/carrodecompras.model';
 @Component({
   selector: 'app-mis-pedidos',
   templateUrl: './mis-pedidos.component.html',
-  styleUrls: ['./mis-pedidos.component.css']
+  styleUrls: ['./mis-pedidos.component.css'],
+  encapsulation: ViewEncapsulation.None
 })
 export class MisPedidosComponent implements OnInit {
+  
   pedidos: any[] = [];
   cliente!: Cliente;
 

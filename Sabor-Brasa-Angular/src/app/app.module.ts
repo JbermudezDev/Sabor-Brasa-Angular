@@ -43,6 +43,7 @@ import { CarritoIconComponent } from './components/shared/carrito-icon/carrito-i
 import { RegistrarComponent } from './components/registrar/registrar.component';
 import { DashclienteListarComponent } from './components/dashcliente-listar/dashcliente-listar.component';
 import { MisPedidosComponent } from './pages/clientes/mis-pedidos/mis-pedidos.component';
+import { ListarOperadoresComponent } from './components/listar-operador/listar-operador.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +75,7 @@ import { MisPedidosComponent } from './pages/clientes/mis-pedidos/mis-pedidos.co
     RegistrarComponent,
     DashclienteListarComponent,
     MisPedidosComponent,
+    ListarOperadoresComponent,
 
 
     

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, of } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Cliente } from '../models/carrodecompras.model'; // Modelo de Cliente
 import { tap as rxjsTap } from 'rxjs/operators';
 
@@ -31,7 +31,8 @@ export class AuthService {
     const credenciales = { email, password };
     return this.http.post<Cliente>(`${this.baseUrl}/cliente`, credenciales, { withCredentials: true }).pipe(
       rxjsTap((cliente: Cliente) => {
-        // Guarda el cliente en localStorage después de un inicio de sesión exitoso
+        // Guarda el cliente en memoria y localStorage después de un inicio de sesión exitoso
+        this.clienteActual = cliente;
         localStorage.setItem('clienteActual', JSON.stringify(cliente));
       })
     );
@@ -65,14 +66,15 @@ export class AuthService {
     }
     return !!this.clienteActual;
   }
-  
 
   getClienteActual(): Cliente | undefined {
+    if (!this.clienteActual) {
+      // Si no está cargado en memoria, intenta cargarlo desde localStorage
+      const storedCliente = localStorage.getItem('clienteActual');
+      if (storedCliente) {
+        this.clienteActual = JSON.parse(storedCliente);
+      }
+    }
     return this.clienteActual;
   }
 }
-
-function tap(arg0: (cliente: Cliente) => void): import("rxjs").OperatorFunction<Cliente, Cliente> {
-  return rxjsTap(arg0);
-}
-
