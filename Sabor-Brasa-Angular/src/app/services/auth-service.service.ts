@@ -56,8 +56,16 @@ export class AuthService {
   }
 
   isClienteLoggedIn(): boolean {
+    if (!this.clienteActual) {
+      // Si no está cargado en memoria, intenta cargarlo desde localStorage
+      const storedCliente = localStorage.getItem('clienteActual');
+      if (storedCliente) {
+        this.clienteActual = JSON.parse(storedCliente);
+      }
+    }
     return !!this.clienteActual;
   }
+  
 
   getClienteActual(): Cliente | undefined {
     return this.clienteActual;

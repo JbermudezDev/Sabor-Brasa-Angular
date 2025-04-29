@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { CarritoService, ItemCarrito } from 'src/app/services/carrito.service';
 import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-carrito-icon',
   templateUrl: './carrito-icon.component.html',
@@ -8,7 +9,7 @@ import { Router } from '@angular/router';
 })
 export class CarritoIconComponent implements OnInit {
   mostrarModal = false;
-  carrito: ItemCarrito[] = []; 
+  carrito: ItemCarrito[] = [];
 
   constructor(
     public carritoService: CarritoService,
@@ -16,12 +17,16 @@ export class CarritoIconComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Cargamos el carrito al iniciar
+    this.actualizarCarrito();
+  }
+
+  actualizarCarrito(): void {
     this.carrito = this.carritoService.obtenerCarrito();
   }
 
   toggleModal(): void {
     this.mostrarModal = !this.mostrarModal;
+    this.actualizarCarrito(); // Cada vez que abres el modal, actualizas el carrito (por si cambió)
   }
 
   getTotal(): number {
@@ -38,5 +43,4 @@ export class CarritoIconComponent implements OnInit {
   irAPagar(): void {
     this.router.navigate(['/direccion']);
   }
-
 }
