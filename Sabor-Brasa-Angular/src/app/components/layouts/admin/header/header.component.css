@@ -1,0 +1,69 @@
+/*=============== HEADER ===============*/
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: var(--z-fixed);
+  margin: 0.75rem;
+}
+
+.header__container {
+  width: 100%;
+  height: var(--header-height);
+  background-color: var(--body-color);
+  box-shadow: 0 2px 24px var(--shadow-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-inline: 1.5rem;
+  border-radius: 1rem;
+  transition: background-color 0.4s;
+  border: 2px solid rgba(0, 0, 0, 0.245); /* Añade un borde negro */
+}
+button {
+  all: unset;
+}
+.header__logo {
+  display: inline-flex;
+  align-items: center;
+  column-gap: 0.25rem;
+}
+
+.header__logo i {
+  font-size: 1.5rem;
+  color: var(--first-color);
+}
+
+.header__logo span {
+  color: var(--title-color);
+  font-weight: var(--font-semi-bold);
+}
+
+.header__toggle {
+  font-size: 1.5rem;
+  color: var(--title-color);
+  cursor: pointer;
+}
+@media screen and (max-width: 360px) {
+  .header__container {
+    padding-inline: 1rem;
+  }
+}
+@media screen and (min-width: 1150px) {
+  .header {
+    margin: 1rem;
+    padding-left: 340px;
+    transition: padding 0.4s;
+  }
+  .header__container {
+    height: calc(var(--header-height) + 2rem);
+    padding-inline: 2rem;
+  }
+  .header__logo {
+    order: 1;
+  }
+}
+:host {
+  --header-height: 3.5rem;
+}

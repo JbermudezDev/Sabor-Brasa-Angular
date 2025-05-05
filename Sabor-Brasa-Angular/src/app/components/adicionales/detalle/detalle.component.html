@@ -1,55 +1,8 @@
 <div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
-    </div>
-  </header>
+ 
 
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="Administrador" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-        </div>
-      </div>
-      <div class="sidebar__content">
-        <div>
-          <h3 class="sidebar__title">MANAGE</h3>
-          <div class="sidebar__list">
-            <a routerLink="/Administrador" class="sidebar__link">
-              <i class="ri-vip-crown-fill"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales/all" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos/all" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes/all" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>
-  </nav>
+<layout-admin-header></layout-admin-header>
+<layout-admin-sidebar></layout-admin-sidebar> 
 
   <!--=============== MAIN ===============-->
   <main class="main-content">

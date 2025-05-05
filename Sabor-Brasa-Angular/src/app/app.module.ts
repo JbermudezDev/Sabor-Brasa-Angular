@@ -44,6 +44,8 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
 import { DashclienteListarComponent } from './components/dashcliente-listar/dashcliente-listar.component';
 import { MisPedidosComponent } from './pages/clientes/mis-pedidos/mis-pedidos.component';
 import { ListarOperadoresComponent } from './components/listar-operador/listar-operador.component';
+import { LayoutsAdminSidebarComponent } from './components/layouts/admin/sidebar/sidebar.component';
+import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/header.component';
 
 @NgModule({
   declarations: [
@@ -76,6 +78,8 @@ import { ListarOperadoresComponent } from './components/listar-operador/listar-o
     DashclienteListarComponent,
     MisPedidosComponent,
     ListarOperadoresComponent,
+    LayoutsAdminSidebarComponent,
+    LayoutsAdminHeaderComponent,
 
 
     

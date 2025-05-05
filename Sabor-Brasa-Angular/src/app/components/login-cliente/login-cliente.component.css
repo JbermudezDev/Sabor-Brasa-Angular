@@ -214,24 +214,26 @@ body {
 .inputForm {
     border: 1.5px solid rgba(0, 0, 0, 0.6); /* Borde semitransparente */
     border-radius: 10px;
+    flex-direction: column;
     height: 50px;
     display: flex;
-    align-items: center;
-    padding-left: 10px;
+    align-items: stretch;
+    
     transition: 0.2s ease-in-out;
     background-color: rgba(255, 255, 255, 1); /* Fondo semitransparente */
     backdrop-filter: blur(10px); /* Efecto de desenfoque */
     width: 100%;
+    justify-content: stretch;
 }
 
 .input {
-    margin-left: 10px;
+   padding-inline: 10px;
     border-radius: 10px;
     border: none;
-    width: 85%;
+    
     height: 100%;
-    background-color: rgba(255, 255, 255, 0.6); /* Fondo semitransparente */
-    backdrop-filter: blur(10px); /* Efecto de desenfoque */
+    background-color: transparent;
+    
     color: #151717; /* Color del texto */
 }
 

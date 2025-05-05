@@ -7,7 +7,7 @@ import { Adicional } from 'src/app/models/adicional.model';
   selector: 'app-agregar-adicional',
   templateUrl: './agregar.component.html',
   styleUrls: ['./agregar.component.css'],
-  encapsulation: ViewEncapsulation.None
+  
 })
 export class AgregarAdicionalComponent {
   adicional: Adicional = {
