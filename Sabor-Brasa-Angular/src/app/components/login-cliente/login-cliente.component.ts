@@ -22,7 +22,7 @@ export class LoginClienteComponent {
   ) {}
 
   onSubmit(): void {
-    this.authService.logiincliente(this.email, this.password).subscribe({
+    this.authService.loginCliente(this.email, this.password).subscribe({
       next: (cliente) => {
         console.log('Inicio de sesión exitoso:', cliente);
 

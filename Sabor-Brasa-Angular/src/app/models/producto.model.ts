@@ -8,5 +8,6 @@ export interface Producto {
   precio: number;
   descripcion: string;
   imagen: string;
+
   adicionales: Adicional[]; // Relación con adicionales
 }

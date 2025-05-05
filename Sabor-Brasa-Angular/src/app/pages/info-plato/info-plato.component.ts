@@ -3,9 +3,8 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Producto } from 'src/app/models/producto.model';
 import { Adicional } from 'src/app/models/adicional.model';
 import { ProductoService } from 'src/app/services/producto.service';
-import { CarritoService } from 'src/app/services/carrito.service'; // Importa CarritoService
-import { ItemCarrito } from 'src/app/models/carrodecompras.model';
-import { AuthService } from 'src/app/services/auth-service.service'; // Importa AuthService
+import { CarritoService, ItemCarrito } from 'src/app/services/carrito.service';
+import { AuthService } from 'src/app/services/auth-service.service';
 
 @Component({
   selector: 'app-info-plato',
@@ -20,13 +19,19 @@ export class InfoPlatoComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private productoService: ProductoService,
-    private carritoService: CarritoService, // Inyecta CarritoService
-    private authService: AuthService, // Inyecta AuthService
-    private router: Router // Inyecta Router
+    private carritoService: CarritoService,
+    private authService: AuthService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     const id = Number(this.route.snapshot.paramMap.get('id'));
+    if (!id) {
+      alert('ID de producto inválido');
+      this.router.navigate(['/menu']);
+      return;
+    }
+
     this.productoService.getInfoPlato(id).subscribe({
       next: (producto) => {
         this.producto = producto;
@@ -34,6 +39,7 @@ export class InfoPlatoComponent implements OnInit {
       },
       error: (err) => {
         console.error('Error al cargar la información del plato:', err);
+        alert('No se pudo cargar la información del plato');
       }
     });
   }
@@ -48,23 +54,23 @@ export class InfoPlatoComponent implements OnInit {
   }
 
   agregarAlCarrito(): void {
-    if (!this.authService.isClienteLoggedIn) {
-      // Si no está logueado, redirige a login
+    if (!this.authService.isClienteLoggedIn()) {
       alert('Debes iniciar sesión para agregar productos al carrito.');
       this.router.navigate(['/login-cliente']);
       return;
     }
 
-    if (this.producto) {
-      const item: ItemCarrito = {
-        producto: this.producto,
-        adicionales: this.adicionalesSeleccionados,
-        total: this.getTotal()
-      };
+    if (!this.producto) return;
 
-      this.carritoService.agregar(item);
-      alert('Producto agregado al carrito');
-    }
+    const item: ItemCarrito = {
+      producto: this.producto,
+      adicionales: this.adicionalesSeleccionados,
+      total: this.getTotal()
+    };
+
+    this.carritoService.agregar(item);
+    alert('Producto agregado al carrito con éxito');
+    this.router.navigate(['/menu']);
   }
 
   esAdicionalSeleccionado(adicionalId: number): boolean {
@@ -72,6 +78,7 @@ export class InfoPlatoComponent implements OnInit {
   }
 
   getTotal(): number {
-    return this.producto.precio + this.adicionalesSeleccionados.reduce((s, a) => s + a.precio, 0);
+    const precioAdicionales = this.adicionalesSeleccionados.reduce((s, a) => s + a.precio, 0);
+    return this.producto.precio + precioAdicionales;
   }
 }

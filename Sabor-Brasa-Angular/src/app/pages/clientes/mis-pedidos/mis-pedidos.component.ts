@@ -1,7 +1,8 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { PedidoService } from 'src/app/services/pedido.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
+import { Pedido } from 'src/app/models/pedido.model';
 
 @Component({
   selector: 'app-mis-pedidos',
@@ -10,13 +11,12 @@ import { Cliente } from 'src/app/models/carrodecompras.model';
   encapsulation: ViewEncapsulation.None
 })
 export class MisPedidosComponent implements OnInit {
-  
-  pedidos: any[] = [];
+  pedidos: Pedido[] = [];
   cliente!: Cliente;
 
   constructor(
-    private http: HttpClient,
-    private authService: AuthService
+    private authService: AuthService,
+    private pedidoService: PedidoService
   ) {}
 
   ngOnInit(): void {
@@ -25,11 +25,11 @@ export class MisPedidosComponent implements OnInit {
       alert('Debe iniciar sesión para ver sus pedidos');
       return;
     }
-  
-    this.http.get<any[]>(`http://localhost:8090/pedidos/cliente/${clienteActual.id}`).subscribe({
-      next: (data) => {
+
+    this.pedidoService.obtenerPedidosPorCliente(clienteActual.id).subscribe({
+      next: (data: Pedido[]) => {
         this.pedidos = data;
-        console.log('Pedidos cargados:', data);
+        console.log('Pedidos cargados:', this.pedidos);
       },
       error: (err) => {
         console.error('Error al cargar pedidos:', err);
@@ -37,19 +37,14 @@ export class MisPedidosComponent implements OnInit {
       }
     });
   }
-  
 
-  getTotalPedido(pedido: any): number {
-    if (!pedido.carrito || !pedido.carrito.productosSeleccionados) {
-      return 0;
-    }
+  getTotalPedido(pedido: Pedido): number {
+    if (!pedido.carrito?.productosSeleccionados) return 0;
 
-    return pedido.carrito.productosSeleccionados.reduce(
-      (sum: number, item: any) => {
-        const adicionalesSum = item.adicionales ? item.adicionales.reduce((a: number, b: any) => a + b.precio, 0) : 0;
-        return sum + (item.producto?.precio ?? 0) + adicionalesSum;
-      },
-      0
-    );
+    return pedido.carrito.productosSeleccionados.reduce((sum, item) => {
+      const adicionales = item.adicionales ?? [];
+      const adicionalesSum = adicionales.reduce((a, b) => a + (b.precio ?? 0), 0);
+      return sum + (item.producto?.precio ?? 0) + adicionalesSum;
+    }, 0);
   }
 }

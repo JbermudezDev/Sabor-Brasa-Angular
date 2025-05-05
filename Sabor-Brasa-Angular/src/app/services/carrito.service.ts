@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 import { Producto } from '../models/producto.model';
 import { Adicional } from '../models/adicional.model';
+import { Observable } from 'rxjs';
 
 export interface ItemCarrito {
   producto: Producto;
@@ -12,24 +14,24 @@ export interface ItemCarrito {
   providedIn: 'root'
 })
 export class CarritoService {
+  private baseUrl = 'http://localhost:8090/carrito';
   private carrito: ItemCarrito[] = [];
   private clienteId?: number;
   private carritoId?: number;
 
-  constructor() {
-    this.cargarCarritoDeLocalStorage();
+  constructor(private http: HttpClient) {
     this.cargarClienteDeCookies();
     this.cargarCarritoIdDeCookies();
+    this.cargarCarritoDeLocalStorage();
   }
 
-  private cargarCarritoDeLocalStorage(): void {
-    const storedClienteId = localStorage.getItem('clienteId');
-    if (storedClienteId) {
-      const storedCarrito = localStorage.getItem(`carrito_${storedClienteId}`);
-      if (storedCarrito) {
-        this.carrito = JSON.parse(storedCarrito);
-      }
+  private obtenerCookie(nombre: string): string | null {
+    const cookies = document.cookie.split(';');
+    for (let c of cookies) {
+      const [key, value] = c.trim().split('=');
+      if (key === nombre) return value;
     }
+    return null;
   }
 
   private cargarClienteDeCookies(): void {
@@ -48,20 +50,27 @@ export class CarritoService {
     }
   }
 
-  private obtenerCookie(nombre: string): string | null {
-    const cookies = document.cookie.split(';');
-    for (let c of cookies) {
-      const [key, value] = c.trim().split('=');
-      if (key === nombre) {
-        return value;
-      }
+  private cargarCarritoDeLocalStorage(): void {
+    const datos = localStorage.getItem('carrito');
+    if (datos) {
+      this.carrito = JSON.parse(datos);
     }
-    return null;
+  }
+
+  private guardarCarritoEnLocalStorage(): void {
+    localStorage.setItem('carrito', JSON.stringify(this.carrito));
+  }
+
+  getCarritoDesdeBackend(): Observable<any> {
+    if (!this.clienteId) {
+      throw new Error('Cliente no autenticado');
+    }
+    return this.http.get<any>(`${this.baseUrl}/${this.clienteId}`);
   }
 
   agregar(item: ItemCarrito): void {
     this.carrito.push(item);
-    this.guardarCarrito();
+    this.guardarCarritoEnLocalStorage();
   }
 
   obtenerCarrito(): ItemCarrito[] {
@@ -70,7 +79,7 @@ export class CarritoService {
 
   eliminar(index: number): void {
     this.carrito.splice(index, 1);
-    this.guardarCarrito();
+    this.guardarCarritoEnLocalStorage();
   }
 
   limpiar(): void {
@@ -82,28 +91,13 @@ export class CarritoService {
     return this.carrito.reduce((sum, item) => sum + item.total, 0);
   }
 
-  private guardarCarrito(): void {
-    const clienteId = this.getClienteId();
-    if (clienteId) {
-      localStorage.setItem(`carrito_${clienteId}`, JSON.stringify(this.carrito));
-    }
-  }
-
   setClienteId(id: number): void {
     this.clienteId = id;
     localStorage.setItem('clienteId', id.toString());
   }
 
   getClienteId(): number | undefined {
-    if (this.clienteId) {
-      return this.clienteId;
-    }
-    const storedId = localStorage.getItem('clienteId');
-    if (storedId) {
-      this.clienteId = parseInt(storedId, 10);
-      return this.clienteId;
-    }
-    return undefined;
+    return this.clienteId ?? parseInt(localStorage.getItem('clienteId') || '', 10);
   }
 
   setCarritoId(id: number): void {
@@ -112,14 +106,6 @@ export class CarritoService {
   }
 
   getCarritoId(): number | undefined {
-    if (this.carritoId) {
-      return this.carritoId;
-    }
-    const storedId = localStorage.getItem('carritoId');
-    if (storedId) {
-      this.carritoId = parseInt(storedId, 10);
-      return this.carritoId;
-    }
-    return undefined;
+    return this.carritoId ?? parseInt(localStorage.getItem('carritoId') || '', 10);
   }
 }

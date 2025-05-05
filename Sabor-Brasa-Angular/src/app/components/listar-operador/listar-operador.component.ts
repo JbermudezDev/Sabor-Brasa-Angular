@@ -1,7 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { PedidoService } from 'src/app/services/pedido.service';
 import { AuthService } from 'src/app/services/auth-service.service';
-import { ClienteService } from 'src/app/services/cliente.service';
-import { Cliente } from 'src/app/models/carrodecompras.model';
+import { Pedido } from 'src/app/models/pedido.model';
+import { Domiciliario } from 'src/app/models/domiciliario.model';
+import { DomiciliarioService } from 'src/app/services/domiciliario.service';
 import { Router } from '@angular/router';
 
 @Component({
@@ -11,50 +13,61 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class ListarOperadoresComponent implements OnInit {
-  operador: Cliente = {
-    id: 0,
-    nombre: '',
-    apellido: '',
-    email: '',
-    telefono: '',
-    direccion: ''
-  };
+  pedidos: Pedido[] = [];
+  domiciliarios: Domiciliario[] = [];
+  operadorId!: number;
+
+  estados: string[] = ['recibido', 'cocinando', 'enviado', 'entregado'];
+
+  // Filtros
+  filtroCliente: string = '';
+  filtroEstado: string = '';
 
   constructor(
+    private pedidoService: PedidoService,
+    private domiciliarioService: DomiciliarioService,
     private authService: AuthService,
-    private clienteService: ClienteService,
     private router: Router
   ) {}
 
   ngOnInit(): void {
-    this.cargarOperador();
-  }
-
-  cargarOperador(): void {
-    const operadorActual = this.authService.getClienteActual();
-    if (!operadorActual || !operadorActual.id) {
-      alert('Debe iniciar sesión para ver esta información.');
+    const operador = this.authService.getClienteActual();
+    if (!operador || !operador.id) {
+      alert('Debes iniciar sesión como operador');
       this.router.navigate(['/login']);
       return;
     }
+    this.operadorId = operador.id;
 
-    this.operador = operadorActual;
-    console.log('Operador cargado:', this.operador);
+    this.pedidoService.listarTodos().subscribe({
+      next: (data) => this.pedidos = data,
+      error: () => alert('Error al cargar pedidos')
+    });
+
+    this.domiciliarioService.obtenerTodos().subscribe({
+      next: (data) => this.domiciliarios = data,
+      error: () => alert('Error al cargar domiciliarios')
+    });
   }
 
-  guardarCambios(): void {
-    if (this.operador.id) {
-      this.clienteService.updateCliente(this.operador.id, this.operador).subscribe({
-        next: () => {
-          alert('Datos actualizados con éxito.');
-        },
-        error: (err) => {
-          console.error('Error al actualizar los datos del operador:', err);
-          alert('No se pudieron guardar los cambios.');
-        }
-      });
-    } else {
-      alert('No se pudo identificar al operador.');
-    }
+  get pedidosFiltrados(): Pedido[] {
+    return this.pedidos.filter(pedido => {
+      const coincideCliente = !this.filtroCliente ||
+        `${pedido.cliente.nombre} ${pedido.cliente.apellido}`.toLowerCase().includes(this.filtroCliente.toLowerCase());
+
+      const coincideEstado = !this.filtroEstado || pedido.estado === this.filtroEstado;
+
+      return coincideCliente && coincideEstado;
+    });
+  }
+
+  actualizarPedido(pedido: Pedido): void {
+    const estado = pedido.estado;
+    const domiciliarioId = pedido.domiciliario?.id;
+
+    this.pedidoService.actualizarPedido(pedido.id, estado, this.operadorId, domiciliarioId).subscribe({
+      next: () => alert('Pedido actualizado con éxito'),
+      error: () => alert('No se pudo actualizar el pedido')
+    });
   }
 }

@@ -1,11 +1,19 @@
-import { Cliente } from './cliente.model';
-import { DetallePedido } from './detalllepedido.model'; // Update the path to the correct location
+import { Cliente } from './carrodecompras.model';
+import { SeleccionarProducto } from './seleccionarproducto';
+import { Domiciliario } from './domiciliario.model';
+import { Operador } from './operador.model';
 
 export interface Pedido {
-    id?: number;
-    fechaCreacion: Date;
-    fechaEntrega?: Date;
-    estado: string;
-    cliente: Cliente;
-    detalles?: DetallePedido[];
-  }
+  id: number;
+  cliente: Cliente;
+  fechaCreacion: Date;
+  fechaEntrega?: Date;
+  estado: 'RECIBIDO' | 'COCINANDO' | 'ENVIADO' | 'ENTREGADO';  // Enum implícito
+  total: number;
+  carrito: {
+    id: number;
+    productosSeleccionados: SeleccionarProducto[];
+  };
+  operador?: Operador;
+  domiciliario?: Domiciliario;
+}

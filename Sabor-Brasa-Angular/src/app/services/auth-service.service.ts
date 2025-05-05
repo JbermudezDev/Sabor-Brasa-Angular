@@ -9,11 +9,9 @@ import { tap as rxjsTap } from 'rxjs/operators';
 })
 export class AuthService {
   private baseUrl = 'http://localhost:8090/login';
-
   private clienteActual!: Cliente; // Cliente logueado
 
   constructor(private http: HttpClient) {
-    // Al iniciar la aplicación, revisamos si ya había un cliente guardado
     const storedCliente = localStorage.getItem('clienteActual');
     if (storedCliente) {
       this.clienteActual = JSON.parse(storedCliente);
@@ -27,11 +25,10 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/admin`, credenciales, { withCredentials: true });
   }
 
-  logiincliente(email: string, password: string): Observable<Cliente> {
+  loginCliente(email: string, password: string): Observable<Cliente> {
     const credenciales = { email, password };
     return this.http.post<Cliente>(`${this.baseUrl}/cliente`, credenciales, { withCredentials: true }).pipe(
       rxjsTap((cliente: Cliente) => {
-        // Guarda el cliente en memoria y localStorage después de un inicio de sesión exitoso
         this.clienteActual = cliente;
         localStorage.setItem('clienteActual', JSON.stringify(cliente));
       })
@@ -53,12 +50,11 @@ export class AuthService {
   logoutCliente(): Observable<any> {
     this.clienteActual = undefined!;
     localStorage.removeItem('clienteActual');
-    return this.http.post(`${this.baseUrl}/logout`, {}, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}/logoutCliente`, {}, { withCredentials: true });
   }
 
   isClienteLoggedIn(): boolean {
     if (!this.clienteActual) {
-      // Si no está cargado en memoria, intenta cargarlo desde localStorage
       const storedCliente = localStorage.getItem('clienteActual');
       if (storedCliente) {
         this.clienteActual = JSON.parse(storedCliente);
@@ -69,7 +65,6 @@ export class AuthService {
 
   getClienteActual(): Cliente | undefined {
     if (!this.clienteActual) {
-      // Si no está cargado en memoria, intenta cargarlo desde localStorage
       const storedCliente = localStorage.getItem('clienteActual');
       if (storedCliente) {
         this.clienteActual = JSON.parse(storedCliente);
