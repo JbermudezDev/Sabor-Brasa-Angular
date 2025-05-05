@@ -302,6 +302,8 @@ body {
     padding: 10px;
     text-align: left;
     border-bottom: 1px solid #ddd;
+    color: #000000;
+    font-family: 'Times New Roman', Times, serif;
   }
   
   th {
@@ -891,3 +893,56 @@ body {
   .btn-menu:hover {
     background-color: #e04e4e;
   }
+  .tabla-pedidos {
+    width: 100%;
+    border-collapse: collapse;
+    font-family: 'Segoe UI', sans-serif;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    margin-top: 1.5rem;
+    background-color: #fff;
+    border-radius: 12px;
+    overflow: hidden;
+  }
+  
+  .tabla-pedidos th,
+  .tabla-pedidos td {
+    padding: 1rem;
+    text-align: left;
+    vertical-align: top;
+    border-bottom: 1px solid #e0e0e0;
+  }
+  
+  .tabla-pedidos thead {
+    background-color: #fcb041;
+    color: #000;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .tabla-pedidos td ul {
+    list-style-type: none;
+    padding-left: 0;
+    margin: 0;
+  }
+  
+  .producto-nombre {
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+  }
+  
+  .producto-descripcion,
+  .producto-precio,
+  .adicionales-titulo {
+    font-size: 0.9rem;
+    margin-bottom: 0.25rem;
+  }
+  
+  .adicionales-titulo {
+    margin-top: 0.5rem;
+    font-weight: 500;
+  }
+  
+  .tabla-pedidos tr:hover {
+    background-color: #f9f9f9;
+  }
+  

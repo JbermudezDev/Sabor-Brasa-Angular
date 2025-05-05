@@ -697,3 +697,70 @@ input:focus {
 .btn-submit:hover {
     background: #0056b3;
 }
+.titulo-pedidos {
+  background-color: #fbb03b;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  margin-bottom: 20px;
+}
+
+.filtros-container {
+  display: flex;
+  justify-content: start;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filtro-input,
+.filtro-select {
+  padding: 8px 12px;
+  border-radius: 8px;
+  border: 1px solid #ccc;
+  font-size: 14px;
+}
+
+.tabla-pedidos {
+  width: 100%;
+  border-collapse: collapse;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+
+.tabla-pedidos th {
+  background-color: #444;
+  color: white;
+  padding: 12px;
+  text-align: left;
+}
+
+.tabla-pedidos td {
+  padding: 12px;
+  border-bottom: 1px solid #eee;
+}
+
+.select-estado,
+.select-domiciliario {
+  padding: 6px 10px;
+  border-radius: 6px;
+  border: 1px solid #ccc;
+  background-color: #f8f8f8;
+  font-size: 14px;
+}
+
+.btn-actualizar {
+  padding: 6px 14px;
+  background-color: #0099ff;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-actualizar:hover {
+  background-color: #007acc;
+}

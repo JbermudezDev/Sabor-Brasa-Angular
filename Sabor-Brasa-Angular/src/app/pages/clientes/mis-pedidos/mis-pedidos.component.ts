@@ -40,11 +40,20 @@ export class MisPedidosComponent implements OnInit {
 
   getTotalPedido(pedido: Pedido): number {
     if (!pedido.carrito?.productosSeleccionados) return 0;
-
-    return pedido.carrito.productosSeleccionados.reduce((sum, item) => {
+  
+    let total = 0;
+    pedido.carrito.productosSeleccionados.forEach((item) => {
+      const precioProducto = item.producto?.precio ?? 0;
       const adicionales = item.adicionales ?? [];
       const adicionalesSum = adicionales.reduce((a, b) => a + (b.precio ?? 0), 0);
-      return sum + (item.producto?.precio ?? 0) + adicionalesSum;
-    }, 0);
+  
+      console.log(`Producto: ${item.producto?.nombre}, Precio: ${precioProducto}, Adicionales: ${adicionalesSum}`);
+      
+      total += precioProducto + adicionalesSum;
+    });
+  
+    console.log(`Total para el pedido ${pedido.id}:`, total);
+    return total;
   }
+  
 }

@@ -1,3 +1,4 @@
+<!-- Header -->
 <header class="header" id="header">
   <div class="header__container">
     <button class="header__toggle" id="header-toggle">
@@ -6,11 +7,12 @@
   </div>
 </header>
 
+<!-- Sidebar -->
 <nav class="sidebar" id="sidebar">
   <div class="sidebar__container">
     <div class="sidebar__user">
       <div class="sidebar__img">
-        <img src="/assets/images/administrador.png" alt="image" />
+        <img src="/assets/images/administrador.png" alt="Perfil Operador" />
       </div>
       <div class="sidebar__info">
         <h3>Operador</h3>
@@ -32,21 +34,23 @@
   </div>
 </nav>
 
+<!-- Main Content -->
 <main class="main container" id="main">
   <div class="main-content">
-    <h1>Gestión de Pedidos</h1>
+    <h1 class="titulo-pedidos">Gestión de Pedidos</h1>
 
     <!-- Filtros -->
-    <div class="filtros">
-      <input type="text" [(ngModel)]="filtroCliente" placeholder="Filtrar por cliente" />
-      <select [(ngModel)]="filtroEstado">
+    <div class="filtros-container">
+      <input type="text" class="filtro-input" [(ngModel)]="filtroCliente" placeholder="Filtrar por cliente" />
+      <select class="filtro-select" [(ngModel)]="filtroEstado">
         <option value="">Todos los estados</option>
         <option *ngFor="let est of estados" [value]="est">{{ est }}</option>
       </select>
     </div>
 
+    <!-- Tabla de Pedidos -->
     <div class="table-container">
-      <table>
+      <table class="tabla-pedidos">
         <thead>
           <tr>
             <th>ID</th>
@@ -61,12 +65,12 @@
             <td>{{ pedido.id }}</td>
             <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
             <td>
-              <select [(ngModel)]="pedido.estado">
+              <select class="select-estado" [(ngModel)]="pedido.estado">
                 <option *ngFor="let est of estados" [value]="est">{{ est }}</option>
               </select>
             </td>
             <td>
-              <select [(ngModel)]="pedido.domiciliario">
+              <select class="select-domiciliario" [(ngModel)]="pedido.domiciliario">
                 <option [ngValue]="null">Sin asignar</option>
                 <option *ngFor="let dom of domiciliarios" [ngValue]="dom">
                   {{ dom.nombre }}
