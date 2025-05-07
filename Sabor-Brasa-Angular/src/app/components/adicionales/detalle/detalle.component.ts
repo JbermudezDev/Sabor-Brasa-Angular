@@ -7,7 +7,6 @@ import { Adicional } from 'src/app/models/adicional.model';
   selector: 'app-detalle-adicional',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class DetalleAdicionalComponent implements OnInit {
   adicional: Adicional | undefined; // Variable para almacenar el adicional

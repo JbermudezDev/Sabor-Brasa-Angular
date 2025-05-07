@@ -1,135 +1,102 @@
-<div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
-    </div>
-  </header>
+<layout-admin>
+  <div
+    class="main container"
+    id="main"
+  >
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Editar Producto</h1>
+      <div class="details-container">
+        <form
+          (ngSubmit)="onSubmit()"
+          #productoForm="ngForm"
+        >
 
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="image" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-          <span></span>
-        </div>
-      </div>
-      <div class="sidebar__content">
-        <div>
-          <div class="sidebar__list">
-            <a routerLink="/administrador" class="sidebar__link">
-              <i class="fi fi-sr-crown"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
+          <!-- Campo oculto para el ID del producto -->
+          <input
+            type="hidden"
+            name="id"
+            [(ngModel)]="producto.id"
+          />
+
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              [(ngModel)]="producto.nombre"
+              required
+              class="form-control"
+            />
           </div>
-        </div>
-      </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>
-  </nav>
 
-  <!--=============== MAIN ===============-->
-  <main class="main-content">
-    <h1>Editar Producto</h1>
-    <div class="details-container">
-      <form (ngSubmit)="onSubmit()" #productoForm="ngForm">
-
-        <!-- Campo oculto para el ID del producto -->
-        <input type="hidden" name="id" [(ngModel)]="producto.id" />
-
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="producto.nombre"
-            required
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="precio">Precio:</label>
-          <input
-            type="number"
-            id="precio"
-            name="precio"
-            [(ngModel)]="producto.precio"
-            step="0.01"
-            required
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="descripcion">Descripción:</label>
-          <input
-            type="text"
-            id="descripcion"
-            name="descripcion"
-            [(ngModel)]="producto.descripcion"
-            required
-            class="form-control"
-          />
-        </div>
-
-        <div class="form-group">
-          <label for="imagen">URL de Imagen:</label>
-          <input
-            type="text"
-            id="imagen"
-            name="imagen"
-            [(ngModel)]="producto.imagen"
-            required
-            class="form-control"
-          />
-        </div>
-
-        <!-- Selección de adicionales como checkboxes -->
-        <div class="form-group">
-          <label for="adicionales">Adicionales:</label>
-          <div *ngFor="let adicional of adicionales; let i = index" class="checkbox-group">
-            <label>
-              <input
-                type="checkbox"
-                [checked]="isAdicionalSelected(adicional)"
-                (change)="toggleAdicional(adicional)"
-              />
-              {{ adicional.nombre }}
-            </label>
+          <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input
+              type="number"
+              id="precio"
+              name="precio"
+              [(ngModel)]="producto.precio"
+              step="0.01"
+              required
+              class="form-control"
+            />
           </div>
-          
-        </div>
 
-        <!-- Botón para enviar el formulario -->
-        <div class="button-container-add">
-          <button type="submit" class="btn-submit " [disabled]="!productoForm.valid">Actualizar</button>
-        </div>
-      </form>
-    </div>
-  </main>
-</div>
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input
+              type="text"
+              id="descripcion"
+              name="descripcion"
+              [(ngModel)]="producto.descripcion"
+              required
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="imagen">URL de Imagen:</label>
+            <input
+              type="text"
+              id="imagen"
+              name="imagen"
+              [(ngModel)]="producto.imagen"
+              required
+              class="form-control"
+            />
+          </div>
+
+          <!-- Selección de adicionales como checkboxes -->
+          <div class="form-group">
+            <label for="adicionales">Adicionales:</label>
+            <div
+              *ngFor="let adicional of adicionales; let i = index"
+              class="checkbox-group"
+            >
+              <label>
+                <input
+                  type="checkbox"
+                  [checked]="isAdicionalSelected(adicional)"
+                  (change)="toggleAdicional(adicional)"
+                />
+                {{ adicional.nombre }}
+              </label>
+            </div>
+
+          </div>
+
+          <!-- Botón para enviar el formulario -->
+          <div class="button-container-add">
+            <button
+              type="submit"
+              class="btn-submit "
+              [disabled]="!productoForm.valid"
+            >Actualizar</button>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</layout-admin>

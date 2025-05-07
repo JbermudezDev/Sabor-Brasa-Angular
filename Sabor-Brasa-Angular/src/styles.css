@@ -1,4 +1,97 @@
-/* You can add global styles to this file, and also import other style files */
-body{
-    margin : 0;
+/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/Sabor-Brasa-Angular/src/assets/images/fondo.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+
+/*=============== GOOGLE FONTS ===============*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:opsz,wght@6..12,200..1000&display=swap");
+
+
+/*=============== BASE ===============*/
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+a {
+    text-decoration: none;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+    height: auto;
+}
+
+button {
+    all: unset;
+}
+
+
+
+
+
+/*=============== VARIABLES DARK THEME ===============*/
+body.dark-theme {
+    --first-color: hsl(228, 70%, 63%);
+    --title-color: hsl(228, 18%, 96%);
+    --text-color: hsl(228, 12%, 61%);
+    --body-color: hsl(228, 24%, 16%);
+    --shadow-color: hsla(228, 80%, 4%, .3);
+}
+
+/*==========
+Color changes in some parts of
+the website, in dark theme
+
+TODO: Remove this, when the user agent is in dark mode, the scrollbar will be this way
+Also, this only works on webkit based browsers (Chrome and Safari)
+==========*/
+.dark-theme .sidebar__content::-webkit-scrollbar {
+    background-color: hsl(228, 16%, 30%);
+}
+
+.dark-theme .sidebar__content::-webkit-scrollbar-thumb {
+    background-color: hsl(228, 16%, 40%);
+}
+
+
+/*=============== VARIABLES CSS ===============*/
+:root {
+    /*========== Colors ==========*/
+    /*Color mode HSL(hue, saturation, lightness)*/
+    --first-color: hsl(228, 85%, 63%);
+    --title-color: hsl(228, 18%, 16%);
+    --text-color: hsl(228, 8%, 56%);
+    --body-color: hsl(228, 100%, 99%);
+    --shadow-color: hsla(228, 80%, 4%, .1);
+
+    /*========== Font and typography ==========*/
+    /*.5rem = 8px | 1rem = 16px ...*/
+    --body-font: "Nunito Sans", system-ui;
+    --normal-font-size: .938rem;
+    --smaller-font-size: .75rem;
+    --tiny-font-size: .75rem;
+
+    /*========== Font weight ==========*/
+    --font-regular: 400;
+    --font-semi-bold: 600;
+
+    /*========== z index ==========*/
+    --z-tooltip: 10;
+    --z-fixed: 100;
+}
+
+/*========== Responsive typography ==========*/
+@media screen and (min-width: 1150px) {
+    :root {
+        --normal-font-size: 1rem;
+        --smaller-font-size: .813rem;
+    }
 }

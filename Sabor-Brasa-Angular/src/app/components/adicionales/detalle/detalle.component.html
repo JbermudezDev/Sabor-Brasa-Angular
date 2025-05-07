@@ -1,47 +1,57 @@
-<div class="main container" id="main">
- 
+<layout-admin>
+  <div
+    class="main container"
+    id="main"
+  >
 
-<layout-admin-header></layout-admin-header>
-<layout-admin-sidebar></layout-admin-sidebar> 
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Detalles del Adicional</h1>
 
-  <!--=============== MAIN ===============-->
-  <main class="main-content">
-    <h1>Detalles del Adicional</h1>
+      <!-- Mostrar detalles del adicional si está disponible -->
+      <div *ngIf="adicional; else noAdicional">
+        <div class="detail-item">
+          <i class="ri-file-text-line"></i>
+          <span class="detail-label">Nombre:</span>
+          <span class="detail-value">{{ adicional.nombre }}</span>
+        </div>
+        <div class="detail-item">
+          <i class="ri-money-dollar-circle-line"></i>
+          <span class="detail-label">Precio:</span>
+          <span class="detail-value">{{ adicional.precio | currency:'COP' }}</span>
+        </div>
+        <div class="detail-item">
+          <i class="ri-file-text-line"></i>
+          <span class="detail-label">Descripción:</span>
+          <span class="detail-value">{{ adicional.descripcion }}</span>
+        </div>
+        <div class="actions-container">
+          <a
+            routerLink="/adicionales"
+            class="btn-agregar"
+          >
+            <i class="ri-arrow-left-line"></i> Volver al Listado
+          </a>
+          <button
+            class="btn-agregar"
+            routerLink="/adicionales/editar/{{ adicional.id }}"
+          >
+            <i class="ri-edit-line"></i> Editar
+          </button>
+        </div>
+      </div>
 
-    <!-- Mostrar detalles del adicional si está disponible -->
-    <div *ngIf="adicional; else noAdicional">
-      <div class="detail-item">
-        <i class="ri-file-text-line"></i>
-        <span class="detail-label">Nombre:</span>
-        <span class="detail-value">{{ adicional.nombre }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-money-dollar-circle-line"></i>
-        <span class="detail-label">Precio:</span>
-        <span class="detail-value">{{ adicional.precio | currency:'COP' }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-file-text-line"></i>
-        <span class="detail-label">Descripción:</span>
-        <span class="detail-value">{{ adicional.descripcion }}</span>
-      </div>
-      <div class="actions-container">
-        <a routerLink="/adicionales" class="btn-agregar">
-          <i class="ri-arrow-left-line"></i> Volver al Listado
-        </a>
-        <button class="btn-agregar" routerLink="/adicionales/editar/{{ adicional.id }}">
-          <i class="ri-edit-line"></i> Editar
-        </button>
-      </div>
-    </div>
-
-    <!-- Mostrar mensaje de error si no se encuentra el adicional -->
-    <ng-template #noAdicional>
-      <div class="error-container">
-        <i class="ri-error-warning-line error-icon"></i>
-        <p>No se encontró el adicional.</p>
-        <a routerLink="/adicionales" class="btn-agregar">Volver al Listado</a>
-      </div>
-    </ng-template>
-  </main>
-</div>
+      <!-- Mostrar mensaje de error si no se encuentra el adicional -->
+      <ng-template #noAdicional>
+        <div class="error-container">
+          <i class="ri-error-warning-line error-icon"></i>
+          <p>No se encontró el adicional.</p>
+          <a
+            routerLink="/adicionales"
+            class="btn-agregar"
+          >Volver al Listado</a>
+        </div>
+      </ng-template>
+    </main>
+  </div>
+</layout-admin>

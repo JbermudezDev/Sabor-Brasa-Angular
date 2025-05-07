@@ -8,7 +8,6 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app-agregar',
   templateUrl: './agregar.component.html',
   styleUrls: ['./agregar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class AgregarComponent {
   cliente: Cliente = {

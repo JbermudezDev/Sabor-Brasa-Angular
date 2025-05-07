@@ -6,7 +6,6 @@ import { Producto } from 'src/app/models/producto.model';
   selector: 'app-listar-productos',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ListarProductosComponent implements OnInit {
   productos: Producto[] = []; // Lista completa de productos

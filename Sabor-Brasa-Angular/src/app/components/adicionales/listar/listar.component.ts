@@ -6,7 +6,6 @@ import { Adicional } from 'src/app/models/adicional.model';
   selector: 'app-listar-adicionales',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ListarAdicionalComponent implements OnInit {
   adicionales: Adicional[] = []; // Lista completa de adicionales

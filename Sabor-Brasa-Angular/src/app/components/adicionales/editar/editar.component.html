@@ -1,124 +1,93 @@
-<div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
-    </div>
-  </header>
-
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="Administrador" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-        </div>
-      </div>
-      <div class="sidebar__content">
-        <div>
-          <h3 class="sidebar__title">MANAGE</h3>
-          <div class="sidebar__list">
-            <a routerLink="/Administrador" class="sidebar__link">
-              <i class="ri-vip-crown-fill"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>
-  </nav>
-
-  <!--=============== MAIN ===============-->
-  <main class="main-content">
-    <h1>Editar Adicional</h1>
-    <div class="form-container">
-      <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm">
-        <!-- Campo oculto para el ID del adicional -->
-        <input type="hidden" name="id" [(ngModel)]="adicional.id" />
-
-        <!-- Campo Nombre -->
-        <div class="form-group">
-          <label for="nombre">Nombre:</label>
+<layout-admin>
+  <div
+    class="main container"
+    id="main"
+  >
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Editar Adicional</h1>
+      <div class="form-container">
+        <form
+          (ngSubmit)="onSubmit()"
+          #adicionalForm="ngForm"
+        >
+          <!-- Campo oculto para el ID del adicional -->
           <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="adicional.nombre"
-            required
-            class="form-control"
+            type="hidden"
+            name="id"
+            [(ngModel)]="adicional.id"
           />
-          <div *ngIf="adicionalForm.controls['nombre']?.invalid && adicionalForm.controls['nombre']?.touched">
-            <small class="error">El nombre es obligatorio.</small>
-          </div>
-        </div>
 
-        <!-- Campo Precio -->
-        <div class="form-group">
-          <label for="precio">Precio:</label>
-          <input
-            type="number"
-            id="precio"
-            name="precio"
-            [(ngModel)]="adicional.precio"
-            required
-            class="form-control"
-            min="0"
-            step="0.01"
-          />
-          <div *ngIf="adicionalForm.controls['precio']?.invalid && adicionalForm.controls['precio']?.touched">
-            <small class="error">El precio debe ser mayor o igual a 0.</small>
+          <!-- Campo Nombre -->
+          <div class="form-group">
+            <label for="nombre">Nombre:</label>
+            <input
+              type="text"
+              id="nombre"
+              name="nombre"
+              [(ngModel)]="adicional.nombre"
+              required
+              class="form-control"
+            />
+            <div *ngIf="adicionalForm.controls['nombre']?.invalid && adicionalForm.controls['nombre']?.touched">
+              <small class="error">El nombre es obligatorio.</small>
+            </div>
           </div>
-        </div>
 
-        <!-- Campo Descripción -->
-        <div class="form-group">
-          <label for="descripcion">Descripción:</label>
-          <input
-            type="text"
-            id="descripcion"
-            name="descripcion"
-            [(ngModel)]="adicional.descripcion"
-            required
-            class="form-control"
-          />
-          <div *ngIf="adicionalForm.controls['descripcion']?.invalid && adicionalForm.controls['descripcion']?.touched">
-            <small class="error">La descripción es obligatoria.</small>
+          <!-- Campo Precio -->
+          <div class="form-group">
+            <label for="precio">Precio:</label>
+            <input
+              type="number"
+              id="precio"
+              name="precio"
+              [(ngModel)]="adicional.precio"
+              required
+              class="form-control"
+              min="0"
+              step="0.01"
+            />
+            <div *ngIf="adicionalForm.controls['precio']?.invalid && adicionalForm.controls['precio']?.touched">
+              <small class="error">El precio debe ser mayor o igual a 0.</small>
+            </div>
           </div>
-        </div>
 
-        <!-- Botones -->
-        <div class="button-container-add">
-          <button type="submit" class="btn-submit " [disabled]="!adicionalForm.valid">
-            Actualizar Adicional
-          </button>
-          <a routerLink="/adicionales" class="btn-submit ">
-            <i class="ri-arrow-left-line"></i> Volver al Listado
-          </a>
-        </div>
-      </form>
-    </div>
-  </main>
-</div>
+          <!-- Campo Descripción -->
+          <div class="form-group">
+            <label for="descripcion">Descripción:</label>
+            <input
+              type="text"
+              id="descripcion"
+              name="descripcion"
+              [(ngModel)]="adicional.descripcion"
+              required
+              class="form-control"
+            />
+            <div
+              *ngIf="adicionalForm.controls['descripcion']?.invalid && adicionalForm.controls['descripcion']?.touched"
+            >
+              <small class="error">La descripción es obligatoria.</small>
+            </div>
+          </div>
+
+          <!-- Botones -->
+          <div class="button-container-add">
+            <button
+              type="submit"
+              class="btn-submit "
+              [disabled]="!adicionalForm.valid"
+            >
+              Actualizar Adicional
+            </button>
+            <a
+              routerLink="/adicionales"
+              class="btn-submit "
+            >
+              <i class="ri-arrow-left-line"></i> Volver al Listado
+            </a>
+          </div>
+        </form>
+      </div>
+    </main>
+  </div>
+</layout-admin>
