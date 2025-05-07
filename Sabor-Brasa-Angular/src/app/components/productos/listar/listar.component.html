@@ -1,145 +1,101 @@
-<div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
-    </div>
-  </header>
+<layout-admin>
+  <div
+    class="main container"
+    id="main"
+  >
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Listado de Productos</h1>
 
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="Administrador" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-        </div>
+      <!-- Barra de búsqueda -->
+      <div class="search-container">
+        <i class="fas fa-search"></i>
+        <input
+          type="text"
+          id="search-input"
+          placeholder="Buscar productos..."
+          [(ngModel)]="searchTerm"
+          (keyup)="buscarProductos()"
+          class="search-input"
+        />
+
       </div>
-      <div class="sidebar__content">
-        <div>
-          <h3 class="sidebar__title">MANAGE</h3>
-          <div class="sidebar__list">
-            <a routerLink="/administrador" class="sidebar__link">
-              <i class="fi fi-sr-crown"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
+
+      <!-- Botón para agregar producto -->
+      <div class="button-container">
+        <button
+          class="btn-submit"
+          routerLink="/productos/agregar"
+        >
+          Agregar Producto
         </button>
       </div>
-    </div>
-  </nav>
 
-  <!--=============== MAIN ===============-->
-  <main class="main-content">
-    <h1>Listado de Productos</h1>
+      <!-- Tabla de productos -->
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nombre</th>
+              <th>Precio</th>
+              <th>Descripción</th>
+              <th>Imagen</th>
+              <th>Adicionales</th>
+              <th>Acciones</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let producto of filteredProductos">
+              <td>{{ producto.id }}</td>
+              <td>{{ producto.nombre }}</td>
+              <td>{{ producto.precio | currency: 'COP' }}</td>
+              <td>{{ producto.descripcion }}</td>
+              <td>
+                <img
+                  [src]="'http://localhost:8090' + producto.imagen"
+                  alt="Imagen del producto"
+                  width="50"
+                />
+              </td>
+              <td>
+                <ul>
+                  <li *ngFor="let adicional of producto.adicionales">
+                    {{ adicional.nombre }}
+                  </li>
+                </ul>
+              </td>
+              <td>
+                <div class="btn-container">
+                  <!-- Botón de detalle -->
+                  <button
+                    class="btn yellow"
+                    [routerLink]="['/productos/detalle', producto.id]"
+                  >
+                    <i class="fi fi-sr-eye"></i>
+                  </button>
 
-    <!-- Barra de búsqueda -->
-    <div class="search-container">
-      <i class="fas fa-search"></i>
-      <input
-        type="text"
-        id="search-input"
-        placeholder="Buscar productos..."
-        [(ngModel)]="searchTerm"
-        (keyup)="buscarProductos()"
-        class="search-input"
-      />
-      
-    </div>
+                  <!-- Botón de editar -->
+                  <button
+                    class="btn green"
+                    [routerLink]="['/productos/editar', producto.id]"
+                  >
+                    <i class="fas fa-edit"></i>
+                  </button>
 
-    <!-- Botón para agregar producto -->
-    <div class="button-container">
-      <button class="btn-submit" routerLink="/productos/agregar">
-        Agregar Producto
-      </button>
-    </div>
-
-    <!-- Tabla de productos -->
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Nombre</th>
-            <th>Precio</th>
-            <th>Descripción</th>
-            <th>Imagen</th>
-            <th>Adicionales</th>
-            <th>Acciones</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let producto of filteredProductos">
-            <td>{{ producto.id }}</td>
-            <td>{{ producto.nombre }}</td>
-            <td>{{ producto.precio | currency: 'COP' }}</td>
-            <td>{{ producto.descripcion }}</td>
-            <td>
-              <img
-                [src]="'http://localhost:8090' + producto.imagen"
-                alt="Imagen del producto"
-                width="50"
-              />
-            </td>
-            <td>
-              <ul>
-                <li *ngFor="let adicional of producto.adicionales">
-                  {{ adicional.nombre }}
-                </li>
-              </ul>
-            </td>
-            <td>
-              <div class="btn-container">
-                <!-- Botón de detalle -->
-                <button
-                  class="btn yellow"
-                  [routerLink]="['/productos/detalle', producto.id]"
-                >
-                  <i class="fi fi-sr-eye"></i>
-                </button>
-
-                <!-- Botón de editar -->
-                <button
-                  class="btn green"
-                  [routerLink]="['/productos/editar', producto.id]"
-                >
-                  <i class="fas fa-edit"></i>
-                </button>
-
-                <!-- Botón de eliminar -->
-                <button
-                  class="btn red"
-                  (click)="deleteProducto(producto.id)"
-                >
-                  <i class="fas fa-trash"></i>
-                </button>
-              </div>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-    </div>
-  </main>
-</div>
+                  <!-- Botón de eliminar -->
+                  <button
+                    class="btn red"
+                    (click)="deleteProducto(producto.id)"
+                  >
+                    <i class="fas fa-trash"></i>
+                  </button>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </main>
+  </div>
+</layout-admin>

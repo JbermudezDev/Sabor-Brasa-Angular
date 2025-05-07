@@ -6,7 +6,6 @@ import { Cliente } from 'src/app/models/carrodecompras.model';
   selector: 'app-listar-clientes',
   templateUrl: './listar.component.html',
   styleUrls: ['./listar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class ListarComponent implements OnInit {
   clientes: Cliente[] = []; // Lista completa de clientes

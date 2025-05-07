@@ -1,0 +1,47 @@
+:host {
+    grid-area: navbar;
+    padding: 1rem;
+}
+
+/*=============== HEADER ===============*/
+.header {
+    font-family: Arial, sans-serif;
+    position: sticky;
+    top: 0;
+    z-index: var(--z-fixed);
+}
+
+.header__container {
+    min-height: 3.5rem;
+    background-color: var(--body-color);
+    box-shadow: 0 2px 24px var(--shadow-color);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-inline: 1.5rem;
+    border-radius: 1rem;
+    transition: background-color .4s;
+    border: 2px solid rgba(0, 0, 0, 0.245);
+    /* Añade un borde negro */
+}
+
+
+.header__toggle {
+    all: unset;
+    font-size: 1.5rem;
+    color: var(--title-color);
+    cursor: pointer;
+}
+
+
+/* For large devices */
+@media screen and (min-width: 1150px) {
+    .header {
+        transition: padding .4s;
+    }
+
+    .header__container {
+        height: calc(var(--header-height) + 2rem);
+        padding-inline: 2rem;
+    }
+}

@@ -5,7 +5,6 @@ import { Router } from '@angular/router';
   selector: 'app-administrador',
   templateUrl: './administrador.component.html',
   styleUrls: ['./administrador.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class AdministradorComponent {
   constructor(private router: Router) {}

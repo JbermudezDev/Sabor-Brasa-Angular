@@ -8,7 +8,6 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app-editar',
   templateUrl: './editar.component.html',
   styleUrls: ['./editar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class EditarComponent implements OnInit {
   cliente: Cliente = {

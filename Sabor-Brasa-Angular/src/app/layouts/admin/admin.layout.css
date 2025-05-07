@@ -1,0 +1,15 @@
+:host {
+    display: grid;
+
+    grid-template-areas: "sidebar navbar" "sidebar main";
+
+    grid-template-columns: auto 1fr;
+    grid-template-rows: auto 1fr;
+
+    min-height: 100dvh;
+}
+
+.main {
+    grid-area: main;
+    min-width: 0;
+}

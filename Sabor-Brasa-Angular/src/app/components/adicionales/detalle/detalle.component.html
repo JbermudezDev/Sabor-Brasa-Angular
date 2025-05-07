@@ -1,94 +1,57 @@
-<div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
-    </div>
-  </header>
+<layout-admin>
+  <div
+    class="main container"
+    id="main"
+  >
 
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="Administrador" />
+    <!--=============== MAIN ===============-->
+    <main class="main-content">
+      <h1>Detalles del Adicional</h1>
+
+      <!-- Mostrar detalles del adicional si está disponible -->
+      <div *ngIf="adicional; else noAdicional">
+        <div class="detail-item">
+          <i class="ri-file-text-line"></i>
+          <span class="detail-label">Nombre:</span>
+          <span class="detail-value">{{ adicional.nombre }}</span>
         </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
+        <div class="detail-item">
+          <i class="ri-money-dollar-circle-line"></i>
+          <span class="detail-label">Precio:</span>
+          <span class="detail-value">{{ adicional.precio | currency:'COP' }}</span>
         </div>
-      </div>
-      <div class="sidebar__content">
-        <div>
-          <h3 class="sidebar__title">MANAGE</h3>
-          <div class="sidebar__list">
-            <a routerLink="/Administrador" class="sidebar__link">
-              <i class="ri-vip-crown-fill"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales/all" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos/all" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes/all" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-          </div>
+        <div class="detail-item">
+          <i class="ri-file-text-line"></i>
+          <span class="detail-label">Descripción:</span>
+          <span class="detail-value">{{ adicional.descripcion }}</span>
+        </div>
+        <div class="actions-container">
+          <a
+            routerLink="/adicionales"
+            class="btn-agregar"
+          >
+            <i class="ri-arrow-left-line"></i> Volver al Listado
+          </a>
+          <button
+            class="btn-agregar"
+            routerLink="/adicionales/editar/{{ adicional.id }}"
+          >
+            <i class="ri-edit-line"></i> Editar
+          </button>
         </div>
       </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>
-  </nav>
 
-  <!--=============== MAIN ===============-->
-  <main class="main-content">
-    <h1>Detalles del Adicional</h1>
-
-    <!-- Mostrar detalles del adicional si está disponible -->
-    <div *ngIf="adicional; else noAdicional">
-      <div class="detail-item">
-        <i class="ri-file-text-line"></i>
-        <span class="detail-label">Nombre:</span>
-        <span class="detail-value">{{ adicional.nombre }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-money-dollar-circle-line"></i>
-        <span class="detail-label">Precio:</span>
-        <span class="detail-value">{{ adicional.precio | currency:'COP' }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-file-text-line"></i>
-        <span class="detail-label">Descripción:</span>
-        <span class="detail-value">{{ adicional.descripcion }}</span>
-      </div>
-      <div class="actions-container">
-        <a routerLink="/adicionales" class="btn-agregar">
-          <i class="ri-arrow-left-line"></i> Volver al Listado
-        </a>
-        <button class="btn-agregar" routerLink="/adicionales/editar/{{ adicional.id }}">
-          <i class="ri-edit-line"></i> Editar
-        </button>
-      </div>
-    </div>
-
-    <!-- Mostrar mensaje de error si no se encuentra el adicional -->
-    <ng-template #noAdicional>
-      <div class="error-container">
-        <i class="ri-error-warning-line error-icon"></i>
-        <p>No se encontró el adicional.</p>
-        <a routerLink="/adicionales" class="btn-agregar">Volver al Listado</a>
-      </div>
-    </ng-template>
-  </main>
-</div>
+      <!-- Mostrar mensaje de error si no se encuentra el adicional -->
+      <ng-template #noAdicional>
+        <div class="error-container">
+          <i class="ri-error-warning-line error-icon"></i>
+          <p>No se encontró el adicional.</p>
+          <a
+            routerLink="/adicionales"
+            class="btn-agregar"
+          >Volver al Listado</a>
+        </div>
+      </ng-template>
+    </main>
+  </div>
+</layout-admin>

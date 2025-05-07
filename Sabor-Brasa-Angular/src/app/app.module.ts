@@ -8,7 +8,7 @@ import { MenuComponent } from './pages/menu/menu.component';
 import { HeaderComponent } from './components/Landing-Page/header/header.component';
 import { FooterComponent } from './components/Landing-Page/footer/footer.component';
 import { InfoLandingComponent } from './components/Landing-Page/info-landing/info-landing.component';
-import { ListarProductosComponent } from './components/productos/listar/listar.component'; 
+import { ListarProductosComponent } from './components/productos/listar/listar.component';
 import { AgregarProductoComponent } from './components/productos/agregar/agregar.component';
 import { EditarProductoComponent } from './components/productos/editar/editar.component';
 
@@ -38,6 +38,9 @@ import { EditarOperadorComponent } from './components/operador/editar/editar.com
 import { DetalleOperadorComponent } from './components/operador/detalle/detalle.component';
 import { ListarDashClienteComponent } from './components/DashCliente/listar/listar.component';
 import { RegistrarComponent } from './components/registrar/registrar.component';
+import { AdminLayout } from './layouts/admin/admin.layout';
+import { AdminSidebarLayoutComponent } from './layouts/admin/sidebar/sidebar.layout.component';
+import { HeaderLayoutComponent } from './layouts/admin/header/header.layout.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,9 +66,12 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
     DetalleOperadorComponent,
     ListarDashClienteComponent,
     RegistrarComponent,
+    AdminLayout,
+    AdminSidebarLayoutComponent,
+    HeaderLayoutComponent,
 
-    
-    
+
+
   ],
   imports: [
     BrowserModule,
@@ -79,10 +85,10 @@ import { RegistrarComponent } from './components/registrar/registrar.component';
     FormsModule,
     RouterModule,
     HttpClientModule
-    
+
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]
-  
+
 })
 export class AppModule { }

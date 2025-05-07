@@ -7,7 +7,6 @@ import { Adicional } from 'src/app/models/adicional.model';
   selector: 'app-editar-adicional',
   templateUrl: './editar.component.html',
   styleUrls: ['./editar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class EditarAdicionalComponent implements OnInit {
   adicional: Adicional = {
@@ -15,7 +14,7 @@ export class EditarAdicionalComponent implements OnInit {
     nombre: '',
     precio: 0,
     descripcion: '',
-    productos: [] 
+    productos: []
   };
 
   constructor(
@@ -39,9 +38,9 @@ export class EditarAdicionalComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe(() => {  
+    this.adicionalService.updateAdicional(this.adicional.id, this.adicional).subscribe(() => {
       this.router.navigate(['/adicionales']);
     }); // Redirige al listado de adicionales
-      
+
   }
 }

@@ -9,7 +9,6 @@ import { Adicional } from 'src/app/models/adicional.model';
   selector: 'app-editar-producto',
   templateUrl: './editar.component.html',
   styleUrls: ['./editar.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class EditarProductoComponent implements OnInit {
   producto: Producto = {
@@ -67,7 +66,7 @@ export class EditarProductoComponent implements OnInit {
     if (!this.producto.adicionales) {
       this.producto.adicionales = []; // Inicializa adicionales si es undefined
     }
-  
+
     const index = this.producto.adicionales.findIndex(a => a.id === adicional.id);
     if (index === -1) {
       this.producto.adicionales.push(adicional); // Agregar adicional si no está seleccionado
@@ -89,14 +88,14 @@ export class EditarProductoComponent implements OnInit {
     if (!this.producto.adicionales) {
       this.producto.adicionales = []; // Asegúrate de que adicionales sea un arreglo
     }
-  
+
     const productoActualizado = {
       ...this.producto,
       adicionales: this.producto.adicionales.map(a => ({ id: a.id })) // Solo envía los IDs de los adicionales
     };
-  
+
     console.log('Datos enviados al backend:', productoActualizado);
-  
+
     this.productoService.updateProducto(this.producto.id, productoActualizado).subscribe({
       next: () => {
         alert('Producto actualizado correctamente');

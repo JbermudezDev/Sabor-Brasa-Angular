@@ -8,7 +8,6 @@ import { CurrencyPipe } from '@angular/common';
   selector: 'app-detalle-producto',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css'],
-  encapsulation: ViewEncapsulation.None,
   providers: [CurrencyPipe]
 })
 
@@ -16,12 +15,12 @@ export class DetalleProductosComponent implements OnInit {
   producto: Producto | undefined;
 
   constructor(
-    private route: ActivatedRoute, 
+    private route: ActivatedRoute,
     private productoService: ProductoService
   ) {}
 
   ngOnInit(): void {
-    
+
     const id = Number(this.route.snapshot.paramMap.get('id'));
 
  this.productoService.getProductoById(id).subscribe({

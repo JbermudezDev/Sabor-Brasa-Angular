@@ -8,7 +8,6 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app-detalle',
   templateUrl: './detalle.component.html',
   styleUrls: ['./detalle.component.css'],
-  encapsulation: ViewEncapsulation.None
 })
 export class DetalleComponent implements OnInit {
   cliente: Cliente | undefined;
