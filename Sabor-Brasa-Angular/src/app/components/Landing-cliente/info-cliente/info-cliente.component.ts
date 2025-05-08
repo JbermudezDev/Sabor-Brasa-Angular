@@ -7,8 +7,7 @@ import { HeaderComponent } from '../../Landing-Page/header/header.component';
 import { HeaderclienteComponent } from '../headercliente/headercliente.component';
 @Component({
   selector: 'app-info-cliente',
-  standalone: true,
-  imports: [CommonModule, FormsModule, RouterLink, FooterComponent, HeaderclienteComponent],
+ 
   templateUrl: './info-cliente.component.html',
   styleUrls: ['./info-cliente.component.css']
   

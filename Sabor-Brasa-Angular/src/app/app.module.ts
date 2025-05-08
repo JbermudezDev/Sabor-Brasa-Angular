@@ -11,7 +11,6 @@ import { InfoLandingComponent } from './components/Landing-Page/info-landing/inf
 import { ListarProductosComponent } from './components/productos/listar/listar.component'; 
 import { AgregarProductoComponent } from './components/productos/agregar/agregar.component';
 import { EditarProductoComponent } from './components/productos/editar/editar.component';
-
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
@@ -19,8 +18,6 @@ import { ListarComponent } from './components/clientes/listar/listar.component';
 import { AgregarComponent } from './components/clientes/agregar/agregar.component';
 import { EditarComponent } from './components/clientes/editar/editar.component';
 import { DetalleComponent } from './components/clientes/detalle/detalle.component';
-import { CommonModule } from '@angular/common';
-import { RouterLink } from '@angular/router';
 import { ListarAdicionalComponent } from './components/adicionales/listar/listar.component';
 import { DetalleAdicionalComponent } from './components/adicionales/detalle/detalle.component';
 import { AgregarAdicionalComponent } from './components/adicionales/agregar/agregar.component';
@@ -50,6 +47,7 @@ import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/h
 @NgModule({
   declarations: [
     AppComponent,
+    LandingComponent,
     MenuComponent,
     ListarProductosComponent,
     AgregarProductoComponent,
@@ -66,6 +64,11 @@ import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/h
     AdministradorComponent,
     LoginComponent,
     LoginClienteComponent,
+    InfoClienteComponent,
+    HeaderclienteComponent,
+    HeaderComponent,
+    FooterComponent,
+    InfoLandingComponent,
     ListarOperadorComponent,
     AgregarOperadorComponent,
     EditarOperadorComponent,
@@ -79,28 +82,16 @@ import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/h
     MisPedidosComponent,
     ListarOperadoresComponent,
     LayoutsAdminSidebarComponent,
-    LayoutsAdminHeaderComponent,
-
-
-    
-    
+    LayoutsAdminHeaderComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    LandingComponent,
-    InfoClienteComponent,
-    HeaderclienteComponent,
-    HeaderComponent,
-    FooterComponent,
-    InfoLandingComponent,
     FormsModule,
     RouterModule,
     HttpClientModule
-    
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]
-  
 })
 export class AppModule { }
