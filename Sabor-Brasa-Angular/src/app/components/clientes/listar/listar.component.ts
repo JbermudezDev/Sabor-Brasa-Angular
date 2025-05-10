@@ -9,18 +9,27 @@ import { Cliente } from 'src/app/models/carrodecompras.model';
   encapsulation: ViewEncapsulation.None
 })
 export class ListarComponent implements OnInit {
-  clientes: Cliente[] = []; // Lista completa de clientes
-  filteredClientes: Cliente[] = []; // Lista filtrada para búsqueda
-  searchTerm: string = ''; // Término de búsqueda
+  clientes: Cliente[] = [];
+  filteredClientes: Cliente[] = [];
+  searchTerm: string = '';
 
   constructor(private clienteService: ClienteService) {}
 
   ngOnInit(): void {
-    // Llama al servicio para obtener todos los clientes
+    // Refrescar solo una vez al cargar la página
+    const reloaded = sessionStorage.getItem('reloadedListarClientes');
+    if (!reloaded) {
+      sessionStorage.setItem('reloadedListarClientes', 'true');
+      window.location.reload();
+      return;
+    } else {
+      sessionStorage.removeItem('reloadedListarClientes');
+    }
+
     this.clienteService.findAll().subscribe({
       next: (data) => {
         this.clientes = data;
-        this.filteredClientes = data; // Inicializa la lista filtrada con todos los clientes
+        this.filteredClientes = data;
       },
       error: (err) => {
         console.error('Error al obtener los clientes:', err);
@@ -29,7 +38,6 @@ export class ListarComponent implements OnInit {
   }
 
   buscarClientes(): void {
-    // Filtra los clientes según el término de búsqueda
     this.filteredClientes = this.clientes.filter(cliente =>
       cliente.nombre.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
       cliente.apellido.toLowerCase().includes(this.searchTerm.toLowerCase()) ||
@@ -41,14 +49,10 @@ export class ListarComponent implements OnInit {
 
   deleteCliente(id: number): void {
     if (confirm('¿Estás seguro de que deseas eliminar este cliente?')) {
-      // Llama al servicio para eliminar el cliente
       this.clienteService.deleteById(id).subscribe({
         next: () => {
-          // Actualiza la lista filtrada eliminando el cliente correspondiente
-          this.filteredClientes = this.filteredClientes.filter(cliente => cliente.id !== id);
-          // También actualiza la lista completa de clientes
-          this.clientes = this.clientes.filter(cliente => cliente.id !== id);
           console.log(`Cliente con ID ${id} eliminado correctamente.`);
+          window.location.reload(); // Refresca inmediatamente después de eliminar
         },
         error: (err) => {
           console.error('Error al eliminar el cliente:', err);
