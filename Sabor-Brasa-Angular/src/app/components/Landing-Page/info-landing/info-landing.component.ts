@@ -1,4 +1,4 @@
-import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
+import { Component, AfterViewInit, OnInit, ViewEncapsulation } from '@angular/core';
 
 @Component({
   selector: 'app-info-landing',
@@ -6,11 +6,21 @@ import { Component, AfterViewInit, ViewEncapsulation } from '@angular/core';
   styleUrls: ['./info-landing.component.css'],
   encapsulation: ViewEncapsulation.Emulated
 })
-export class InfoLandingComponent implements AfterViewInit {
+export class InfoLandingComponent implements OnInit, AfterViewInit {
+
+  ngOnInit(): void {
+    const alreadyReloaded = sessionStorage.getItem('infoLandingReloaded');
+
+    if (!alreadyReloaded) {
+      sessionStorage.setItem('infoLandingReloaded', 'true');
+      location.reload();
+    } else {
+      sessionStorage.removeItem('infoLandingReloaded');
+    }
+  }
 
   ngAfterViewInit(): void {
     this.initSidebar();
-    this.fixInitialButtonState();
   }
 
   private initSidebar(): void {
@@ -34,15 +44,5 @@ export class InfoLandingComponent implements AfterViewInit {
         link.classList.add('active-link');
       })
     );
-  }
-
-  private fixInitialButtonState(): void {
-    // Espera al renderizado completo del DOM antes de aplicar clases
-    setTimeout(() => {
-      const buttons = document.querySelectorAll('.btn');
-      buttons.forEach(btn => {
-        btn.classList.add('loaded'); // Aplica una clase que fuerce el estilo correcto
-      });
-    }, 0);
   }
 }
