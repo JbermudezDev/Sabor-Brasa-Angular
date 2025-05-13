@@ -50,8 +50,8 @@
                   (change)="toggleAdicional(adicional)"
                   [checked]="esAdicionalSeleccionado(adicional.id)"
                 />
-                <span class="custom-checkmark"></span>
-                <span class="checkbox-label">
+                <span id = "check1" class="custom-checkmark"></span>
+                <span id="check" class="checkbox-label">
                   {{ adicional.nombre }} (+{{ adicional.precio | currency:'COP' }})
                 </span>
               </label>
