@@ -40,7 +40,8 @@ import { ListarOperadoresComponent } from './components/listar-operador/listar-o
 
 
 const routes: Routes = [
-  { path: '', component: LandingComponent },
+    { path: 'listarOperadores', component: ListarOperadoresComponent },
+
   { path: 'menu', component: MenuComponent },
   { path: 'productos', component: ListarProductosComponent },
   { path: 'productos/agregar', component: AgregarProductoComponent },
@@ -70,7 +71,8 @@ const routes: Routes = [
   { path: 'registrar', component: RegistrarComponent },
   { path: 'listarDashCliente', component: DashclienteListarComponent },
   { path: 'clientes/pedidos', component: MisPedidosComponent },
-  { path: 'listarOperadores', component: ListarOperadoresComponent },
+    { path: '', component: LandingComponent },
+
 
 
 ];

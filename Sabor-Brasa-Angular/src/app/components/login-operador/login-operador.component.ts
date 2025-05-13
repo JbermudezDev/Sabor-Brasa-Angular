@@ -7,7 +7,7 @@ import { ViewEncapsulation } from '@angular/core';
   selector: 'app-login-operador',
   templateUrl: './login-operador.component.html',
   styleUrls: ['./login-operador.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated
 })
 export class LoginOperadorComponent {
   usuario: string = '';
@@ -20,8 +20,13 @@ export class LoginOperadorComponent {
     // Llamar al servicio para autenticar al operador
     this.authService.loginOperador(this.usuario, this.contrasena).subscribe({
       next: (response) => {
+        // Guardar el operador autenticado en el servicio
+        //this.authService.setClienteActual(response);
+        console.log('Operador autenticado:', response);
+      },
+      complete: () => {
         // Redirigir al operador si la autenticación es exitosa
-        console.log('Inicio de sesión exitoso:', response);
+        //console.log('Inicio de sesión exitoso:', response);
         this.router.navigate(['/listarOperadores']); // Cambia '/dashboard' por la ruta deseada
       },
       error: (err) => {

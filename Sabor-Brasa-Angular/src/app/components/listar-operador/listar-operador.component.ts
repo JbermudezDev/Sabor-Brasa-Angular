@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
   selector: 'app-listar-operador',
   templateUrl: './listar-operador.component.html',
   styleUrls: ['./listar-operador.component.css'],
-  encapsulation: ViewEncapsulation.None
+  encapsulation: ViewEncapsulation.Emulated 
 })
 export class ListarOperadoresComponent implements OnInit {
   pedidos: Pedido[] = [];
