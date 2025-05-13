@@ -31,7 +31,7 @@
       <h2>Iniciar Sesión Operador</h2>
   
       <div class="flex-column">
-        <label for="usuario">Usuario</label>
+        <label id=" usuario" for="usuario">Usuario</label>
       </div>
       <div class="inputForm">
         <input
@@ -60,7 +60,7 @@
         />
       </div>
   
-      <button type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
+      <button id ="btnLoginOp" type="submit" class="btn btn-primary" [disabled]="!loginForm.valid">
         Iniciar Sesión
       </button>
   
