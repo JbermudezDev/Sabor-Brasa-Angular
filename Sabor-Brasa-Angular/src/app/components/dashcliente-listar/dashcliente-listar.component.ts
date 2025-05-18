@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
-import { Router } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
+import { filter } from 'rxjs/operators';
 
 @Component({
   selector: 'app-dashcliente-listar',
@@ -27,7 +28,24 @@ export class DashclienteListarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Detecta si se entra a esta ruta directamente (solo una vez)
+    const reloaded = sessionStorage.getItem('reloaded');
+    if (!reloaded) {
+      sessionStorage.setItem('reloaded', 'true');
+      location.reload();
+      return;
+    }
+
     this.cargarCliente();
+
+    // Resetear el flag cuando se abandona esta página
+    this.router.events
+      .pipe(filter(event => event instanceof NavigationEnd))
+      .subscribe((event: any) => {
+        if (!event.urlAfterRedirects.includes('/clientes/perfil')) {
+          sessionStorage.removeItem('reloaded');
+        }
+      });
   }
 
   cargarCliente(): void {
@@ -38,10 +56,8 @@ export class DashclienteListarComponent implements OnInit {
       return;
     }
 
-    // Asignar el cliente actual directamente
     this.cliente = clienteActual;
 
-    // Opcional: Si necesitas recargar los datos desde el backend
     this.clienteService.findById(clienteActual.id).subscribe({
       next: (data) => {
         this.cliente = data;
@@ -58,7 +74,6 @@ export class DashclienteListarComponent implements OnInit {
       this.clienteService.updateCliente(this.cliente.id, this.cliente).subscribe({
         next: () => {
           alert('Datos actualizados con éxito.');
-          // Actualizar el cliente en AuthService para mantener la sincronización
           this.authService.loginClienteSuccess(this.cliente);
         },
         error: (err) => {

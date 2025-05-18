@@ -1,126 +1,83 @@
-<!-- Header -->
-<header class="header" id="header">
-  <div class="header__container">
-    <button class="header__toggle" id="header-toggle">
-      <i class="ri-menu-line"></i>
-    </button>
+<div class="dashboard">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+  <div class="profile">
+    <img src="/assets/images/administrador.png" alt="Foto" class="profile-img" />
+    <h2>Juan Jose Bermudez</h2>
   </div>
-</header>
 
-<!-- Sidebar -->
-<nav class="sidebar" id="sidebar">
-  <div class="sidebar__container">
-    <div class="sidebar__user">
-      <div class="sidebar__img">
-        <img src="/assets/images/administrador.png" alt="image" />
-      </div>
-      <div class="sidebar__info">
-        <h3>Juan Jose Bermudez</h3>
-        <span></span>
-      </div>
-    </div>
+  <div class="sidebar-content">
+    <nav class="nav">
+      <a routerLink="/clientes/perfil" class="nav-link active">
+        <i class="ri-user-line"></i> Mi Perfil
+      </a>
+      <a routerLink="/clientes/pedidos" class="nav-link">
+        <i class="ri-shopping-cart-2-line"></i> Mis Pedidos
+      </a>
+      <a routerLink="/clientes/historial" class="nav-link">
+        <i class="ri-time-line"></i> Historial Pedidos
+      </a>
+    </nav>
 
-    <div class="sidebar__content">
-      <div class="sidebar__list">
-        <a routerLink="/clientes/perfil" class="sidebar__link">
-          <i class="ri-profile-line"></i>
-          <span>Mi Perfil</span>
-        </a>
-        <a routerLink="/clientes/pedidos" class="sidebar__link">
-          <i class="ri-shopping-cart-fill"></i>
-          <span>Mis Pedidos</span>
-        </a>
-        <a routerLink="/clientes/historial" class="sidebar__link">
-          <i class="ri-history-line"></i>
-          <span>Historial Pedidos</span>
-        </a>
-        <div class="button-container" style="margin-bottom: 20px;">
-          <a routerLink="/menu">
-            <button class="btn-menu">Ir al Menú</button>
-          </a>
-        </div>
-      </div>
-    </div>
-
-    <div class="sidebar__actions">
-      <a routerLink="/" class="sidebar__link">
-        <i class="ri-logout-box-r-fill"></i>
-        <span>Log Out</span>
+    <div class="logout-wrapper">
+      <a routerLink="/" class="nav-link logout">
+        <i class="ri-logout-box-line"></i> Log Out
       </a>
     </div>
   </div>
-</nav>
+</aside>
 
-<!-- Main -->
-<main class="main container" id="main">
-  <div class="main-content">
-    <h1>Editar Perfil</h1>
-    <form (ngSubmit)="guardarCambios()" #form="ngForm">
-      <div class="details-container">
-        <div class="detail-item">
+
+  <!-- Main Content -->
+  <main class="content">
+    <form class="form-edit" (ngSubmit)="guardarCambios()" #form="ngForm">
+      <h1 class="form-title">Editar Perfil</h1>
+
+      <div class="form-group">
+        <label for="nombre">Nombre</label>
+        <div class="input-icon">
           <i class="ri-user-line"></i>
-          <label for="nombre" class="detail-label">Nombre:</label>
-          <input
-            type="text"
-            id="nombre"
-            name="nombre"
-            [(ngModel)]="cliente.nombre"
-            required
-          />
-        </div>
-        <div class="detail-item">
-          <i class="ri-user-line"></i>
-          <label for="apellido" class="detail-label">Apellido:</label>
-          <input
-            type="text"
-            id="apellido"
-            name="apellido"
-            [(ngModel)]="cliente.apellido"
-            required
-          />
-        </div>
-        <div class="detail-item">
-          <i class="ri-mail-line"></i>
-          <label for="email" class="detail-label">Email:</label>
-          <input
-            type="email"
-            id="email"
-            name="email"
-            [(ngModel)]="cliente.email"
-            required
-          />
-        </div>
-        <div class="detail-item">
-          <i class="ri-phone-line"></i>
-          <label for="telefono" class="detail-label">Teléfono:</label>
-          <input
-            type="text"
-            id="telefono"
-            name="telefono"
-            [(ngModel)]="cliente.telefono"
-            required
-          />
-        </div>
-        <div class="detail-item">
-          <i class="ri-map-pin-line"></i>
-          <label for="direccion" class="detail-label">Dirección:</label>
-          <input
-            type="text"
-            id="direccion"
-            name="direccion"
-            [(ngModel)]="cliente.direccion"
-            required
-          />
-        </div>
-        <div class="actions-container">
-          <button type="submit" class="btn green">
-            <i class="ri-save-line"></i> Guardar
-          </button>
-          <a routerLink="/clientes/perfil" class="btn btn-back">
-            <i class="ri-arrow-left-line"></i> Cancelar
-          </a>
+          <input type="text" id="nombre" name="nombre" [(ngModel)]="cliente.nombre" required />
         </div>
       </div>
+
+      <div class="form-group">
+        <label for="apellido">Apellido</label>
+        <div class="input-icon">
+          <i class="ri-user-line"></i>
+          <input type="text" id="apellido" name="apellido" [(ngModel)]="cliente.apellido" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email</label>
+        <div class="input-icon">
+          <i class="ri-mail-line"></i>
+          <input type="email" id="email" name="email" [(ngModel)]="cliente.email" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="telefono">Teléfono</label>
+        <div class="input-icon">
+          <i class="ri-phone-line"></i>
+          <input type="text" id="telefono" name="telefono" [(ngModel)]="cliente.telefono" required />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label for="direccion">Dirección</label>
+        <div class="input-icon">
+          <i class="ri-map-pin-line"></i>
+          <input type="text" id="direccion" name="direccion" [(ngModel)]="cliente.direccion" required />
+        </div>
+      </div>
+
+      <div class="form-buttons">
+        <button type="submit" class="btn btn-green">
+          <i class="ri-check-line"></i> Guardar
+        </button>
+      </div>
     </form>
-  </div>
-</main>
+  </main>
+</div>

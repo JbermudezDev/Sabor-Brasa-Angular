@@ -1,92 +1,78 @@
-<!-- Header -->
-<header class="header" id="header">
-  <div class="header__container">
-    <button class="header__toggle" id="header-toggle">
-      <i class="ri-menu-line"></i>
-    </button>
+
+
+<div class="dashboard">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+  <div class="profile">
+    <img src="/assets/images/administrador.png" alt="Foto" class="profile-img" />
+    <h2>Juan Jose Bermudez</h2>
   </div>
-</header>
 
-<!-- Sidebar -->
-<nav class="sidebar" id="sidebar">
-  <div class="sidebar__container">
-    <div class="sidebar__user">
-      <div class="sidebar__img">
-        <img src="/assets/images/administrador.png" alt="image" />
-      </div>
-      <div class="sidebar__info">
-        <h3>Juan Jose Bermudez</h3>
-        <span></span>
-      </div>
-    </div>
-
-    <div class="sidebar__content">
-      <div class="sidebar__list">
-        <a routerLink="/listarDashCliente" class="sidebar__link">
-          <i class="ri-profile-line"></i>
-          <span>Mi Perfil</span>
-        </a>
-        <a routerLink="/clientes/pedidos" class="sidebar__link">
-          <i class="ri-walk-line"></i>
-          <span>Mis Pedidos</span>
-        </a>
-        <a routerLink="/clientes/historial" class="sidebar__link">
-          <i class="ri-riding-line"></i>
-          <span>Historial Pedidos</span>
-        </a>
-      </div>
-    </div>
-
-    <div class="button-container" style="margin-bottom: 20px;">
-      <a routerLink="/menu">
-        <button class="btn-menu">Ir al Menú</button>
+  <div class="sidebar-content">
+    <nav class="nav">
+      <a routerLink="/listarDashCliente" class="nav-link ">
+        <i class="ri-user-line"></i> Mi Perfil
       </a>
-    </div>
+      <a routerLink="/clientes/pedidos" class="nav-link active">
+        <i class="ri-shopping-cart-2-line"></i> Mis Pedidos
+      </a>
+      <a routerLink="/clientes/historial" class="nav-link">
+        <i class="ri-time-line"></i> Historial Pedidos
+      </a>
+    </nav>
 
-    <div class="sidebar__actions">
-      <a routerLink="/" class="sidebar__link">
-        <i class="ri-logout-box-r-fill"></i>
-        <span>Log Out</span>
+    <div class="logout-wrapper">
+      <a routerLink="/" class="nav-link logout">
+        <i class="ri-logout-box-line"></i> Log Out
       </a>
     </div>
   </div>
-</nav>
+</aside>
 
 <!-- Main Content -->
 <main class="main container" id="main">
   <div class="main-content">
-    <h1>Mis Pedidos</h1>
-
-    <div class="table-container">
-      <section class="dashboard">
-        <div *ngIf="pedidos.length > 0; else sinPedidos">
-          <table class="tabla-pedidos">
-            <thead>
-              <tr>
-                <th># Pedido</th>
-                <th>Estado</th>
-                <th>Fecha</th>
-                <th>Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let pedido of pedidos">
-                <td>{{ pedido.id }}</td>
-                <td>{{ pedido.estado }}</td>
-                <td>{{ pedido.fechaCreacion | date: 'mediumDate' }}</td>
-                <td>{{ pedido.total | number:'1.3-3' }}</td>
-
-
-
-              </tr>
-            </tbody>
-          </table>
+    <div class="orders-card">
+      <h2 class="orders-title">Mis Pedidos</h2>
+      <div *ngIf="pedidos.length > 0; else sinPedidos">
+        <table class="orders-table">
+          <thead>
+            <tr>
+              <th># Pedido</th>
+              <th>Estado</th>
+              <th>Fecha</th>
+              <th>Total</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr *ngFor="let pedido of pedidos">
+              <td>{{ pedido.id }}</td>
+              <td>
+                <span class="status-badge"
+                      [ngClass]="{
+                        'recibido': pedido.estado === 'RECIBIDO',
+                        'cocinando': pedido.estado === 'COCINANDO',
+                        'enviado': pedido.estado === 'ENVIADO',
+                        'entregado': pedido.estado === 'ENTREGADO'
+                      }">
+                  {{ pedido.estado }}
+                </span>
+              </td>
+              <td>{{ pedido.fechaCreacion | date: 'mediumDate' }}</td>
+              <td>${{ pedido.total | number:'1.0-2' }}</td>
+            </tr>
+          </tbody>
+        </table>
+        <div class="pagination">
+          <button disabled>&lt; Previous</button>
+          <span class="page-number">1</span>
+          <button>Next &gt;</button>
         </div>
-
-        <ng-template #sinPedidos>
-          <p>No tienes pedidos confirmados todavía.</p>
-        </ng-template>
-      </section>
+      </div>
+      <ng-template #sinPedidos>
+        <p>No tienes pedidos confirmados todavía.</p>
+      </ng-template>
     </div>
   </div>
 </main>
+ </div>
