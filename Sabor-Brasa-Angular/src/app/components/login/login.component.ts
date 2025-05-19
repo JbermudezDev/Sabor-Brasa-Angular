@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from 'src/app/services/auth-service.service';
 import { ViewEncapsulation } from '@angular/core';
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -16,15 +17,19 @@ export class LoginComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
-    // Llamar al servicio para autenticar al administrador
     this.authService.loginAdministrador(this.email, this.password).subscribe({
       next: (response) => {
-        // Redirigir al administrador si la autenticación es exitosa
-        console.log('Inicio de sesión exitoso:', response);
-        this.router.navigate(['/administrador']);
+        // ✅ Guardar el token JWT en localStorage
+        const token = response.token;
+        if (token) {
+          this.authService.guardarToken(token);
+          console.log('Inicio de sesión exitoso:', token);
+          this.router.navigate(['/administrador']);
+        } else {
+          this.errorMessage = 'La respuesta no contiene un token válido.';
+        }
       },
       error: (err) => {
-        // Manejar errores de autenticación
         console.error('Error al iniciar sesión:', err);
         if (err.status === 401) {
           this.errorMessage = 'Credenciales incorrectas. Por favor, intente nuevamente.';

@@ -25,20 +25,30 @@ export class AuthService {
     return this.http.post(`${this.baseUrl}/admin`, credenciales, { withCredentials: true });
   }
 
-  loginCliente(email: string, password: string): Observable<Cliente> {
-    const credenciales = { email, password };
-    return this.http.post<Cliente>(`${this.baseUrl}/cliente`, credenciales, { withCredentials: true }).pipe(
-      rxjsTap((cliente: Cliente) => {
-        this.clienteActual = cliente;
-        localStorage.setItem('clienteActual', JSON.stringify(cliente));
-      })
-    );
+  loginCliente(email: string, password: string): Observable<any> {
+  const body = { email, password };
+  return this.http.post<any>('http://localhost:8090/login/cliente', body);
+}
+
+guardarTokenCliente(token: string): void {
+  localStorage.setItem('jwtTokenCliente', token);
+}
+
+guardarCliente(cliente: any): void {
+  localStorage.setItem('clienteData', JSON.stringify(cliente));
+}
+
+  guardarToken(token: string): void {
+    localStorage.setItem('jwtToken', token);
   }
 
-  loginOperador(usuario: string, contrasena: string): Observable<any> {
-    const credenciales = { usuario, contrasena };
-    return this.http.post(`${this.baseUrl}/operador`, credenciales, { withCredentials: true });
-  }
+    loginOperador(usuario: string, contrasena: string): Observable<any> {
+      const body = { usuario, contrasena };
+      return this.http.post<any>('http://localhost:8090/login/operador', body);
+    }
+
+
+
 
   // ---- Funciones de Cliente ----
 

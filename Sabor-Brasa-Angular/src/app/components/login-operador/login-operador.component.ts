@@ -17,15 +17,18 @@ export class LoginOperadorComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
-    // Llamar al servicio para autenticar al operador
     this.authService.loginOperador(this.usuario, this.contrasena).subscribe({
       next: (response) => {
-        // Redirigir al operador si la autenticación es exitosa
-        console.log('Inicio de sesión exitoso:', response);
-        this.router.navigate(['/listarOperadores']); // Cambia '/dashboard' por la ruta deseada
+        const token = response.token;
+        if (token) {
+          this.authService.guardarToken(token); // ✅ Guarda el token JWT
+          console.log('Inicio de sesión exitoso:', token);
+          this.router.navigate(['/listarOperadores']);
+        } else {
+          this.errorMessage = 'La respuesta no contiene un token válido.';
+        }
       },
       error: (err) => {
-        // Manejar errores de autenticación
         console.error('Error al iniciar sesión:', err);
         if (err.status === 401) {
           this.errorMessage = 'Credenciales incorrectas. Por favor, intente nuevamente.';

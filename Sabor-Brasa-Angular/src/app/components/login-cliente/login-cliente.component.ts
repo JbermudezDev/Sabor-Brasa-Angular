@@ -23,18 +23,21 @@ export class LoginClienteComponent {
 
   onSubmit(): void {
     this.authService.loginCliente(this.email, this.password).subscribe({
-      next: (cliente) => {
-        console.log('Inicio de sesión exitoso:', cliente);
+      next: (response) => {
+        console.log('Inicio de sesión exitoso:', response);
 
-        // ✅ Guardar cliente en sesión local
-        this.authService.loginClienteSuccess(cliente);
+        const token = response.token;
+        const cliente = response.cliente;
 
-         
-        if (cliente && cliente.id) {
+        if (token) {
+          this.authService.guardarTokenCliente(token);
+        }
+
+        if (cliente) {
+          this.authService.guardarCliente(cliente);
           this.carritoService.setClienteId(cliente.id);
         }
 
-        // Redirigir a info del cliente
         this.router.navigate(['/info-cliente']);
       },
       error: (err) => {
