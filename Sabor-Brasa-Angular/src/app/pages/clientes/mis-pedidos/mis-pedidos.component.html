@@ -1,78 +1,95 @@
-
-
 <div class="dashboard">
   <!-- Sidebar -->
   <aside class="sidebar">
-  <div class="profile">
-    <img src="/assets/images/administrador.png" alt="Foto" class="profile-img" />
-    <h2>Juan Jose Bermudez</h2>
-  </div>
-
-  <div class="sidebar-content">
-    <nav class="nav">
-      <a routerLink="/listarDashCliente" class="nav-link ">
-        <i class="ri-user-line"></i> Mi Perfil
-      </a>
-      <a routerLink="/clientes/pedidos" class="nav-link active">
-        <i class="ri-shopping-cart-2-line"></i> Mis Pedidos
-      </a>
-      <a routerLink="/clientes/historial" class="nav-link">
-        <i class="ri-time-line"></i> Historial Pedidos
-      </a>
-    </nav>
-
-    <div class="logout-wrapper">
-      <a routerLink="/" class="nav-link logout">
-        <i class="ri-logout-box-line"></i> Log Out
-      </a>
+    <div class="profile">
+      <img src="/assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <h2>Juan Jose Bermudez</h2>
     </div>
-  </div>
-</aside>
 
-<!-- Main Content -->
-<main class="main container" id="main">
-  <div class="main-content">
-    <div class="orders-card">
-      <h2 class="orders-title">Mis Pedidos</h2>
-      <div *ngIf="pedidos.length > 0; else sinPedidos">
-        <table class="orders-table">
-          <thead>
-            <tr>
-              <th># Pedido</th>
-              <th>Estado</th>
-              <th>Fecha</th>
-              <th>Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr *ngFor="let pedido of pedidos">
-              <td>{{ pedido.id }}</td>
-              <td>
-                <span class="status-badge"
-                      [ngClass]="{
-                        'recibido': pedido.estado === 'RECIBIDO',
-                        'cocinando': pedido.estado === 'COCINANDO',
-                        'enviado': pedido.estado === 'ENVIADO',
-                        'entregado': pedido.estado === 'ENTREGADO'
-                      }">
-                  {{ pedido.estado }}
-                </span>
-              </td>
-              <td>{{ pedido.fechaCreacion | date: 'mediumDate' }}</td>
-              <td>${{ pedido.total | number:'1.0-2' }}</td>
-            </tr>
-          </tbody>
-        </table>
-        <div class="pagination">
-          <button disabled>&lt; Previous</button>
-          <span class="page-number">1</span>
-          <button>Next &gt;</button>
-        </div>
+    <div class="sidebar-content">
+      <nav class="nav">
+        <a routerLink="/listarDashCliente" class="nav-link ">
+          <i class="ri-user-line"></i> Mi Perfil
+        </a>
+        <a routerLink="/clientes/pedidos" class="nav-link active">
+          <i class="ri-shopping-cart-2-line"></i> Mis Pedidos
+        </a>
+        <a routerLink="/menu" class="nav-link">
+          <i class="ri-restaurant-fill"></i>
+          <span>Ver Menu</span>
+        </a>
+      </nav>
+
+      <div class="logout-wrapper">
+        <a routerLink="/" class="nav-link logout">
+          <i class="ri-logout-box-line"></i> Log Out
+        </a>
       </div>
-      <ng-template #sinPedidos>
-        <p>No tienes pedidos confirmados todavía.</p>
-      </ng-template>
     </div>
-  </div>
-</main>
- </div>
+  </aside>
+
+  <!-- Main Content -->
+  <main class="main container" id="main">
+    <div class="main-content">
+      <div class="orders-card">
+        <h2 class="orders-title">Mis Pedidos</h2>
+        <div *ngIf="pedidos.length > 0; else sinPedidos">
+          <table class="orders-table">
+            <thead>
+              <tr>
+                <th># Pedido</th>
+                <th>Estado</th>
+                <th>Fecha creación</th>
+                <th>Fecha entrega</th>
+                <th>Total</th>
+                <th>Domiciliario</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let pedido of pedidos">
+                <td>{{ pedido.id }}</td>
+                <td>
+                  <span class="status-badge"
+                        [ngClass]="{
+                          'recibido': pedido.estado === 'RECIBIDO',
+                          'cocinando': pedido.estado === 'COCINANDO',
+                          'enviado': pedido.estado === 'ENVIADO',
+                          'entregado': pedido.estado === 'ENTREGADO'
+                        }">
+                    {{ pedido.estado }}
+                  </span>
+                </td>
+                <td>{{ pedido.fechaCreacion | date: 'mediumDate' }}</td>
+               <td>
+                <span *ngIf="pedido.estado === 'ENTREGADO' && pedido.fechaEntrega; else sinEntrega">
+                  {{ pedido.fechaEntrega | date: 'mediumDate' }}
+                </span>
+                <ng-template #sinEntrega>
+                  <em>No entregado aún</em>
+                </ng-template>
+              </td>
+                <td>${{ pedido.total | number:'1.0-2' }}</td>
+                <td>
+                  <span *ngIf="pedido.domiciliario; else sinDom">
+                    {{ pedido.domiciliario.nombre }}
+                  </span>
+                  <ng-template #sinDom>
+                    <em>No asignado</em>
+                  </ng-template>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          <div class="pagination">
+            <button disabled>&lt; Previous</button>
+            <span class="page-number">1</span>
+            <button>Next &gt;</button>
+          </div>
+        </div>
+        <ng-template #sinPedidos>
+          <p>No tienes pedidos confirmados todavía.</p>
+        </ng-template>
+      </div>
+    </div>
+  </main>
+</div>
