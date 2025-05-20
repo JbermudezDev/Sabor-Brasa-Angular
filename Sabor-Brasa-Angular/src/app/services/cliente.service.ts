@@ -32,6 +32,8 @@ export class ClienteService {
   addCliente(cliente: Cliente): Observable<Cliente> {
     return this.http.post<Cliente>('http://localhost:8090/clientes/add', cliente);
   }
-
+  ClienteHome(): Observable<Cliente[]> {
+    return this.http.get<Cliente[]>('http://localhost:8090/clientes/detail');
+  }
 
 }

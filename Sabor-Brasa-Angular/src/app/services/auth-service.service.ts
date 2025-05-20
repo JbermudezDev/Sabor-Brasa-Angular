@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Cliente } from '../models/carrodecompras.model'; // Modelo de Cliente
 import { tap as rxjsTap } from 'rxjs/operators';
+import { User } from '../models/user.model'; // Modelo de Usuario
 
 @Injectable({
   providedIn: 'root'
@@ -30,6 +31,8 @@ export class AuthService {
   return this.http.post<any>('http://localhost:8090/login/cliente', body);
 }
 
+
+
 guardarTokenCliente(token: string): void {
   localStorage.setItem('jwtTokenCliente', token);
 }
@@ -51,6 +54,9 @@ guardarCliente(cliente: any): void {
 
 
   // ---- Funciones de Cliente ----
+  login (user: User): Observable<string> {
+    return this.http.post("http://localhost:8090/login/cliente", user, {responseType: 'text'})
+  }
 
   loginClienteSuccess(cliente: Cliente): void {
     this.clienteActual = cliente;

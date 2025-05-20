@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { LandingComponent } from './pages/landing/landing.component';
 import { MenuComponent } from './pages/menu/menu.component';
@@ -71,6 +71,7 @@ const routes: Routes = [
   { path: 'listarDashCliente', component: DashclienteListarComponent },
   { path: 'clientes/pedidos', component: MisPedidosComponent },
   { path: 'listarOperadores', component: ListarOperadoresComponent },
+
 
 
 ];
