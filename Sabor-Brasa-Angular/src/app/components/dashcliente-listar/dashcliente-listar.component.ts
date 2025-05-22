@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation, ElementRef, ViewChild } from '@angular/core';
 import { ClienteService } from 'src/app/services/cliente.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
 import { Router, NavigationEnd } from '@angular/router';
@@ -21,6 +21,8 @@ export class DashclienteListarComponent implements OnInit {
     direccion: ''
   };
 
+  @ViewChild('nombreInput') nombreInputRef!: ElementRef<HTMLInputElement>;
+
   constructor(
     private clienteService: ClienteService,
     private authService: AuthService,
@@ -28,7 +30,6 @@ export class DashclienteListarComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Detecta si se entra a esta ruta directamente (solo una vez)
     const reloaded = sessionStorage.getItem('reloaded');
     if (!reloaded) {
       sessionStorage.setItem('reloaded', 'true');
@@ -38,7 +39,7 @@ export class DashclienteListarComponent implements OnInit {
 
     this.cargarCliente();
 
-    // Resetear el flag cuando se abandona esta página
+    // Resetear reload cuando se abandona la ruta
     this.router.events
       .pipe(filter(event => event instanceof NavigationEnd))
       .subscribe((event: any) => {
@@ -46,6 +47,11 @@ export class DashclienteListarComponent implements OnInit {
           sessionStorage.removeItem('reloaded');
         }
       });
+
+    // Darle foco al input
+    setTimeout(() => {
+      this.nombreInputRef?.nativeElement?.focus();
+    }, 0);
   }
 
   cargarCliente(): void {
