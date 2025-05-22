@@ -30,10 +30,12 @@
 
 
   <!-- Main Content -->
-  <main class="content">
-    <form class="form-edit" (ngSubmit)="guardarCambios()" #form="ngForm">
-      <h1 class="form-title">Editar Perfil</h1>
+  <!-- Main Content -->
+<main class="main-content">
+  <div class="orders-card">
+    <h2 class="orders-title">Editar Perfil</h2>
 
+    <form (ngSubmit)="guardarCambios()" #form="ngForm">
       <div class="form-group">
         <label for="nombre">Nombre</label>
         <div class="input-icon">
@@ -80,5 +82,7 @@
         </button>
       </div>
     </form>
-  </main>
+  </div>
+</main>
+
 </div>
