@@ -3,6 +3,7 @@ import { AuthService } from 'src/app/services/auth-service.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { Cliente } from 'src/app/models/carrodecompras.model';
 import { Pedido } from 'src/app/models/pedido.model';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-mis-pedidos',
@@ -16,7 +17,8 @@ export class MisPedidosComponent implements OnInit {
 
   constructor(
     private authService: AuthService,
-    private pedidoService: PedidoService
+    private pedidoService: PedidoService,
+    private router: Router,
   ) {}
 
   ngOnInit(): void {
@@ -55,5 +57,14 @@ export class MisPedidosComponent implements OnInit {
     console.log(`Total para el pedido ${pedido.id}:`, total);
     return total;
   }
-  
+  cerrarSesion(): void {
+  this.authService.logoutCliente().subscribe({
+    next: () => {
+      this.router.navigate(['/login-cliente']); // Redirige al login
+    },
+    error: (err) => {
+      console.error('Error al cerrar sesión', err);
+    }
+  });
+}
 }

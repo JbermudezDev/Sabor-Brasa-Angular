@@ -5,7 +5,7 @@ import { Cliente } from '../models/carrodecompras.model'; // Modelo de Cliente
 import { tap as rxjsTap } from 'rxjs/operators';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class AuthService {
   private baseUrl = 'http://localhost:8090/login';
@@ -22,33 +22,32 @@ export class AuthService {
 
   loginAdministrador(email: string, password: string): Observable<any> {
     const credenciales = { email, password };
-    return this.http.post(`${this.baseUrl}/admin`, credenciales, { withCredentials: true });
+    return this.http.post(`${this.baseUrl}/admin`, credenciales, {
+      withCredentials: true,
+    });
   }
 
   loginCliente(email: string, password: string): Observable<any> {
-  const body = { email, password };
-  return this.http.post<any>('http://localhost:8090/login/cliente', body);
-}
+    const body = { email, password };
+    return this.http.post<any>('http://localhost:8090/login/cliente', body);
+  }
 
-guardarTokenCliente(token: string): void {
-  localStorage.setItem('jwtTokenCliente', token);
-}
+  guardarTokenCliente(token: string): void {
+    localStorage.setItem('jwtTokenCliente', token);
+  }
 
-guardarCliente(cliente: any): void {
-  localStorage.setItem('clienteData', JSON.stringify(cliente));
-}
+  guardarCliente(cliente: any): void {
+    localStorage.setItem('clienteActual', JSON.stringify(cliente)); // ← Cambiado
+  }
 
   guardarToken(token: string): void {
     localStorage.setItem('jwtToken', token);
   }
 
-    loginOperador(usuario: string, contrasena: string): Observable<any> {
-      const body = { usuario, contrasena };
-      return this.http.post<any>('http://localhost:8090/login/operador', body);
-    }
-
-
-
+  loginOperador(usuario: string, contrasena: string): Observable<any> {
+    const body = { usuario, contrasena };
+    return this.http.post<any>('http://localhost:8090/login/operador', body);
+  }
 
   // ---- Funciones de Cliente ----
 
@@ -60,7 +59,16 @@ guardarCliente(cliente: any): void {
   logoutCliente(): Observable<any> {
     this.clienteActual = undefined!;
     localStorage.removeItem('clienteActual');
-    return this.http.post(`${this.baseUrl}/logoutCliente`, {}, { withCredentials: true });
+    localStorage.removeItem('jwtTokenCliente');
+
+    return this.http.post(
+      `${this.baseUrl}/logoutCliente`,
+      {},
+      {
+        withCredentials: true,
+        responseType: 'text', // ✅ Acepta respuesta como texto
+      }
+    );
   }
 
   isClienteLoggedIn(): boolean {

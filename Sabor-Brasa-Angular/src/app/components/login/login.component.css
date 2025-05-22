@@ -306,3 +306,13 @@ body {
 .btn:hover {
     border: 1px solid #2d79f3;
 }
+
+.forgot-password {
+  font-size: 14px;
+  color: #222222;
+  margin: 12px 0;
+}
+.click-aqui {
+  color: #e65800;
+  cursor: pointer;
+}

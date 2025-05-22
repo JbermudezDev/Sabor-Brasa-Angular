@@ -72,8 +72,11 @@
         >
           Registro
         </button>
-        <button type="button" class="btn-login">Login</button>
+        <button type="button" class="btn-login" routerLink="/login">Login</button>
+
       </div>
+
+     
 
       <div *ngIf="mensajeExito" class="error-message">
         <p>{{ mensajeExito }}</p>

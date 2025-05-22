@@ -2,13 +2,17 @@
   <!-- Sidebar -->
   <aside class="sidebar">
     <div class="profile">
-      <img src="/assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <img
+        src="/assets/images/administrador.png"
+        alt="Foto"
+        class="profile-img"
+      />
       <h2>Juan Jose Bermudez</h2>
     </div>
 
     <div class="sidebar-content">
       <nav class="nav">
-        <a routerLink="/listarDashCliente" class="nav-link ">
+        <a routerLink="/listarDashCliente" class="nav-link">
           <i class="ri-user-line"></i> Mi Perfil
         </a>
         <a routerLink="/clientes/pedidos" class="nav-link active">
@@ -21,7 +25,7 @@
       </nav>
 
       <div class="logout-wrapper">
-        <a routerLink="/" class="nav-link logout">
+        <a (click)="cerrarSesion()" class="nav-link logout">
           <i class="ri-logout-box-line"></i> Log Out
         </a>
       </div>
@@ -49,26 +53,33 @@
               <tr *ngFor="let pedido of pedidos">
                 <td>{{ pedido.id }}</td>
                 <td>
-                  <span class="status-badge"
-                        [ngClass]="{
-                          'recibido': pedido.estado === 'RECIBIDO',
-                          'cocinando': pedido.estado === 'COCINANDO',
-                          'enviado': pedido.estado === 'ENVIADO',
-                          'entregado': pedido.estado === 'ENTREGADO'
-                        }">
+                  <span
+                    class="status-badge"
+                    [ngClass]="{
+                      recibido: pedido.estado === 'RECIBIDO',
+                      cocinando: pedido.estado === 'COCINANDO',
+                      enviado: pedido.estado === 'ENVIADO',
+                      entregado: pedido.estado === 'ENTREGADO'
+                    }"
+                  >
                     {{ pedido.estado }}
                   </span>
                 </td>
-                <td>{{ pedido.fechaCreacion | date: 'mediumDate' }}</td>
-               <td>
-                <span *ngIf="pedido.estado === 'ENTREGADO' && pedido.fechaEntrega; else sinEntrega">
-                  {{ pedido.fechaEntrega | date: 'mediumDate' }}
-                </span>
-                <ng-template #sinEntrega>
-                  <em>No entregado aún</em>
-                </ng-template>
-              </td>
-                <td>${{ pedido.total | number:'1.0-2' }}</td>
+                <td>{{ pedido.fechaCreacion | date : "mediumDate" }}</td>
+                <td>
+                  <span
+                    *ngIf="
+                      pedido.estado === 'ENTREGADO' && pedido.fechaEntrega;
+                      else sinEntrega
+                    "
+                  >
+                    {{ pedido.fechaEntrega | date : "mediumDate" }}
+                  </span>
+                  <ng-template #sinEntrega>
+                    <em>No entregado aún</em>
+                  </ng-template>
+                </td>
+                <td>${{ pedido.total | number : "1.0-2" }}</td>
                 <td>
                   <span *ngIf="pedido.domiciliario; else sinDom">
                     {{ pedido.domiciliario.nombre }}

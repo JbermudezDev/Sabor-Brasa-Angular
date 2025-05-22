@@ -87,9 +87,14 @@
       Iniciar Sesión
     </button>
 
+    <p class="forgot-password">
+      ¿Olvidaste Registrarte?
+      <a class="click-aqui" [routerLink]="['/registrar']">click aquí</a>
+    </p>
+
     <!-- Mensaje de error -->
     <div *ngIf="errorMessage" class="error-message">
-      <p style="color: red;">{{ errorMessage }}</p>
+      <p style="color: red">{{ errorMessage }}</p>
     </div>
   </form>
 </div>
