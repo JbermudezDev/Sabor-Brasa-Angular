@@ -26,29 +26,10 @@
   </ul>
 </div>
 
-<!-- Formulario de Inicio de Sesión Unificado -->
+<!-- Formulario de Inicio de Sesión -->
 <div class="login-container">
   <form (ngSubmit)="onSubmit()" #loginForm="ngForm" class="form">
     <h2>Iniciar Sesión</h2>
-
-    <!-- Tipo de usuario -->
-    <div class="flex-column">
-      <label for="userType">Tipo de Usuario</label>
-    </div>
-    <div class="inputForm">
-      <select
-        id="userType"
-        name="userType"
-        [(ngModel)]="userType"
-        required
-        class="input"
-      >
-        <option value="" disabled selected>Seleccione...</option>
-        <option value="admin">Administrador</option>
-        <option value="cliente">Cliente</option>
-        <option value="operador">Operador</option>
-      </select>
-    </div>
 
     <!-- Email -->
     <div class="flex-column">
@@ -87,9 +68,10 @@
       Iniciar Sesión
     </button>
 
+    <!-- Enlace de registro -->
     <p class="forgot-password">
       ¿Olvidaste Registrarte?
-      <a class="click-aqui" [routerLink]="['/registrar']">click aquí</a>
+      <a class="click-aqui" routerLink="/registrar">click aquí</a>
     </p>
 
     <!-- Mensaje de error -->

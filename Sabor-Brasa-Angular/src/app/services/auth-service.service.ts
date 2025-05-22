@@ -48,6 +48,11 @@ export class AuthService {
     const body = { usuario, contrasena };
     return this.http.post<any>('http://localhost:8090/login/operador', body);
   }
+  loginU(email: string, password: string): Observable<any> {
+  const body = { email, password };
+  return this.http.post<any>('http://localhost:8090/login', body);
+}
+
 
   // ---- Funciones de Cliente ----
 

@@ -23,71 +23,44 @@ export class LoginComponent {
   ) {}
 
   onSubmit(): void {
-    switch (this.userType) {
-      case 'admin':
-        this.authService.loginAdministrador(this.email, this.password).subscribe({
-          next: (response) => {
-            const token = response.token;
-            if (token) {
-              this.authService.guardarToken(token);
-              this.router.navigate(['/administrador']);
-            } else {
-              this.errorMessage = 'La respuesta no contiene un token válido.';
-            }
-          },
-          error: (err) => this.handleError(err)
-        });
-        break;
+  this.authService.loginU(this.email, this.password).subscribe({
+    next: (response) => {
+      const token = response.token;
+      const rol = response.rol?.toUpperCase();
+      const usuario = response.usuario;
 
-      case 'cliente':
-        this.authService.loginCliente(this.email, this.password).subscribe({
-          next: (response) => {
-            const token = response.token;
-            const cliente = response.cliente;
+      if (token) {
+        this.authService.guardarToken(token);
+      }
 
-            if (token) {
-              this.authService.guardarTokenCliente(token);
-            }
+      if (usuario) {
+        this.authService.guardarCliente(usuario); // o guardarUsuario(usuario)
+      }
 
-            if (cliente) {
-              this.authService.guardarCliente(cliente);
-              this.carritoService.setClienteId(cliente.id);
-            }
-
-            this.router.navigate(['/info-cliente']);
-          },
-          error: (err) => this.handleError(err)
-        });
-        break;
-
-      case 'operador':
-        this.authService.loginOperador(this.email, this.password).subscribe({
-          next: (response) => {
-            const token = response.token;
-            if (token) {
-              this.authService.guardarToken(token);
-              this.router.navigate(['/listarOperadores']);
-            } else {
-              this.errorMessage = 'La respuesta no contiene un token válido.';
-            }
-          },
-          error: (err) => this.handleError(err)
-        });
-        break;
-
-      default:
-        this.errorMessage = 'Por favor seleccione un tipo de usuario.';
+      // Redirigir según el rol
+      switch (rol) {
+        case 'ADMIN':
+          this.router.navigate(['/administrador']);
+          break;
+        case 'CLIENTE':
+          this.router.navigate(['/info-cliente']);
+          break;
+        case 'OPERADOR':
+          this.router.navigate(['/listarOperadores']);
+          break;
+        default:
+          this.errorMessage = 'Rol no reconocido.';
+      }
+    },
+    error: (err) => {
+      console.error('Error al iniciar sesión:', err);
+      this.errorMessage =
+        err.status === 401 ? 'Credenciales incorrectas.' :
+        err.status === 500 ? 'Error interno del servidor.' :
+        'Error inesperado.';
     }
-  }
+  });
+}
 
-  private handleError(err: any): void {
-    console.error('Error al iniciar sesión:', err);
-    if (err.status === 401) {
-      this.errorMessage = 'Credenciales incorrectas. Por favor, intente nuevamente.';
-    } else if (err.status === 500) {
-      this.errorMessage = 'Error interno del servidor. Intente más tarde.';
-    } else {
-      this.errorMessage = 'Ocurrió un error inesperado. Por favor, intente nuevamente.';
-    }
-  }
+
 }
