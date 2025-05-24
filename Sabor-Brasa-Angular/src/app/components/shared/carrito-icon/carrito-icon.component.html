@@ -1,31 +1,49 @@
-<div class="carrito-container" *ngIf="carrito.length > 0; else vacio">
-  <h2>Carrito de Compras</h2>
+<div class="carrito-wrapper" *ngIf="carrito.length > 0; else vacio">
+  <div class="carrito-lista">
+    <div class="carrito-item" *ngFor="let item of carrito; let i = index">
+      <div class="item-img">
+        <img [src]="'http://localhost:8090' + item.producto.imagen" alt="{{ item.producto.nombre }}" />
+      </div>
+      <div class="item-info">
+        <div class="item-header">
+          <span class="item-nombre">{{ item.producto.nombre }}</span>
+          <span class="item-precio"> 
+            
+          </span>
 
-  <div class="item" *ngFor="let item of carrito; let i = index">
-    <h3>{{ item.producto.nombre }}</h3>
-    <p>{{ item.producto.descripcion }}</p>
-    <p>Precio: {{ item.producto.precio | currency:'COP' }}</p>
 
-    <div *ngIf="item.adicionales.length > 0">
-      <p>Adicionales:</p>
-      <ul>
-        <li *ngFor="let adicional of item.adicionales">
-          {{ adicional.nombre }} (+{{ adicional.precio | currency:'COP' }})
-        </li>
-      </ul>
+        </div>
+        <p class="item-descripcion">{{ item.producto.descripcion }}</p>
+
+        <div *ngIf="item.adicionales.length > 0" class="item-adicionales">
+          <span>Adicionales:</span>
+          <ul>
+            <li *ngFor="let adicional of item.adicionales">
+              {{ adicional.nombre }} (+{{ adicional.precio | number:'1.3-3' }})
+
+            </li>
+          </ul>
+        </div>
+
+        <div class="item-footer">
+          <span class="item-total">Total: {{ item.total | number:'1.3-3' }}</span>
+
+          <button class="item-delete" (click)="eliminarItem(i)">🗑️</button>
+        </div>
+      </div>
     </div>
-
-    <p><strong>Total:</strong> {{ item.total | currency:'COP' }}</p>
-    <button class="btn-delete" (click)="eliminarItem(i)">Eliminar</button>
-    <hr />
   </div>
 
-  <div class="carrito-total">
-    <p><strong>Total General:</strong> {{ total | currency:'COP' }}</p>
+  <div class="carrito-resumen">
+    <div class="resumen-total">
+      <span>Total:</span>
+     <strong>{{ total | number:'1.3-3' }}</strong>
+
+    </div>
     <button class="btn-confirmar" (click)="confirmarPedido()">Confirmar Pedido</button>
   </div>
 </div>
 
 <ng-template #vacio>
-  <p>No hay productos en el carrito.</p>
+  <p class="carrito-vacio">Tu carrito está vacío 🛍️</p>
 </ng-template>

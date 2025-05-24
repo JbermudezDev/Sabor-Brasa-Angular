@@ -52,7 +52,7 @@
                 />
                 <span class="custom-checkmark"></span>
                 <span class="checkbox-label">
-                  {{ adicional.nombre }} (+{{ adicional.precio | currency:'COP' }})
+                  {{ adicional.nombre }} (+{{ adicional.precio | number:'1.3-3' }})
                 </span>
               </label>
             </div>
@@ -60,7 +60,7 @@
   
           <!-- Mostrar total y botón -->
           <div class="total-container">
-            <p><strong>Total:</strong> {{ getTotal() | currency:'COP' }}</p>
+            <p><strong>Total:</strong> {{ getTotal() | number:'1.3-3' }}</p>
             <button class="buttonadd" (click)="agregarAlCarrito()">Agregar al carrito</button>
           </div>
         </div>

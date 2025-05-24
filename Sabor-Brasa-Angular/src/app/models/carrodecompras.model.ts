@@ -5,6 +5,7 @@ export interface ItemCarrito {
   producto: Producto;
   adicionales: Adicional[];
   total: number;
+  
 }
   
   export interface Cliente {
