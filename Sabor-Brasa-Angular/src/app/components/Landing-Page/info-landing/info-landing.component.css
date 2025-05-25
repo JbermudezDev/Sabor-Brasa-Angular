@@ -366,51 +366,90 @@
   margin-bottom: 100px; /* Aumenta el espacio debajo del h2 */
 }
 
-.card {
-  background: linear-gradient(145deg, #7777776b, #414141); /* Degradado negro a gris */
-  color: #fff; /* Texto blanco para contraste */
-  border-radius: 15px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-  width: 300px;
+/* Card general */
+.modern-card {
+  position: relative;
+  background-color: #fdead0ac;
+  border-radius: 16px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
   padding: 20px;
   text-align: center;
-  align-items: center;
   transition: transform 0.3s ease;
-  margin-top: 20px; /* Baja las cartas */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  max-width: 300px;
 }
-.card img {
+
+.modern-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+}
+
+.modern-card img {
   width: 100%;
   height: 200px;
+  border-radius: 12px;
   object-fit: cover;
-  border-radius: 10px;
   margin-bottom: 15px;
 }
 
-.card h3 {
-  font-size: 1.5rem;
-  color: #e9e9e9;
+.modern-card h3 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.3rem;
+  color: #222;
   margin-bottom: 10px;
 }
 
-.card p {
-  font-size: 1rem;
-  color: #000000;
-  margin-bottom: 20px;
+.modern-card p {
+  font-family: 'Lora', serif;
+  font-size: 0.95rem;
+  color: #555;
+  text-align: center;
+  line-height: 1.4;
+  margin-bottom: 15px;
 }
 
-.card button {
-  background-color: #a42d0c;
-  color: #fff;
+.modern-card button {
+  background-color: #ff5400;
+  color: white;
   border: none;
+  border-radius: 8px;
   padding: 10px 20px;
-  border-radius: 5px;
+  font-weight: bold;
   cursor: pointer;
-  font-size: 1rem;
+  transition: background-color 0.3s ease;
 }
 
-.card button:hover {
-  background-color: #8c3b24;
+.modern-card button:hover {
+  background-color: #e03e00;
 }
+
+/* Badge */
+.badge {
+  position: absolute;
+  top: 12px;
+  left: 12px;
+  padding: 5px 12px;
+  border-radius: 12px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  color: white;
+  font-family: 'Nunito', sans-serif;
+}
+
+.badge.nuevo {
+  background-color: #00a86b;
+}
+
+.badge.popular {
+  background-color: #d6336c;
+}
+
+.badge.recomendado {
+  background-color: #ffa500;
+}
+
 
 
 
