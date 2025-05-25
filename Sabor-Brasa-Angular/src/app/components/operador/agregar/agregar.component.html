@@ -1,102 +1,69 @@
-<div class="main container" id="main">
-    <!--=============== HEADER ===============-->
-    <header class="header" id="header">
-      <div class="header__container">
-        <button class="header__toggle" id="header-toggle">
-          <i class="ri-menu-line"></i>
-        </button>
-      </div>
-    </header>
-  
-    <!--=============== SIDEBAR ===============-->
-    <nav class="sidebar" id="sidebar">
-      <div class="sidebar__container">
-        <div class="sidebar__user">
-          <div class="sidebar__img">
-            <img src="assets/images/administrador.png" alt="Administrador" />
-          </div>
-          <div class="sidebar__info">
-            <h3>Juan Jose Bermudez</h3>
-          </div>
-        </div>
-        <div class="sidebar__content">
-          <div>
-            <h3 class="sidebar__title">MANAGE</h3>
-            <div class="sidebar__list">
-              <a routerLink="/administrador" class="sidebar__link">
-                <i class="ri-vip-crown-fill"></i>
-                <span>Administrador</span>
-              </a>
-              <a routerLink="/adicionales" class="sidebar__link">
-                <i class="ri-goblet-2-fill"></i>
-                <span>Adicionales</span>
-              </a>
-              <a routerLink="/productos" class="sidebar__link">
-                <i class="ri-restaurant-fill"></i>
-                <span>Productos</span>
-              </a>
-              <a routerLink="/clientes" class="sidebar__link">
-                <i class="ri-user-fill"></i>
-                <span>Clientes</span>
-              </a>
-              <a routerLink="/operadores" class="sidebar__link">
-                <i class="ri-user-settings-fill"></i>
-                <span>Operadores</span>
-              </a>
-            </div>
-          </div>
-        </div>
-        <div class="sidebar__actions">
-          <button class="sidebar__link">
-            <i class="ri-logout-box-r-fill"></i>
-            <span>Log Out</span>
-          </button>
-        </div>
-      </div>
+<div class="container">
+  <!-- Sidebar moderno -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <h2>Juan Jose Bermudez</h2>
+    </div>
+
+    <nav class="nav">
+      <a routerLink="/administrador" class="nav-link"><i class="ri-vip-crown-fill"></i> Administrador</a>
+      <a routerLink="/adicionales" class="nav-link"><i class="ri-goblet-2-fill"></i> Adicionales</a>
+      <a routerLink="/productos" class="nav-link"><i class="ri-restaurant-fill"></i> Productos</a>
+      <a routerLink="/clientes" class="nav-link"><i class="ri-user-fill"></i> Clientes</a>
+      <a routerLink="/operadores" class="nav-link active"><i class="ri-user-settings-fill"></i> Operadores</a>
+      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-line"></i> Log Out</a>
     </nav>
-  
-    <!--=============== MAIN ===============-->
-    <main class="main-content">
-      <div class="form-container">
-        <h2>Agregar Operador</h2>
-        <form (ngSubmit)="onSubmit()" #operadorForm="ngForm">
-          <div class="form-group">
-            <label for="nombre">Nombre:</label>
-            <input
-              type="text"
-              id="nombre"
-              name="nombre"
-              [(ngModel)]="operador.nombre"
-              required
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <label for="usuario">Usuario:</label>
-            <input
-              type="text"
-              id="usuario"
-              name="usuario"
-              [(ngModel)]="operador.usuario"
-              required
-              class="form-control"
-            />
-          </div>
-          <div class="form-group">
-            <label for="contrasena">Contraseña:</label>
-            <input
-              type="password"
-              id="contrasena"
-              name="contrasena"
-              [(ngModel)]="operador.contrasena"
-              required
-              class="form-control"
-            />
-          </div>
-          <button type="submit" class="btn-submit" [disabled]="!operadorForm.valid">
-            Agregar Operador
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <h1>Agregar Operador</h1>
+
+    <div class="card-client">
+      <form (ngSubmit)="onSubmit()" #operadorForm="ngForm" class="formulario-editar">
+        <div class="form-group">
+          <label for="nombre">Nombre:</label>
+          <input
+            type="text"
+            id="nombre"
+            name="nombre"
+            [(ngModel)]="operador.nombre"
+            required
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="usuario">Usuario:</label>
+          <input
+            type="text"
+            id="usuario"
+            name="usuario"
+            [(ngModel)]="operador.usuario"
+            required
+          />
+        </div>
+
+        <div class="form-group wide">
+          <label for="contrasena">Contraseña:</label>
+          <input
+            type="password"
+            id="contrasena"
+            name="contrasena"
+            [(ngModel)]="operador.contrasena"
+            required
+          />
+        </div>
+
+        <div class="card-actions">
+          <a routerLink="/operadores" class="btn-action back">
+            <i class="ri-arrow-left-line"></i> Cancelar
+          </a>
+          <button type="submit" class="btn-action edit" [disabled]="!operadorForm.valid">
+            <i class="ri-check-line"></i> Agregar Operador
           </button>
-        </form>
-      </div>
-    </main>
-  </div>
+        </div>
+      </form>
+    </div>
+  </main>
+</div>

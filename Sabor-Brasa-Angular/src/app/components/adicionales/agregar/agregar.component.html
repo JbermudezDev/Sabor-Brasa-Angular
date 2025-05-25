@@ -1,15 +1,25 @@
-<div class="main container" id="main">
+<div class="container">
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <h2>Juan Jose Bermudez</h2>
+    </div>
 
+    <nav class="nav">
+      <a routerLink="/administrador" class="nav-link "><i class="ri-pie-chart-2-fill"></i> Dashboard</a>
+      <a routerLink="/operadores" class="nav-link"><i class="ri-walk-line"></i> Operadores</a> 
+      <a routerLink="/productos" class="nav-link"><i class="ri-restaurant-fill"></i> Productos</a>
+      <a routerLink="/adicionales" class="nav-link active"><i class="ri-goblet-2-fill"></i> Adicionales</a>
+      <a routerLink="/clientes" class="nav-link"><i class="ri-user-fill"></i> Clientes</a>
+      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-line"></i> Log Out</a>
+    </nav>
+  </aside>
 
-  <layout-admin-header></layout-admin-header>
-  <layout-admin-sidebar></layout-admin-sidebar>
-
-
-  <!--=============== MAIN ===============-->
   <main class="main-content">
-    <div class="form-container">
-      <h2>Agregar Adicional</h2>
-      <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm">
+    <h1>Agregar Adicional</h1>
+
+    <div class="card-client">
+      <form (ngSubmit)="onSubmit()" #adicionalForm="ngForm" class="formulario-editar">
         <div class="form-group">
           <label for="nombre">Nombre:</label>
           <input
@@ -18,7 +28,6 @@
             name="nombre"
             [(ngModel)]="adicional.nombre"
             required
-            class="form-control"
           />
           <div *ngIf="adicionalForm.controls['nombre']?.invalid && adicionalForm.controls['nombre']?.touched">
             <small class="error">El nombre es obligatorio.</small>
@@ -33,7 +42,6 @@
             name="precio"
             [(ngModel)]="adicional.precio"
             required
-            class="form-control"
             min="0"
             step="0.01"
           />
@@ -42,7 +50,7 @@
           </div>
         </div>
 
-        <div class="form-group">
+        <div class="form-group wide">
           <label for="descripcion">Descripción:</label>
           <input
             type="text"
@@ -50,20 +58,24 @@
             name="descripcion"
             [(ngModel)]="adicional.descripcion"
             required
-            class="form-control"
           />
           <div *ngIf="adicionalForm.controls['descripcion']?.invalid && adicionalForm.controls['descripcion']?.touched">
             <small class="error">La descripción es obligatoria.</small>
           </div>
         </div>
 
-        <button
-          type="submit"
-          class="btn-submit"
-          [disabled]="!adicionalForm.valid"
-        >
-          Agregar Adicional
-        </button>
+        <div class="card-actions">
+          <a routerLink="/adicionales" class="btn-action back">
+            <i class="ri-arrow-left-line"></i> Cancelar
+          </a>
+          <button
+            type="submit"
+            class="btn-action edit"
+            [disabled]="!adicionalForm.valid"
+          >
+            <i class="ri-check-line"></i> Agregar Adicional
+          </button>
+        </div>
       </form>
     </div>
   </main>
