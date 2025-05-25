@@ -46,7 +46,7 @@ export class CarritoIconComponent implements OnInit {
         alert('Pedido confirmado con éxito');
         this.carritoService.limpiar();
         this.cargarCarrito();
-        this.router.navigate(['/clientes/pedidos']);
+        this.router.navigate(['/listarDashCliente']);
       },
       error: (err) => {
         console.error('Error al confirmar pedido:', err);

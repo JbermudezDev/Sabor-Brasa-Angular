@@ -43,7 +43,7 @@ export class LoginComponent {
           this.router.navigate(['/administrador']);
           break;
         case 'CLIENTE':
-          this.router.navigate(['/info-cliente']);
+          this.router.navigate(['/listarDashCliente']);
           break;
         case 'OPERADOR':
           this.router.navigate(['/listarOperadores']);

@@ -14,6 +14,126 @@ body {
 }
 
 
+/* Contenedor centrado */
+.login-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: calc(100vh - 200px);
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Tarjeta del formulario */
+.form-card {
+  background-color: rgba(255, 255, 255, 0.7);
+  padding: 50px 60px;
+  border-radius: 20px;
+  width: 550px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  color: #212121;
+  text-align: center;
+  backdrop-filter: blur(10px);
+}
+
+/* Título */
+.form-card h2 {
+  font-size: 30px;
+  margin-bottom: 25px;
+  color: #e65800;
+  font-weight: bold;
+  border-bottom: 2px solid #e65800;
+  display: inline-block;
+  padding-bottom: 8px;
+}
+
+/* Grupo de entrada */
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 14px 16px;
+  background-color: #ffffff;
+  border: 1.5px solid #ddd;
+  border-radius: 10px;
+  font-size: 16px;
+  transition: 0.2s ease;
+  color: #212121;
+}
+
+.form-group input::placeholder {
+  color: #888;
+}
+
+.form-group input:focus {
+  outline: none;
+  border-color: #e65800;
+  background-color: #fff9f3;
+}
+
+/* Texto de recuperación */
+.forgot-password {
+  font-size: 14px;
+  color: #333;
+  margin: 15px 0 5px 0;
+}
+
+.click-aqui {
+  color: #e65800;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Botones */
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 22px;
+  gap: 10px;
+}
+
+.btn-register,
+.btn-login {
+  width: 50%;
+  padding: 13px;
+  font-size: 15px;
+  font-weight: bold;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: 0.3s ease;
+}
+
+.btn-register {
+  background-color: #e65800;
+  color: white;
+}
+
+.btn-register:hover {
+  background-color: #cf4700;
+}
+
+.btn-login {
+  background-color: #f0f0f0;
+  color: #000;
+}
+
+.btn-login:hover {
+  background-color: #ddd;
+}
+
+/* Mensaje de error */
+.error-message {
+  margin-top: 15px;
+  font-size: 14px;
+  color: #d8000c;
+  background-color: #ffbaba;
+  padding: 10px;
+  border-radius: 8px;
+}
 
 
 #header {
@@ -163,117 +283,3 @@ body {
   }
 
 
-.login-container {
-  display: flex;
-  justify-content: center;   /* Centrado horizontal */
-  align-items: center;       /* Centrado vertical */
-  height: calc(100vh - 200px);             /* Ocupar toda la altura de la pantalla */
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-.form {
-  margin: 0;
-  padding: 40px;
-  background-color: rgba(255, 255, 255, 0.6);
-  backdrop-filter: blur(10px);
-  width: 550px;
-  border-radius: 20px;
-}
-
-
-
-.form-card {
-  background-color: #ffffffb9;
-  padding: 50px 60px;
-  border-radius: 16px;
-  width: 550px; /* MÁS ANCHO */
-  box-shadow: 0 6px 20px rgba(255, 113, 37, 0.6);
-  color: rgb(0, 0, 0);
-  text-align: center;
-}
-
-
-.form-card h2 {
-  font-size: 28px;
-  margin-bottom: 25px;
-  border-bottom: 2px solid #e65800;
-  display: inline-block;
-  padding-bottom: 6px;
-}
-
-.form-group {
-  margin-bottom: 18px;
-}
-
-.form-group input {
-  width: 100%;
-  padding: 14px;
-  background-color: #ffffff;
-  border: none;
-  border-radius: 8px;
-  color: white;
-  font-size: 16px;
-}
-
-.form-group input::placeholder {
-  color: #323131;
-}
-
-.form-group input:focus {
-  outline: none;
-  background-color: #ffdcb8;
-  border: 1px solid  #ffe2d0;
-}
-
-.forgot-password {
-  font-size: 14px;
-  color: #222222;
-  margin: 12px 0;
-}
-
-.click-aqui {
-  color: #e65800;
-  cursor: pointer;
-}
-
-.button-group {
-  display: flex;
-  justify-content: space-between;
-  margin-top: 22px;
-}
-
-.btn-register,
-.btn-login {
-  width: 48%;
-  padding: 12px;
-  font-size: 15px;
-  font-weight: bold;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-}
-
-.btn-register {
-  background-color:  #e65800;
-  color: #000;
-}
-
-.btn-register:hover {
-  background-color:  #e63200;
-}
-
-.btn-login {
-  background-color: #e0e0e0;
-  color: #000;
-}
-
-.btn-login:hover {
-  background-color: #cfcfcf;
-}
-
-.error-message {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #ff5252;
-}

@@ -13,7 +13,7 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class ListarOperadoresComponent implements OnInit {
-  pedidos: Pedido[] = [];
+    pedidos: Pedido[] = [];
   domiciliarios: Domiciliario[] = [];
   operadorId!: number;
 
@@ -31,6 +31,16 @@ export class ListarOperadoresComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
+    // Recarga controlada solo una vez
+    const reloaded = sessionStorage.getItem('reloadedListarOperadores');
+    if (!reloaded) {
+      sessionStorage.setItem('reloadedListarOperadores', 'true');
+      window.location.reload();
+      return;
+    } else {
+      sessionStorage.removeItem('reloadedListarOperadores');
+    }
+
     const operador = this.authService.getClienteActual();
     if (!operador || !operador.id) {
       alert('Debes iniciar sesión como operador');
@@ -60,21 +70,21 @@ export class ListarOperadoresComponent implements OnInit {
       return coincideCliente && coincideEstado;
     });
   }
-  getEstadoConEmoji(estado: string): string {
-  switch (estado) {
-    case 'RECIBIDO':
-      return '📥 RECIBIDO';
-    case 'COCINANDO':
-      return '🍳 COCINANDO';
-    case 'ENVIADO':
-      return '📦 ENVIADO';
-    case 'ENTREGADO':
-      return '✅ ENTREGADO';
-    default:
-      return estado;
-  }
-}
 
+  getEstadoConEmoji(estado: string): string {
+    switch (estado) {
+      case 'RECIBIDO':
+        return '📥 RECIBIDO';
+      case 'COCINANDO':
+        return '🍳 COCINANDO';
+      case 'ENVIADO':
+        return '📦 ENVIADO';
+      case 'ENTREGADO':
+        return '✅ ENTREGADO';
+      default:
+        return estado;
+    }
+  }
 
   actualizarPedido(pedido: Pedido): void {
     const estado = pedido.estado;
