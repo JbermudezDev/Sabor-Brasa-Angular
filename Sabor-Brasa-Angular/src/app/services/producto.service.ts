@@ -51,6 +51,10 @@ export class ProductoService {
   getInfoPlato(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.baseUrl}/info/${id}`);
   }
+// Obtener distribución de productos por categoría (para gráfica de pastel)
+getDistribucionCategorias(): Observable<{ [categoria: string]: number }> {
+  return this.http.get<{ [categoria: string]: number }>(`${this.baseUrl}/categorias-distribucion`);
+}
 
   getProductoInfo(id: number): Observable<Producto> {
     return this.http.get<Producto>(`${this.baseUrl}/info/${id}`);

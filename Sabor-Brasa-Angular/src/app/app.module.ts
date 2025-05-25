@@ -89,7 +89,8 @@ import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/h
     AppRoutingModule,
     FormsModule,
     RouterModule,
-    HttpClientModule
+    HttpClientModule,
+    
   ],
   providers: [CurrencyPipe],
   bootstrap: [AppComponent]

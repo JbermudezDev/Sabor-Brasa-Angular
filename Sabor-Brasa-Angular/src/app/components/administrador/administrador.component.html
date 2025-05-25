@@ -1,108 +1,96 @@
-<!--=============== HEADER ===============-->
-<header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
+<div class="dashboard">
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <h2>Juan Jose Bermudez</h2>
     </div>
-  </header>
-  
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="/assets/images/administrador.png" alt="image" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-          <span></span>
-        </div>
-      </div>
-  
-      <div class="sidebar__content">
-        <div>
-          <h3 class="sidebar__title">MANAGE</h3>
-          <div class="sidebar__list">
-            <a routerLink="/perfil" class="sidebar__link">
-              <i class="ri-profile-line"></i>
-              <span>Mi Perfil</span>
-            </a>
-            <a routerLink="/operadores" class="sidebar__link">
-              <i class="ri-walk-line"></i>
-              <span>Operadores</span>
-            </a>
-            <a routerLink="/domiciliarios" class="sidebar__link">
-              <i class="ri-riding-line"></i>
-              <span>Domiciliarios</span>
-            </a>
-            <a routerLink="/productos" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/adicionales" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/clientes" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-            <a routerLink="/operadores" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Operadores</span>
-            </a>
-            
-            <a routerLink="/dashboard" class="sidebar__link active-link">
-              <i class="ri-pie-chart-2-fill"></i>
-              <span>Dashboard</span>
-            </a>
-          </div>
-        </div>
-        <div>
-          <h3 class="sidebar__title">SETTINGS</h3>
-          <div class="sidebar__list">
-            <a href="#" class="sidebar__link"></a>
-          </div>
-        </div>
-      </div>
-      <div class="sidebar__actions">
-        <button></button>
-        <a routerLink="/" class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </a>
-      </div>
+
+    <nav class="nav">
+      <a routerLink="/perfil" class="nav-link"><i class="ri-user-line"></i> Mi Perfil</a>
+      <a routerLink="/operadores" class="nav-link"><i class="ri-walk-line"></i> Operadores</a>
+      <a routerLink="/domiciliarios" class="nav-link"><i class="ri-riding-line"></i> Domiciliarios</a>
+      <a routerLink="/productos" class="nav-link"><i class="ri-restaurant-fill"></i> Productos</a>
+      <a routerLink="/adicionales" class="nav-link"><i class="ri-goblet-2-fill"></i> Adicionales</a>
+      <a routerLink="/clientes" class="nav-link"><i class="ri-user-fill"></i> Clientes</a>
+      <a routerLink="/dashboard" class="nav-link active"><i class="ri-pie-chart-2-fill"></i> Dashboard</a>
+      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-line"></i> Log Out</a>
+    </nav>
+  </aside>
+
+  <main class="dashboard-content">
+    <div class="dashboard-header">
+      <h1 class="dashboard-title">Dashboard</h1>
+      <div class="dashboard-subtitle">Bienvenido de nuevo, Administrador</div>
     </div>
-  </nav>
-  
-  <!--=============== MAIN ===============-->
-  <main class="main container" id="main">
-    <div class="main-content">
-      <h1>Bienvenido a su portal de administrador</h1>
-      <div class="table-container">
-        <section class="dashboard">
-          <div class="card">
-            <i class="ri-restaurant-fill"></i>
-            <h2>120</h2>
-            <p>Productos</p>
-          </div>
-          <div class="card">
-            <i class="ri-user-fill"></i>
-            <h2>350</h2>
-            <p>Clientes</p>
-          </div>
-          <div class="card">
-            <i class="ri-shopping-cart-fill"></i>
-            <h2>45</h2>
-            <p>Pedidos en Curso</p>
-          </div>
-          <div class="card">
-            <i class="ri-money-dollar-circle-fill"></i>
-            <h2>$25,000</h2>
-            <p>Ventas Mensuales</p>
-          </div>
-        </section>
-      </div>
+
+    <div class="card-grid">
+      <div class="summary-card"><div class="summary-icon green"><i class="ri-restaurant-fill"></i></div><div class="summary-data"><h2>{{ totalProductos }}</h2><p>Productos</p></div></div>
+      <div class="summary-card"><div class="summary-icon blue"><i class="ri-user-fill"></i></div><div class="summary-data"><h2>{{ totalClientes }}</h2><p>Clientes</p></div></div>
+      <div class="summary-card"><div class="summary-icon red"><i class="ri-shopping-cart-fill"></i></div><div class="summary-data"><h2>{{ pedidosEnCurso }}</h2><p>Pedidos Activos</p></div></div>
+
+      <div class="summary-card"><div class="summary-icon blue"><i class="ri-user-settings-line"></i></div><div class="summary-data"><h2>{{ totalOperadores }}</h2><p>Operadores</p></div></div>
+      <div class="summary-card"><div class="summary-icon blue"><i class="ri-truck-line"></i></div><div class="summary-data"><h2>{{ totalDomiciliarios }}</h2><p>Domiciliarios</p></div></div>
     </div>
-  </main>
+
+   <div class="data-grid">
+  <div class="chart-box">
+    <h3>Órdenes por Día</h3>
+    <canvas #ordersChartCanvas></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Ingresos Totales</h3>
+    <canvas #revenueChartCanvas></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Productos Más Vendidos</h3>
+    <canvas #productosChartCanvas></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Pedidos por Estado</h3>
+    <canvas #estadosChartCanvas></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Pedidos por Operador</h3>
+    <canvas #operadoresChartCanvas></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Pedidos por Domiciliario</h3>
+    <canvas #domiciliariosChartCanvas></canvas>
+  </div>
+
+  <div class="chart-box">
+    <h3>Top Clientes</h3>
+    <canvas #clientesChartCanvas></canvas>
+  </div>
+
+  <div class="table-box">
+    <h3>Órdenes Recientes</h3>
+    <table>
+      <thead>
+        <tr>
+          <th>Cliente</th>
+          <th>Producto(s)</th>
+          <th>Fecha</th>
+          <th>Estado</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let orden of pedidosRecientes">
+          <td>{{ orden.cliente }}</td>
+          <td>{{ orden.productos }}</td>
+          <td>{{ orden.fecha }}</td>
+          <td>
+            <span class="badge" [ngClass]="getBadgeClass(orden.estado)">
+              {{ getEstadoTexto(orden.estado) }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
