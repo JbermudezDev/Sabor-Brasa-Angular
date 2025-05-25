@@ -43,7 +43,7 @@ import { MisPedidosComponent } from './pages/clientes/mis-pedidos/mis-pedidos.co
 import { ListarOperadoresComponent } from './components/listar-operador/listar-operador.component';
 import { LayoutsAdminSidebarComponent } from './components/layouts/admin/sidebar/sidebar.component';
 import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/header.component';
-
+import { NgSelectModule } from '@ng-select/ng-select';
 @NgModule({
   declarations: [
     AppComponent,
@@ -90,6 +90,7 @@ import { LayoutsAdminHeaderComponent } from './components/layouts/admin/header/h
     FormsModule,
     RouterModule,
     HttpClientModule,
+    NgSelectModule
     
   ],
   providers: [CurrencyPipe],

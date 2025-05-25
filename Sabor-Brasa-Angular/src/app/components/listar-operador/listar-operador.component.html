@@ -1,56 +1,39 @@
-<!-- Header -->
-<header class="header" id="header">
-  <div class="header__container">
-    <button class="header__toggle" id="header-toggle">
-      <i class="ri-menu-line"></i>
-    </button>
-  </div>
-</header>
-
-<!-- Sidebar -->
-<nav class="sidebar" id="sidebar">
-  <div class="sidebar__container">
-    <div class="sidebar__user">
-      <div class="sidebar__img">
-        <img src="/assets/images/administrador.png" alt="Perfil Operador" />
-      </div>
-      <div class="sidebar__info">
-        <h3>Operador</h3>
-      </div>
+<div class="dashboard">
+  <!-- Sidebar Operador -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="assets/images/administrador.png" alt="Foto Operador" class="profile-img" />
+      <h2>Operador</h2>
     </div>
 
-    <div class="sidebar__content">
-      <div class="sidebar__list">
-        <a routerLink="/perfil" class="sidebar__link">
-          <i class="ri-profile-line"></i>
-          <span>Mi Perfil</span>
-        </a>
-        <a routerLink="/" class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </a>
+    <nav class="nav">
+      <a routerLink="/perfil" class="nav-link"><i class="ri-profile-line"></i> Mi Perfil</a>
+      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-r-line"></i> Log Out</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="dashboard-content">
+    <!-- Título principal -->
+    <div class="dashboard-header pedidos-header enhanced-title">
+      <div>
+        <h1 class="dashboard-title">📦 GESTIÓN DE PEDIDOS</h1>
+        <p class="dashboard-subtitle">Administra el estado y la asignación de pedidos en tiempo real</p>
       </div>
     </div>
-  </div>
-</nav>
-
-<!-- Main Content -->
-<main class="main container" id="main">
-  <div class="main-content">
-    <h1 class="titulo-pedidos">Gestión de Pedidos</h1>
 
     <!-- Filtros -->
-    <div class="filtros-container">
-      <input type="text" class="filtro-input" [(ngModel)]="filtroCliente" placeholder="Filtrar por cliente" />
-      <select class="filtro-select" [(ngModel)]="filtroEstado">
+    <div class="filters-bar">
+      <input type="text" class="filter-input" [(ngModel)]="filtroCliente" placeholder="Filtrar por cliente" />
+      <select class="filter-select" [(ngModel)]="filtroEstado">
         <option value="">Todos los estados</option>
         <option *ngFor="let est of estados" [value]="est">{{ est }}</option>
       </select>
     </div>
 
     <!-- Tabla de Pedidos -->
-    <div class="table-container">
-      <table class="tabla-pedidos">
+    <div class="table-box enhanced-shadow">
+      <table class="table">
         <thead>
           <tr>
             <th>ID</th>
@@ -64,11 +47,15 @@
           <tr *ngFor="let pedido of pedidosFiltrados">
             <td>{{ pedido.id }}</td>
             <td>{{ pedido.cliente.nombre }} {{ pedido.cliente.apellido }}</td>
-            <td>
-              <select class="select-estado" [(ngModel)]="pedido.estado">
-                <option *ngFor="let est of estados" [value]="est">{{ est }}</option>
-              </select>
-            </td>
+           <td>
+  <select class="select-estado colored" [(ngModel)]="pedido.estado" [ngClass]="pedido.estado.toLowerCase()">
+    <option *ngFor="let est of estados" [value]="est">
+      {{ getEstadoConEmoji(est) }}
+    </option>
+  </select>
+</td>
+
+
             <td>
               <select class="select-domiciliario" [(ngModel)]="pedido.domiciliario">
                 <option [ngValue]="null">Sin asignar</option>
@@ -79,12 +66,12 @@
             </td>
             <td>
               <button class="btn-actualizar" (click)="actualizarPedido(pedido)">
-                Actualizar
+                <i class="ri-check-line"></i> Actualizar
               </button>
             </td>
           </tr>
         </tbody>
       </table>
     </div>
-  </div>
-</main>
+  </main>
+</div>

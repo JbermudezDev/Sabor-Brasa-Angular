@@ -17,7 +17,7 @@ export class ListarOperadoresComponent implements OnInit {
   domiciliarios: Domiciliario[] = [];
   operadorId!: number;
 
-  estados: string[] = ['recibido', 'cocinando', 'enviado', 'entregado'];
+  estados: string[] = ['RECIBIDO', 'COCINANDO', 'ENVIADO', 'ENTREGADO'];
 
   // Filtros
   filtroCliente: string = '';
@@ -60,6 +60,21 @@ export class ListarOperadoresComponent implements OnInit {
       return coincideCliente && coincideEstado;
     });
   }
+  getEstadoConEmoji(estado: string): string {
+  switch (estado) {
+    case 'RECIBIDO':
+      return '📥 RECIBIDO';
+    case 'COCINANDO':
+      return '🍳 COCINANDO';
+    case 'ENVIADO':
+      return '📦 ENVIADO';
+    case 'ENTREGADO':
+      return '✅ ENTREGADO';
+    default:
+      return estado;
+  }
+}
+
 
   actualizarPedido(pedido: Pedido): void {
     const estado = pedido.estado;
