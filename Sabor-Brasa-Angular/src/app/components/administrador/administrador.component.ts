@@ -47,6 +47,15 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
   ) {}
 
   ngOnInit(): void {
+    const reloaded = sessionStorage.getItem('reloadedDashboard');
+    if (!reloaded) {
+      sessionStorage.setItem('reloadedDashboard', 'true');
+      window.location.reload();
+      return;
+    } else {
+      sessionStorage.removeItem('reloadedDashboard');
+    }
+
     this.productoService.getMenu().subscribe(data => {
       this.totalProductos = data.length;
     });

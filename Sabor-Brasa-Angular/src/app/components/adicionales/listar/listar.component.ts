@@ -15,9 +15,18 @@ export class ListarAdicionalComponent implements OnInit {
 
   constructor(private adicionalService: AdicionalService) {}
 
-  ngOnInit(): void {
-    this.getAdicionales(); // Carga los adicionales al inicializar el componente
+ ngOnInit(): void {
+  const reloaded = sessionStorage.getItem('reloadedListarAdicionales');
+  if (!reloaded) {
+    sessionStorage.setItem('reloadedListarAdicionales', 'true');
+    window.location.reload();
+    return;
+  } else {
+    sessionStorage.removeItem('reloadedListarAdicionales');
   }
+
+  this.getAdicionales(); // Carga los adicionales al inicializar el componente
+}
 
   // Método para obtener todos los adicionales
   getAdicionales(): void {

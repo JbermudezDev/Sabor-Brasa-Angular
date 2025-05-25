@@ -15,18 +15,28 @@ export class ListarProductosComponent implements OnInit {
 
   constructor(private productoService: ProductoService) {}
 
-  ngOnInit(): void {
-    // Llama al servicio para obtener todos los productos
-    this.productoService.getAllProductos().subscribe({
-      next: (data) => {
-        this.productos = data.productosList; // Asigna la lista completa de productos
-        this.filteredProductos = data.productosList; // Inicializa la lista filtrada con todos los productos
-      },
-      error: (err) => {
-        console.error('Error al obtener los productos:', err);
-      }
-    });
+ ngOnInit(): void {
+  const reloaded = sessionStorage.getItem('reloadedListarProductos');
+  if (!reloaded) {
+    sessionStorage.setItem('reloadedListarProductos', 'true');
+    window.location.reload();
+    return;
+  } else {
+    sessionStorage.removeItem('reloadedListarProductos');
   }
+
+  // Llama al servicio para obtener todos los productos
+  this.productoService.getAllProductos().subscribe({
+    next: (data) => {
+      this.productos = data.productosList; // Asigna la lista completa de productos
+      this.filteredProductos = data.productosList; // Inicializa la lista filtrada con todos los productos
+    },
+    error: (err) => {
+      console.error('Error al obtener los productos:', err);
+    }
+  });
+}
+
 
   buscarProductos(): void {
     // Filtra los productos según el término de búsqueda
