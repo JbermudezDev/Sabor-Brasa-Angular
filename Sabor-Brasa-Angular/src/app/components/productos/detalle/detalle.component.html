@@ -1,61 +1,22 @@
-<div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <h2>Juan Jose Bermudez</h2>
     </div>
-  </header>
 
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="image" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-          <span></span>
-        </div>
-      </div>
-      <div class="sidebar__content">
-        <div>
-          <div class="sidebar__list">
-            <a routerLink="/administrador" class="sidebar__link">
-              <i class="fi fi-sr-crown"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-            <a routerLink="/operadores" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Operadores</span>
-            </a>
-          </div>
-        </div>
-      </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>
-  </nav>
+    <nav class="nav">
+      <a routerLink="/administrador" class="nav-link"><i class="ri-vip-crown-fill"></i> Administrador</a>
+      <a routerLink="/adicionales" class="nav-link"><i class="ri-goblet-2-fill"></i> Adicionales</a>
+      <a routerLink="/productos" class="nav-link active"><i class="ri-restaurant-fill"></i> Productos</a>
+      <a routerLink="/clientes" class="nav-link"><i class="ri-user-fill"></i> Clientes</a>
+      <a routerLink="/operadores" class="nav-link"><i class="ri-user-settings-fill"></i> Operadores</a>
+      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-line"></i> Log Out</a>
+    </nav>
+  </aside>
 
-  <!--=============== MAIN ===============-->
+  <!-- Contenido principal -->
   <main class="main-content">
     <h1>Detalles del Producto</h1>
 
@@ -63,7 +24,7 @@
       <div class="product-container">
         <div class="product-image">
           <!-- Imagen del producto -->
-          <img [src]="'http://localhost:8090' + producto.imagen" alt="Imagen del producto" width="50" />
+          <img [src]="'http://localhost:8090' + producto.imagen" alt="Imagen del producto" />
         </div>
 
         <div class="product-details">
@@ -96,7 +57,6 @@
             <a routerLink="/productos" class="btn-primary">
               <i class="ri-arrow-left-line"></i> Volver al Listado
             </a>
-            
           </div>
         </div>
       </div>

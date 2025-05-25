@@ -1,95 +1,81 @@
-<div class="main container" id="main">
-  <!--=============== HEADER ===============-->
-  <header class="header" id="header">
-    <div class="header__container">
-      <button class="header__toggle" id="header-toggle">
-        <i class="ri-menu-line"></i>
-      </button>
+<div class="container">
+  <!-- Sidebar -->
+  <aside class="sidebar">
+    <div class="profile">
+      <img src="assets/images/administrador.png" alt="Foto" class="profile-img" />
+      <h2>Juan Jose Bermudez</h2>
     </div>
-  </header>
 
-  <!--=============== SIDEBAR ===============-->
-  <nav class="sidebar" id="sidebar">
-    <div class="sidebar__container">
-      <div class="sidebar__user">
-        <div class="sidebar__img">
-          <img src="assets/images/administrador.png" alt="Administrador" />
-        </div>
-        <div class="sidebar__info">
-          <h3>Juan Jose Bermudez</h3>
-        </div>
+    <nav class="nav">
+      <a routerLink="/administrador" class="nav-link"><i class="ri-vip-crown-fill"></i> Administrador</a>
+      <a routerLink="/adicionales" class="nav-link"><i class="ri-goblet-2-fill"></i> Adicionales</a>
+      <a routerLink="/productos" class="nav-link"><i class="ri-restaurant-fill"></i> Productos</a>
+      <a routerLink="/clientes" class="nav-link active"><i class="ri-user-fill"></i> Clientes</a>
+      <a routerLink="/operadores" class="nav-link"><i class="ri-user-settings-fill"></i> Operadores</a>
+      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-line"></i> Log Out</a>
+    </nav>
+  </aside>
+
+  <!-- Contenido principal -->
+  <main class="main-content">
+    <h1>Detalles del Cliente</h1>
+
+    <div class="card-client">
+      <div class="card-header">
+        <i class="ri-user-3-fill"></i>
+        <h2>{{ cliente?.nombre }} {{ cliente?.apellido }}</h2>
+        <p>Información completa del cliente registrada en el sistema</p>
       </div>
-      <div class="sidebar__content">
-        <div>
-          <div class="sidebar__list">
-            <a routerLink="/administrador" class="sidebar__link">
-              <i class="ri-vip-crown-fill"></i>
-              <span>Administrador</span>
-            </a>
-            <a routerLink="/adicionales" class="sidebar__link">
-              <i class="ri-goblet-2-fill"></i>
-              <span>Adicionales</span>
-            </a>
-            <a routerLink="/productos" class="sidebar__link">
-              <i class="ri-restaurant-fill"></i>
-              <span>Productos</span>
-            </a>
-            <a routerLink="/clientes" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Clientes</span>
-            </a>
-            <a routerLink="/operadores" class="sidebar__link">
-              <i class="ri-user-fill"></i>
-              <span>Operadores</span>
-            </a>
+
+      <div class="card-body">
+        <div class="info-pair">
+          <i class="ri-user-line"></i>
+          <div>
+            <label>Nombre</label>
+            <span>{{ cliente?.nombre }}</span>
+          </div>
+        </div>
+
+        <div class="info-pair">
+          <i class="ri-user-line"></i>
+          <div>
+            <label>Apellido</label>
+            <span>{{ cliente?.apellido }}</span>
+          </div>
+        </div>
+
+        <div class="info-pair">
+          <i class="ri-mail-line"></i>
+          <div>
+            <label>Email</label>
+            <span>{{ cliente?.email }}</span>
+          </div>
+        </div>
+
+        <div class="info-pair">
+          <i class="ri-phone-line"></i>
+          <div>
+            <label>Teléfono</label>
+            <span>{{ cliente?.telefono }}</span>
+          </div>
+        </div>
+
+        <div class="info-pair wide">
+          <i class="ri-map-pin-line"></i>
+          <div>
+            <label>Dirección</label>
+            <span>{{ cliente?.direccion }}</span>
           </div>
         </div>
       </div>
-      <div class="sidebar__actions">
-        <button class="sidebar__link">
-          <i class="ri-logout-box-r-fill"></i>
-          <span>Log Out</span>
-        </button>
-      </div>
-    </div>
-  </nav>
 
-  <!--=============== MAIN ===============-->
-  <main class="main-content">
-    <h1>Detalles del Cliente</h1>
-    <div class="details-container" *ngIf="cliente">
-      <div class="detail-item">
-        <i class="ri-user-line"></i>
-        <span class="detail-label">Nombre:</span>
-        <span class="detail-value">{{ cliente.nombre }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-user-line"></i>
-        <span class="detail-label">Apellido:</span>
-        <span class="detail-value">{{ cliente.apellido }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-mail-line"></i>
-        <span class="detail-label">Email:</span>
-        <span class="detail-value">{{ cliente.email }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-phone-line"></i>
-        <span class="detail-label">Teléfono:</span>
-        <span class="detail-value">{{ cliente.telefono }}</span>
-      </div>
-      <div class="detail-item">
-        <i class="ri-map-pin-line"></i>
-        <span class="detail-label">Dirección:</span>
-        <span class="detail-value">{{ cliente.direccion }}</span>
-      </div>
-      <div class="actions-container">
-        <a routerLink="/clientes" class="btn btn-back">
-          <i class="ri-arrow-left-line"></i> Volver al Listado
+      <div class="card-actions">
+        <a routerLink="/clientes" class="btn-action back">
+          <i class="ri-arrow-left-line"></i> Volver
         </a>
-        <button class="btn btn-back" routerLink="/clientes/editar/{{ cliente.id }}">
+        <a [routerLink]="['/clientes/editar', cliente?.id]" class="btn-action edit">
           <i class="ri-edit-line"></i> Editar
-        </button>
+        </a>
       </div>
     </div>
   </main>
