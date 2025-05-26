@@ -38,59 +38,67 @@
       <div class="orders-card">
         <h2 class="orders-title">Mis Pedidos</h2>
         <div *ngIf="pedidos.length > 0; else sinPedidos">
-          <table class="orders-table">
-            <thead>
-              <tr>
-                <th># Pedido</th>
-                <th>Estado</th>
-                <th>Fecha creación</th>
-                <th>Fecha entrega</th>
-                <th>Total</th>
-                <th>Domiciliario</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr *ngFor="let pedido of pedidos">
-                <td>{{ pedido.id }}</td>
-                <td>
-                  <span
-                    class="status-badge"
-                    [ngClass]="{
-                      recibido: pedido.estado === 'RECIBIDO',
-                      cocinando: pedido.estado === 'COCINANDO',
-                      enviado: pedido.estado === 'ENVIADO',
-                      entregado: pedido.estado === 'ENTREGADO'
-                    }"
-                  >
-                    {{ pedido.estado }}
-                  </span>
-                </td>
-                <td>{{ pedido.fechaCreacion | date : "mediumDate" }}</td>
-                <td>
-                  <span
-                    *ngIf="
-                      pedido.estado === 'ENTREGADO' && pedido.fechaEntrega;
-                      else sinEntrega
-                    "
-                  >
-                    {{ pedido.fechaEntrega | date : "mediumDate" }}
-                  </span>
-                  <ng-template #sinEntrega>
-                    <em>No entregado aún</em>
-                  </ng-template>
-                </td>
-                <td>${{ pedido.total | number:'1.3-3' }}</td>
-                <td>
-                  <span *ngIf="pedido.domiciliario; else sinDom">
-                    {{ pedido.domiciliario.nombre }}
-                  </span>
-                  <ng-template #sinDom>
-                    <em>No asignado</em>
-                  </ng-template>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <table class="orders-table">
+  <thead>
+    <tr>
+      <th># Pedido</th>
+      <th>Estado</th>
+      <th>Fecha creación</th>
+      <th>Fecha entrega</th>
+      <th>Total</th>
+      <th>Domiciliario</th>
+      <th>Descargar</th> <!-- NUEVA COLUMNA -->
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let pedido of pedidos">
+      <td>{{ pedido.id }}</td>
+      <td>
+        <span
+          class="status-badge"
+          [ngClass]="{
+            recibido: pedido.estado === 'RECIBIDO',
+            cocinando: pedido.estado === 'COCINANDO',
+            enviado: pedido.estado === 'ENVIADO',
+            entregado: pedido.estado === 'ENTREGADO'
+          }"
+        >
+          {{ pedido.estado }}
+        </span>
+      </td>
+      <td>{{ pedido.fechaCreacion | date : "mediumDate" }}</td>
+      <td>
+        <span
+          *ngIf="
+            pedido.estado === 'ENTREGADO' && pedido.fechaEntrega;
+            else sinEntrega
+          "
+        >
+          {{ pedido.fechaEntrega | date : "mediumDate" }}
+        </span>
+        <ng-template #sinEntrega>
+          <em>No entregado aún</em>
+        </ng-template>
+      </td>
+      <td>${{ pedido.total | number:'1.3-3' }}</td>
+      <td>
+        <span *ngIf="pedido.domiciliario; else sinDom">
+          {{ pedido.domiciliario.nombre }}
+        </span>
+        <ng-template #sinDom>
+          <em>No asignado</em>
+        </ng-template>
+      </td>
+      <td>
+          <button (click)="descargarPDF(pedido.id)" class="btn-descargar-pdf">
+      <i class="ri-file-download-line"></i> Descargar PDF
+    </button>
+
+      </td>
+    </tr>
+  </tbody>
+</table>
+
           <div class="pagination">
             <button disabled>&lt; Previous</button>
             <span class="page-number">1</span>

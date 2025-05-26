@@ -57,6 +57,18 @@ export class MisPedidosComponent implements OnInit {
     console.log(`Total para el pedido ${pedido.id}:`, total);
     return total;
   }
+
+  descargarPDF(pedidoId: number): void {
+  this.pedidoService.descargarPDFPedido(pedidoId).subscribe((pdfBlob: Blob) => {
+    const url = window.URL.createObjectURL(pdfBlob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `pedido_${pedidoId}.pdf`;
+    a.click();
+    window.URL.revokeObjectURL(url);
+  });
+}
+
   cerrarSesion(): void {
   this.authService.logoutCliente().subscribe({
     next: () => {

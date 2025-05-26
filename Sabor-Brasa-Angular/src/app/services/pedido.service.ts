@@ -65,6 +65,13 @@ getTopClientes(): Observable<{ [key: string]: number }> {
   return this.http.get<{ [key: string]: number }>('http://localhost:8090/pedidos/top-clientes');
 }
 
+descargarPDFPedido(pedidoId: number): Observable<Blob> {
+  return this.http.get(`${this.baseUrl}/${pedidoId}/pdf`, {
+    responseType: 'blob'
+  });
+}
+
+
   actualizarPedido(
     pedidoId: number,
     estado: string,
