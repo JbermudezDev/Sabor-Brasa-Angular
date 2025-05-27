@@ -54,7 +54,7 @@ export class InfoPlatoComponent implements OnInit {
   }
 
   agregarAlCarrito(): void {
-    if (!this.authService.isClienteLoggedIn()) {
+    if (!this.authService.isLoggedIn()) {
       alert('Debes iniciar sesión para agregar productos al carrito.');
       this.router.navigate(['/login-cliente']);
       return;

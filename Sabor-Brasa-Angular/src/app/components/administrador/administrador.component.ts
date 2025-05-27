@@ -12,6 +12,7 @@ import { ClienteService } from 'src/app/services/cliente.service';
 import { PedidoService } from 'src/app/services/pedido.service';
 import { OperadorService } from 'src/app/services/operador.service';
 import { DomiciliarioService } from 'src/app/services/domiciliario.service';
+import { AuthService } from 'src/app/services/auth-service.service'; // ✅ IMPORTANTE
 import Chart from 'chart.js/auto';
 
 @Component({
@@ -43,7 +44,8 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     private clienteService: ClienteService,
     private pedidoService: PedidoService,
     private operadorService: OperadorService,
-    private domiciliarioService: DomiciliarioService
+    private domiciliarioService: DomiciliarioService,
+    private authService: AuthService // ✅ Inyección del servicio de autenticación
   ) {}
 
   ngOnInit(): void {
@@ -99,6 +101,16 @@ export class AdministradorComponent implements OnInit, AfterViewInit {
     this.cargarPedidosPorOperador();
     this.cargarPedidosPorDomiciliario();
     this.cargarTopClientes();
+  }
+
+  // 🎯 NUEVO MÉTODO DE CIERRE DE SESIÓN
+  cerrarSesion(): void {
+    this.authService.logout(); // limpia localStorage y hace petición al backend
+    localStorage.removeItem('clienteId');
+    localStorage.removeItem('clienteActual');
+    localStorage.removeItem('clienteData');
+    localStorage.removeItem('carritoId');
+    this.router.navigate(['/login']);
   }
 
   cargarPedidosPorDia() {

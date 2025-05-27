@@ -1,4 +1,3 @@
-// src/app/services/pedido.service.ts
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
@@ -13,7 +12,6 @@ export class PedidoService {
 
   constructor(private http: HttpClient) {}
 
-  // Confirmar pedido con estructura DTO esperada por el backend
   confirmarPedido(clienteId: number, items: ItemCarrito[]): Observable<Pedido> {
     const requestBody = {
       clienteId,
@@ -32,45 +30,44 @@ export class PedidoService {
   listarTodos(): Observable<Pedido[]> {
     return this.http.get<Pedido[]>(`${this.baseUrl}/all`);
   }
-// Obtener conteo de pedidos por día (para gráfica de barras)
-getPedidosPorDia(): Observable<{ [fecha: string]: number }> {
-  return this.http.get<{ [fecha: string]: number }>(`${this.baseUrl}/por-dia`);
-}
 
-// Obtener ingresos por semana (para gráfica de líneas)
-getIngresosPorSemana(): Observable<{ [semana: string]: number }> {
-  return this.http.get<{ [semana: string]: number }>(`${this.baseUrl}/ingresos-por-semana`);
-}
-getPedidosRecientes(): Observable<Pedido[]> {
-  return this.http.get<Pedido[]>('http://localhost:8090/pedidos/recientes');
-}
+  getPedidosPorDia(): Observable<{ [fecha: string]: number }> {
+    return this.http.get<{ [fecha: string]: number }>(`${this.baseUrl}/por-dia`);
+  }
 
-getProductosMasVendidos(): Observable<{ [key: string]: number }> {
-  return this.http.get<{ [key: string]: number }>('http://localhost:8090/pedidos/productos-mas-vendidos');
-}
+  getIngresosPorSemana(): Observable<{ [semana: string]: number }> {
+    return this.http.get<{ [semana: string]: number }>(`${this.baseUrl}/ingresos-por-semana`);
+  }
 
-getPedidosPorEstado(): Observable<{ [key: string]: number }> {
-  return this.http.get<{ [key: string]: number }>('http://localhost:8090/pedidos/pedidos-por-estado');
-}
+  getPedidosRecientes(): Observable<Pedido[]> {
+    return this.http.get<Pedido[]>(`${this.baseUrl}/recientes`);
+  }
 
-getPedidosPorOperador(): Observable<{ [key: string]: number }> {
-  return this.http.get<{ [key: string]: number }>('http://localhost:8090/pedidos/por-operador');
-}
+  getProductosMasVendidos(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/productos-mas-vendidos`);
+  }
 
-getPedidosPorDomiciliario(): Observable<{ [key: string]: number }> {
-  return this.http.get<{ [key: string]: number }>('http://localhost:8090/pedidos/por-domiciliario');
-}
+  getPedidosPorEstado(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/pedidos-por-estado`);
+  }
 
-getTopClientes(): Observable<{ [key: string]: number }> {
-  return this.http.get<{ [key: string]: number }>('http://localhost:8090/pedidos/top-clientes');
-}
+  getPedidosPorOperador(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/por-operador`);
+  }
 
-descargarPDFPedido(pedidoId: number): Observable<Blob> {
-  return this.http.get(`${this.baseUrl}/${pedidoId}/pdf`, {
-    responseType: 'blob'
-  });
-}
+  getPedidosPorDomiciliario(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/por-domiciliario`);
+  }
 
+  getTopClientes(): Observable<{ [key: string]: number }> {
+    return this.http.get<{ [key: string]: number }>(`${this.baseUrl}/top-clientes`);
+  }
+
+  descargarPDFPedido(pedidoId: number): Observable<Blob> {
+    return this.http.get(`${this.baseUrl}/${pedidoId}/pdf`, {
+      responseType: 'blob'
+    });
+  }
 
   actualizarPedido(
     pedidoId: number,

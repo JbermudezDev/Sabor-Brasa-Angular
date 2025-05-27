@@ -21,35 +21,43 @@ export class LoginClienteComponent {
     private router: Router
   ) {}
 
-  onSubmit(): void {
-    this.authService.loginCliente(this.email, this.password).subscribe({
-      next: (response) => {
-        console.log('Inicio de sesión exitoso:', response);
+ onSubmit(): void {
+  this.authService.login(this.email, this.password).subscribe({
+    next: (response) => {
+      const token = response.token;
+      const rol = response.rol?.toUpperCase();
+      const usuario = response.usuario;
 
-        const token = response.token;
-        const cliente = response.cliente;
-
-        if (token) {
-          this.authService.guardarTokenCliente(token);
-        }
-
-        if (cliente) {
-          this.authService.guardarCliente(cliente);
-          this.carritoService.setClienteId(cliente.id);
-        }
-
-        this.router.navigate(['/info-cliente']);
-      },
-      error: (err) => {
-        console.error('Error al iniciar sesión:', err);
-        if (err.status === 401) {
-          this.errorMessage = 'Credenciales incorrectas. Por favor, intente nuevamente.';
-        } else if (err.status === 500) {
-          this.errorMessage = 'Error interno del servidor. Intente más tarde.';
-        } else {
-          this.errorMessage = 'Ocurrió un error inesperado. Por favor, intente nuevamente.';
-        }
+      if (!token || !rol || !usuario) {
+        this.errorMessage = 'Respuesta del servidor incompleta.';
+        return;
       }
-    });
-  }
+
+      // Guardar en localStorage
+      this.authService.guardarToken(token);
+      this.authService.guardarUsuario(usuario);
+      this.authService.guardarRol(rol);
+
+      // Guardar clienteId en el carrito si es CLIENTE
+      if (rol === 'CLIENTE') {
+        
+        this.router.navigate(['/info-cliente']);
+      } else {
+        this.errorMessage = 'No tienes permiso para acceder a esta vista.';
+      }
+    },
+    error: (err) => {
+      console.error('Error al iniciar sesión:', err);
+      if (err.status === 401) {
+        this.errorMessage = 'Credenciales incorrectas. Por favor, intente nuevamente.';
+      } else if (err.status === 500) {
+        this.errorMessage = 'Error interno del servidor. Intente más tarde.';
+      } else {
+        this.errorMessage = 'Ocurrió un error inesperado. Por favor, intente nuevamente.';
+      }
+    }
+  });
+}
+
+
 }

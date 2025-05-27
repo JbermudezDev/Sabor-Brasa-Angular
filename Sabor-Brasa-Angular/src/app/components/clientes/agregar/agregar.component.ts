@@ -21,16 +21,23 @@ export class AgregarComponent {
     direccion: ''
   };
 
+  mensaje: string = '';
+  error: string = '';
+
   constructor(private clienteService: ClienteService, private router: Router) {}
 
   onSubmit(): void {
+    this.mensaje = '';
+    this.error = '';
+
     this.clienteService.addCliente(this.cliente).subscribe({
       next: (data) => {
-        console.log('Cliente añadido correctamente:', data);
-        this.router.navigate(['/clientes']); // Redirige al listado de clientes
+        this.mensaje = 'Cliente añadido correctamente';
+        this.router.navigate(['/clientes']); // redirige si es necesario
       },
       error: (err) => {
         console.error('Error al añadir el cliente:', err);
+        this.error = err.message || 'Error inesperado al registrar el cliente';
       }
     });
   }

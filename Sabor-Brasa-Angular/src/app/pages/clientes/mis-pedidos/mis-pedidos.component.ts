@@ -22,9 +22,10 @@ export class MisPedidosComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const clienteActual = this.authService.getClienteActual();
+    const clienteActual = this.authService.getUsuario();
     if (!clienteActual || !clienteActual.id) {
       alert('Debe iniciar sesión para ver sus pedidos');
+      this.router.navigate(['/login-cliente']);
       return;
     }
 
@@ -42,41 +43,39 @@ export class MisPedidosComponent implements OnInit {
 
   getTotalPedido(pedido: Pedido): number {
     if (!pedido.carrito?.productosSeleccionados) return 0;
-  
+
     let total = 0;
     pedido.carrito.productosSeleccionados.forEach((item) => {
       const precioProducto = item.producto?.precio ?? 0;
       const adicionales = item.adicionales ?? [];
       const adicionalesSum = adicionales.reduce((a, b) => a + (b.precio ?? 0), 0);
-  
+
       console.log(`Producto: ${item.producto?.nombre}, Precio: ${precioProducto}, Adicionales: ${adicionalesSum}`);
-      
       total += precioProducto + adicionalesSum;
     });
-  
+
     console.log(`Total para el pedido ${pedido.id}:`, total);
     return total;
   }
 
   descargarPDF(pedidoId: number): void {
-  this.pedidoService.descargarPDFPedido(pedidoId).subscribe((pdfBlob: Blob) => {
-    const url = window.URL.createObjectURL(pdfBlob);
-    const a = document.createElement('a');
-    a.href = url;
-    a.download = `pedido_${pedidoId}.pdf`;
-    a.click();
-    window.URL.revokeObjectURL(url);
-  });
-}
+    this.pedidoService.descargarPDFPedido(pedidoId).subscribe((pdfBlob: Blob) => {
+      const url = window.URL.createObjectURL(pdfBlob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `pedido_${pedidoId}.pdf`;
+      a.click();
+      window.URL.revokeObjectURL(url);
+    });
+  }
 
+  // ✅ Método completo para cerrar sesión del cliente
   cerrarSesion(): void {
-  this.authService.logoutCliente().subscribe({
-    next: () => {
-      this.router.navigate(['/login-cliente']); // Redirige al login
-    },
-    error: (err) => {
-      console.error('Error al cerrar sesión', err);
-    }
-  });
-}
+    this.authService.logout();
+    localStorage.removeItem('clienteId');
+    localStorage.removeItem('clienteActual');
+    localStorage.removeItem('clienteData');
+    localStorage.removeItem('carritoId');
+    this.router.navigate(['/login-cliente']);
+  }
 }

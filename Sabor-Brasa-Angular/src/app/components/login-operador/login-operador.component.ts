@@ -17,7 +17,7 @@ export class LoginOperadorComponent {
   constructor(private authService: AuthService, private router: Router) {}
 
   onSubmit(): void {
-    this.authService.loginOperador(this.usuario, this.contrasena).subscribe({
+    this.authService.login(this.usuario, this.contrasena).subscribe({
       next: (response) => {
         const token = response.token;
         if (token) {

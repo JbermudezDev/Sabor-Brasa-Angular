@@ -13,13 +13,12 @@ import { Router } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class ListarOperadoresComponent implements OnInit {
-    pedidos: Pedido[] = [];
+  pedidos: Pedido[] = [];
   domiciliarios: Domiciliario[] = [];
   operadorId!: number;
 
   estados: string[] = ['RECIBIDO', 'COCINANDO', 'ENVIADO', 'ENTREGADO'];
 
-  // Filtros
   filtroCliente: string = '';
   filtroEstado: string = '';
 
@@ -31,7 +30,6 @@ export class ListarOperadoresComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // Recarga controlada solo una vez
     const reloaded = sessionStorage.getItem('reloadedListarOperadores');
     if (!reloaded) {
       sessionStorage.setItem('reloadedListarOperadores', 'true');
@@ -41,7 +39,7 @@ export class ListarOperadoresComponent implements OnInit {
       sessionStorage.removeItem('reloadedListarOperadores');
     }
 
-    const operador = this.authService.getClienteActual();
+    const operador = this.authService.getUsuario();
     if (!operador || !operador.id) {
       alert('Debes iniciar sesión como operador');
       this.router.navigate(['/login']);
@@ -60,6 +58,13 @@ export class ListarOperadoresComponent implements OnInit {
     });
   }
 
+  cerrarSesion(): void {
+    this.authService.logout(); // limpia localStorage y hace logout al backend
+    localStorage.removeItem('carritoId'); // por si el operador usa carrito (seguridad)
+    localStorage.removeItem('clienteId');
+    this.router.navigate(['/login']);
+  }
+
   get pedidosFiltrados(): Pedido[] {
     return this.pedidos.filter(pedido => {
       const coincideCliente = !this.filtroCliente ||
@@ -73,16 +78,11 @@ export class ListarOperadoresComponent implements OnInit {
 
   getEstadoConEmoji(estado: string): string {
     switch (estado) {
-      case 'RECIBIDO':
-        return '📥 RECIBIDO';
-      case 'COCINANDO':
-        return '🍳 COCINANDO';
-      case 'ENVIADO':
-        return '📦 ENVIADO';
-      case 'ENTREGADO':
-        return '✅ ENTREGADO';
-      default:
-        return estado;
+      case 'RECIBIDO': return '📥 RECIBIDO';
+      case 'COCINANDO': return '🍳 COCINANDO';
+      case 'ENVIADO': return '📦 ENVIADO';
+      case 'ENTREGADO': return '✅ ENTREGADO';
+      default: return estado;
     }
   }
 

@@ -36,7 +36,11 @@ export class RegistrarComponent implements OnInit {
   }
 
   onSubmit(): void {
-    this.clienteService.addCliente(this.cliente).subscribe({
+    // Crear objeto sin el campo 'password' antes de enviarlo
+    const clienteSinPassword = { ...this.cliente };
+    delete clienteSinPassword.password;
+
+    this.clienteService.addCliente(clienteSinPassword).subscribe({
       next: (data) => {
         this.mensajeExito = '¡Cliente añadido correctamente!';
         console.log('Cliente añadido correctamente:', data);

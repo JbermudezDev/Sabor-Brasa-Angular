@@ -55,7 +55,7 @@ export class DashclienteListarComponent implements OnInit {
   }
 
   cargarCliente(): void {
-    const clienteActual = this.authService.getClienteActual();
+    const clienteActual = this.authService.getUsuario();
     if (!clienteActual || !clienteActual.id) {
       alert('Debe iniciar sesión para ver esta información.');
       this.router.navigate(['/login']);
@@ -80,7 +80,7 @@ export class DashclienteListarComponent implements OnInit {
       this.clienteService.updateCliente(this.cliente.id, this.cliente).subscribe({
         next: () => {
           alert('Datos actualizados con éxito.');
-          this.authService.loginClienteSuccess(this.cliente);
+          this.authService.guardarUsuario(this.cliente);
         },
         error: (err) => {
           console.error('Error al actualizar los datos del cliente:', err);
@@ -90,5 +90,15 @@ export class DashclienteListarComponent implements OnInit {
     } else {
       alert('No se pudo identificar al cliente.');
     }
+  }
+
+  // ✅ NUEVO: Método para cerrar sesión
+  cerrarSesion(): void {
+    this.authService.logout(); // limpia el token y notifica al backend
+    localStorage.removeItem('clienteId');
+    localStorage.removeItem('clienteActual');
+    localStorage.removeItem('clienteData');
+    localStorage.removeItem('carritoId');
+    this.router.navigate(['/login']);
   }
 }

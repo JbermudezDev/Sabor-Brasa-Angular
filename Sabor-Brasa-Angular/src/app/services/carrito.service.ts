@@ -16,38 +16,9 @@ export interface ItemCarrito {
 export class CarritoService {
   private baseUrl = 'http://localhost:8090/carrito';
   private carrito: ItemCarrito[] = [];
-  private clienteId?: number;
-  private carritoId?: number;
 
   constructor(private http: HttpClient) {
-    this.cargarClienteDeCookies();
-    this.cargarCarritoIdDeCookies();
     this.cargarCarritoDeLocalStorage();
-  }
-
-  private obtenerCookie(nombre: string): string | null {
-    const cookies = document.cookie.split(';');
-    for (let c of cookies) {
-      const [key, value] = c.trim().split('=');
-      if (key === nombre) return value;
-    }
-    return null;
-  }
-
-  private cargarClienteDeCookies(): void {
-    const clienteIdCookie = this.obtenerCookie('clienteId');
-    if (clienteIdCookie) {
-      this.clienteId = parseInt(clienteIdCookie, 10);
-      localStorage.setItem('clienteId', clienteIdCookie);
-    }
-  }
-
-  private cargarCarritoIdDeCookies(): void {
-    const carritoIdCookie = this.obtenerCookie('carritoId');
-    if (carritoIdCookie) {
-      this.carritoId = parseInt(carritoIdCookie, 10);
-      localStorage.setItem('carritoId', carritoIdCookie);
-    }
   }
 
   private cargarCarritoDeLocalStorage(): void {
@@ -59,13 +30,6 @@ export class CarritoService {
 
   private guardarCarritoEnLocalStorage(): void {
     localStorage.setItem('carrito', JSON.stringify(this.carrito));
-  }
-
-  getCarritoDesdeBackend(): Observable<any> {
-    if (!this.clienteId) {
-      throw new Error('Cliente no autenticado');
-    }
-    return this.http.get<any>(`${this.baseUrl}/${this.clienteId}`);
   }
 
   agregar(item: ItemCarrito): void {
@@ -91,21 +55,13 @@ export class CarritoService {
     return this.carrito.reduce((sum, item) => sum + item.total, 0);
   }
 
-  setClienteId(id: number): void {
-    this.clienteId = id;
-    localStorage.setItem('clienteId', id.toString());
-  }
-
-  getClienteId(): number | undefined {
-    return this.clienteId ?? parseInt(localStorage.getItem('clienteId') || '', 10);
-  }
-
-  setCarritoId(id: number): void {
-    this.carritoId = id;
-    localStorage.setItem('carritoId', id.toString());
-  }
-
-  getCarritoId(): number | undefined {
-    return this.carritoId ?? parseInt(localStorage.getItem('carritoId') || '', 10);
+  getClienteId(): number | null {
+    const usuario = localStorage.getItem('usuarioActual');
+    const rol = localStorage.getItem('rolUsuario');
+    if (usuario && rol === 'CLIENTE') {
+      const parsed = JSON.parse(usuario);
+      return parsed?.id ?? null;
+    }
+    return null;
   }
 }

@@ -24,7 +24,7 @@ export class MenuComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    const cliente = this.authService.getClienteActual();
+    const cliente = this.authService.getUsuario();
     if (!cliente || !cliente.id) {
       alert('Debe iniciar sesión para ver el menú');
       this.router.navigate(['/login-cliente']);

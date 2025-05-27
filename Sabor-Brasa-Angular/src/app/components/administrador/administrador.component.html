@@ -11,7 +11,10 @@
       <a routerLink="/productos" class="nav-link"><i class="ri-restaurant-fill"></i> Productos</a>
       <a routerLink="/adicionales" class="nav-link"><i class="ri-goblet-2-fill"></i> Adicionales</a>
       <a routerLink="/clientes" class="nav-link"><i class="ri-user-fill"></i> Clientes</a>
-      <a routerLink="/" class="nav-link logout"><i class="ri-logout-box-line"></i> Log Out</a>
+      <a (click)="cerrarSesion()" class="nav-link logout" style="cursor: pointer;">
+  <i class="ri-logout-box-line"></i> Cerrar sesión
+</a>
+
     </nav>
   </aside>
 
