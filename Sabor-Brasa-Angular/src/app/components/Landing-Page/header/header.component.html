@@ -2,21 +2,28 @@
   <div id="header">
     <img src="/assets/images/steak3.png" alt="Imagen de fondo del header" class="header-bg">
     <div id="logo">
-        <a href="/login">
-            <img src="/assets/images/logo brasa.png" alt="Brasa & Corte" style="cursor: pointer;">
-        </a>
-        </div>
+        <img src="/assets/images/logo brasa.png" alt="Brasa & Corte" style="cursor: default;">
+    </div>
+
        
     <ul>
         <li><a routerLink="/menu">Menu</a></li>
         <li><a href="#menu">Acerca de Nosotros</a></li>
         <li><a href="#comida">Comida</a></li>
         <li><a href="#reservas">Sugerencias</a></li>
-        <li><a href="#galleria">Galleria</a></li>
         <li><a href="#encuentranos">Ubicacion</a></li>
-       
-        
-    
+        <li><button (click)="irALogin()" class="animated-button">
+                <span class="text">Login</span>
+                <span class="circle"></span>
+                <svg class="arr-1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+                <svg class="arr-2" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                    <path d="M12 4l-1.41 1.41L16.17 11H4v2h12.17l-5.58 5.59L12 20l8-8z"/>
+                </svg>
+                </button>
+        </li>
+
     </ul>
 
 </div>

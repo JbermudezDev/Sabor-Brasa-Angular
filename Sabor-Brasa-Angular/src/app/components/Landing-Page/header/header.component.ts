@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { Router, RouterLink } from '@angular/router';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,5 +8,11 @@ import { Router, RouterLink } from '@angular/router';
   encapsulation: ViewEncapsulation.Emulated
 })
 export class HeaderComponent {
+
+  constructor(private router: Router) {}
+
+  irALogin() {
+    this.router.navigate(['/login']);
+  }
 
 }
